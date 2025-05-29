@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Motorista</title>
+</head>
+<body>
+<h3>Cadastro de Motorista</h3>
+<form th:action="@{/cadastro-motorista}" th:object="${motorista}" method="post" enctype="multipart/form-data">
+
+    <fieldset>
+        <legend>Dados de Acesso</legend>
+        <input th:field="*{email}" type="email" placeholder="Email" required><br>
+        <input th:field="*{senha}" type="password" placeholder="Senha" required><br>
+    </fieldset><br>
+
+    <fieldset>
+        <legend>Dados do Motorista</legend>
+        <input th:field="*{nome_completo}" type="text" placeholder ="Nome Completo" required><br>
+        <input th:field="*{cpf}" type="text" placeholder ="Cpf" required><br>
+        <input th:field="*{numero_cnh}" type="text" placeholder ="Numero da CNH" required><br>
+        <input th:field="*{numero_antt}" type="text" placeholder ="Numero Antt" required><br>
+        <input th:field="*{telefone_pessoal}" type="text" placeholder ="Telefone Pessoal" required><br>
+        <input th:field="*{telefone_seguranca_1}" type="text" placeholder ="Telefone de Segurança 1"><br>
+        <input th:field="*{telefone_seguranca_2}" type="text" placeholder ="Telefone de Segurança 2"><br>
+        <input th:field="*{telefone_seguranca_3}" type="text" placeholder ="Telefone de Segurança 3"><br>
+        <input th:field="*{telefone_referencia_1}" type="text" placeholder ="Telefone de Referencia 1"><br>
+        <input th:field="*{telefone_referencia_2}" type="text" placeholder ="Telefone de Referencia 2"><br>
+        <input th:field="*{telefone_referencia_3}" type="text" placeholder ="Telefone de Referencia 3"><br>
+        <input th:field="*{email_comercial}" type="text" placeholder="Email Comercial"><br><br>
+        <label for="fotoCnh">Foto da Cnh</label>
+        <input type="file" name="fotoCnh" id="fotoCnh" accept="image/*">
+    </fieldset><br>
+
+    <fieldset>
+        <legend>Endereço</legend>
+        <input th:field="*{logradouro}" type="text" placeholder="Logradouro" required><br>
+        <input th:field="*{numero}" type="text" placeholder="Número" required><br>
+        <input th:field="*{complemento}" type="text" placeholder="Complemento"><br>
+        <input th:field="*{bairro}" type="text" placeholder="Bairro"><br>
+        <input th:field="*{cidade}" type="text" placeholder="Cidade" required><br>
+        <input th:field="*{estado}" type="text" placeholder="Estado (UF)" required><br>
+        <input th:field="*{cep}" type="text" placeholder="CEP" required><br>
+        <input th:field="*{pais}" type="text" placeholder="País"><br>
+    </fieldset><br>
+
+    <fieldset>
+        <legend>Caminhão</legend>
+        <input th:field="*{numeroCrlv}" type="text" placeholder="Número CRLV" required><br>
+        <input th:field="*{placaVeiculo}" type="text" placeholder="Placa" required><br>
+        <input th:field="*{ano}" type="number" placeholder="Ano" required><br>
+        <input th:field="*{fabricante}" type="text" placeholder="Fabricante" required><br>
+        <input th:field="*{modelo}" type="text" placeholder="Modelo" required><br>
+        <input th:field="*{cor}" type="text" placeholder="Cor" required><br>
+        <input th:field="*{quantidadeEixo}" type="number" placeholder="Quantidade de Eixos" required><br><br>
+        <label for="fotoFrente">Foto da frente do Caminhão</label>
+        <input type="file" name="fotoFrente" id="fotoFrente" accept="image/*"><br>
+        <label for="fotoPlaca">Foto da placa do Caminhão</label>
+        <input type="file" name="fotoPlaca" id="fotoPlaca" accept="image/*">
+    </fieldset><br>
+
+    <button type="submit">Cadastrar</button>
+</form>
+
+</body>
+</html>

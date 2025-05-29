@@ -1,0 +1,29 @@
+<!-- src/main/resources/templates/login.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+<h2>Login</h2>
+<form th:action="@{/login}" method="post">
+    <!-- Em caso de ativação do CSRF, descomente a linha abaixo -->
+    <!-- <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" /> -->
+
+    <label for="email">Email:</label><br>
+    <input type="text" id="email" name="email" required><br>
+
+    <label for="senha">Senha:</label><br>
+    <input type="password" id="senha" name="senha" required><br><br>
+
+    <button type="submit">Entrar</button><br><br>
+
+    <label>É novo por aqui?</label> <a href="http://localhost:8080/cadastro">Cadastrar</a>
+    
+</form>
+
+<p th:if="${param.error}" style="color:red">Email ou Senha Inválido!</p>
+<p th:if="${param.logout}" style="color:green">Você saiu com sucesso!</p>
+</body>
+</html>
