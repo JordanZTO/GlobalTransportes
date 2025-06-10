@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema de Fretes</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+    }
+    .sidebar {
+        height: 100vh;
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 250px;
+        background-color: #030039;
+        color: white;
+        display: flex;
+        flex-direction: column;
+    }
+    .main-content {
+        margin-left: 250px;
+        background-color: #f5f6fa;
+        min-height: 100vh;
+    }
+    .active-link {
+        background-color: rgba(255, 213, 0, 0.2);
+        border-left: 4px solid #ffd500;
+        color: #ffd500;
+    }
+  </style>
+</head>
+<body class="bg-gray-50">
+<div class="flex">
+  <!-- Sidebar -->
+  <div class="sidebar shadow-lg z-10">
+    <div class="p-6 flex justify-center">
+      <!-- Logo placeholder -->
+      <div class="text-2xl font-bold text-white flex items-center">
+        <i class="fas fa-truck-fast mr-2"></i>
+        <span>FretesFácil</span>
+      </div>
+    </div>
+
+      <!-- Menu Items -->
+    <div class="mt-8 flex-grow">
+      <a href="inicio.html" class="flex items-center px-6 py-4 text-gray-300 hover:bg-blue-800 transition-all ">
+        <i class="fas fa-home mr-3"></i>
+        <span>Início</span>
+      </a>
+      <a href="meus-fretes.html" class="flex items-center px-6 py-4 text-gray-300 hover:bg-blue-800 transition-all">
+        <i class="fas fa-truck mr-3"></i>
+        <span>Meus fretes</span>
+      </a>
+      <a href="fretes-disponiveis.html" class="active-link flex items-center px-6 py-4 text-gray-300 hover:bg-blue-800 transition-all">
+        <i class="fas fa-box mr-3"></i>
+        <span>Fretes Disponíveis</span>
+      </a>
+    </div>
+    <div class="mt-auto mb-6 px-6">
+      <button class="w-full bg-yellow-400 hover:bg-yellow-500 text-white font-medium py-2 px-4 rounded-lg flex items-center justify-center transition-all">
+        <i class="fas fa-sign-out-alt mr-2"></i>
+        <span>Sair</span>
+      </button>
+    </div>
+    </div>
+
+
+
+  <!-- Main Content -->
+  <div class="main-content w-full">
+    <!-- Top Navigation -->
+    <div class="bg-white shadow-sm p-4 flex justify-end items-center">
+      <div class="flex items-center">
+        <span class="mr-3 text-gray-700">Motorista</span>
+        <div class="w-10 h-10 rounded-full bg-blue-800 flex items-center justify-center text-white">
+          <i class="fas fa-user"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- Content Area -->
+    <div class="p-8">
+      <div class="bg-white rounded-lg shadow-sm p-6">
+        <!-- Header -->
+        <div class="mb-8">
+          <h1 class="text-2xl font-bold text-gray-800">Fretes disponíveis</h1>
+          <p class="text-gray-600 mt-1">Visualize aqui os fretes disponíveis</p>
+        </div>
+      <!-- Search Bar -->
+      <div class="mb-6">
+        <div class="relative">
+          <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+          <input type="text" placeholder="Busque por código, carga, destino, origem ou data" class="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+      </div>
+
+      <!-- Table -->
+      <div class="bg-white rounded-lg shadow-sm overflow-hidden mb-8">
+        <!-- Table Header -->
+        <div class="grid grid-cols-4 bg-gray-50 p-4 border-b">
+          <div class="font-medium text-gray-500">Data</div>
+          <div class="font-medium text-gray-500">Carga</div>
+          <div class="font-medium text-gray-500 col-span-2">Origem e Destino</div>
+        </div>
+
+        <!-- Table Row -->
+        <div class="grid grid-cols-4 p-4 items-center hover:bg-gray-50">
+          <div class="flex items-center">
+            <div class="bg-blue-100 rounded-full p-2 mr-3">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </div>
+            <span>01/03/2025</span>
+          </div>
+          <div>Laticínios</div>
+          <div>Toledo PR - Guarulhos SP</div>
+          <div class="text-right">
+            <button class="bg-yellow-400 hover:bg-yellow-500 text-white py-2 px-4 rounded-lg">
+              Detalhes
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="text-center text-gray-400 text-sm mt-12">
+        Em caso de dúvidas, entre em contato com nosso suporte ou consulte a central de ajuda.
+      </div>
+    </div>
+  </div>
+
+  <!-- Alert Button -->
+  <div class="fixed bottom-8 right-8">
+    <button class="bg-red-600 hover:bg-red-700 text-white rounded-full p-4 shadow-lg">
+      <i class="fas fa-exclamation text-xl"></i>
+    </button>
+  </div>
+  </div>
+</div>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'94d426924232876d',t:'MTc0OTUwOTAzNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

@@ -1,0 +1,217 @@
+
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard de Fretes</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+    }
+    .sidebar {
+        height: 100vh;
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 250px;
+        background-color: #030039;
+        color: white;
+        display: flex;
+        flex-direction: column;
+    }
+    .main-content {
+        margin-left: 250px;
+        background-color: #f5f6fa;
+        min-height: 100vh;
+    }
+    .active-link {
+        background-color: rgba(255, 213, 0, 0.2);
+        border-left: 4px solid #ffd500;
+        color: #ffd500;
+    }
+    .status-dot {
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        margin-right: 6px;
+    }
+    .status-in-progress { background-color: #ffd500; }
+    .status-waiting { background-color: #a0a0a0; }
+    .status-cancelled { background-color: #ff4d4d; }
+    .status-delivered { background-color: #444444; }
+    .table-row:hover {
+        background-color: #f9f9f9;
+    }
+  </style>
+</head>
+<body class="bg-gray-100">
+<!-- Sidebar -->
+<div class="sidebar shadow-lg z-10">
+  <div class="p-6 flex justify-center">
+    <!-- Logo placeholder -->
+    <div class="text-2xl font-bold text-white flex items-center">
+      <i class="fas fa-truck-fast mr-2"></i>
+      <span>FretesFácil</span>
+    </div>
+  </div>
+
+  <div class="mt-8 flex-grow">
+    <a href="inicio.html" class="flex items-center px-6 py-4 text-gray-300 hover:bg-blue-800 transition-allk">
+      <i class="fas fa-home mr-3"></i>
+      <span>Início</span>
+    </a>
+    <a href="meus-fretes.html" class="flex items-center px-6 py-4 text-gray-300 hover:bg-blue-800 active-link transition-all">
+      <i class="fas fa-truck mr-3"></i>
+      <span>Meus fretes</span>
+    </a>
+  </div>
+
+  <div class="mt-auto mb-6 px-6">
+    <button onclick="window.location.href='/index'" class="w-full bg-yellow-400 hover:bg-yellow-500 text-white font-medium py-2 px-4 rounded-lg flex items-center justify-center transition-all">
+      <i class="fas fa-sign-out-alt mr-2"></i>
+      <span>Sair</span>
+    </button>
+
+
+  </div>
+</div>
+
+<!-- Main Content -->
+<div class="main-content">
+  <!-- Top Bar -->
+  <div class="bg-white shadow-sm p-4 flex justify-end items-center">
+    <div class="flex items-center">
+      <span class="mr-3 text-gray-700">Administrador</span>
+      <div class="w-10 h-10 rounded-full bg-blue-800 flex items-center justify-center text-white">
+        <i class="fas fa-user"></i>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content Area -->
+  <div class="p-8">
+    <div class="bg-white rounded-lg shadow-sm p-6">
+      <!-- Header -->
+      <div class="mb-8">
+        <h1 class="text-2xl font-bold text-gray-800">Meus Fretes</h1>
+        <p class="text-gray-600 mt-1">Veja sua lista de fretes cadastrados e acompanhe fretes em andamento.</p>
+      </div>
+
+      <!-- Search and Add Button -->
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+
+
+        <div class="relative w-full md:w-2/3">
+          <div class="relative">
+            <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+            <input type="text" placeholder="Busque por código, carga, destino, origem ou data" class="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500">
+          </div>
+        </div>
+
+        <button class="bg-yellow-400 hover:bg-yellow-500 text-white font-medium py-2 px-4 rounded-lg flex items-center transition-all">
+          <span>Criar Frete</span>
+          <span class="ml-1">+</span>
+        </button>
+      </div>
+
+      <!-- Table -->
+      <div class="overflow-x-auto">
+        <table class="min-w-full bg-white rounded-lg overflow-hidden">
+          <thead class="bg-gray-100 text-gray-700">
+          <tr>
+            <th class="py-3 px-4 text-left font-medium">Código</th>
+            <th class="py-3 px-4 text-left font-medium">Data</th>
+            <th class="py-3 px-4 text-left font-medium">Carga</th>
+            <th class="py-3 px-4 text-left font-medium">Origem e Destino</th>
+            <th class="py-3 px-4 text-left font-medium">Status</th>
+            <th class="py-3 px-4 text-left font-medium">Ações</th>
+          </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-200">
+          <tr class="table-row">
+            <td class="py-3 px-4 text-gray-800">00001</td>
+            <td class="py-3 px-4 text-gray-800">17/10/2025</td>
+            <td class="py-3 px-4 text-gray-800">Laticínios</td>
+            <td class="py-3 px-4 text-gray-800">Toledo PR - Guarulhos SP</td>
+            <td class="py-3 px-4">
+              <div class="flex items-center">
+                <span class="status-dot status-in-progress"></span>
+                <span class="text-gray-800">Em andamento</span>
+              </div>
+            </td>
+            <td class="py-3 px-4">
+              <button class="bg-yellow-400 hover:bg-yellow-500 text-white text-sm py-1 px-3 rounded-lg transition-all">
+                Detalhes
+              </button>
+            </td>
+          </tr>
+          <tr class="table-row">
+            <td class="py-3 px-4 text-gray-800">00002</td>
+            <td class="py-3 px-4 text-gray-800">18/10/2025</td>
+            <td class="py-3 px-4 text-gray-800">Eletrônicos</td>
+            <td class="py-3 px-4 text-gray-800">São Paulo SP - Curitiba PR</td>
+            <td class="py-3 px-4">
+              <div class="flex items-center">
+                <span class="status-dot status-waiting"></span>
+                <span class="text-gray-800">Em espera</span>
+              </div>
+            </td>
+            <td class="py-3 px-4">
+              <button class="bg-yellow-400 hover:bg-yellow-500 text-white text-sm py-1 px-3 rounded-lg transition-all">
+                Detalhes
+              </button>
+            </td>
+          </tr>
+          <tr class="table-row">
+            <td class="py-3 px-4 text-gray-800">00003</td>
+            <td class="py-3 px-4 text-gray-800">15/10/2025</td>
+            <td class="py-3 px-4 text-gray-800">Móveis</td>
+            <td class="py-3 px-4 text-gray-800">Belo Horizonte MG - Salvador BA</td>
+            <td class="py-3 px-4">
+              <div class="flex items-center">
+                <span class="status-dot status-cancelled"></span>
+                <span class="text-gray-800">Cancelada</span>
+              </div>
+            </td>
+            <td class="py-3 px-4">
+              <button class="bg-yellow-400 hover:bg-yellow-500 text-white text-sm py-1 px-3 rounded-lg transition-all">
+                Detalhes
+              </button>
+            </td>
+          </tr>
+          <tr class="table-row">
+            <td class="py-3 px-4 text-gray-800">00004</td>
+            <td class="py-3 px-4 text-gray-800">12/10/2025</td>
+            <td class="py-3 px-4 text-gray-800">Alimentos</td>
+            <td class="py-3 px-4 text-gray-800">Recife PE - Fortaleza CE</td>
+            <td class="py-3 px-4">
+              <div class="flex items-center">
+                <span class="status-dot status-delivered"></span>
+                <span class="text-gray-800">Entregue</span>
+              </div>
+            </td>
+            <td class="py-3 px-4">
+              <button class="bg-yellow-400 hover:bg-yellow-500 text-white text-sm py-1 px-3 rounded-lg transition-all">
+                Detalhes
+              </button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Footer -->
+      <div class="mt-8 text-center text-gray-400 text-sm">
+        <p>Em caso de dúvidas, entre em contato com nosso suporte ou consulte a central de ajuda.</p>
+      </div>
+    </div>
+  </div>
+</div>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'94bb93e790af1a95',t:'MTc0OTI1MTM3MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
