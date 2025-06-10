@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Perfil</title>
+</head>
+<body>
+<h1>Editar Perfil do Cliente</h1>
+
+<form th:action="@{/cliente/perfil/editar}" method="post" th:object="${cliente}">
+    <label>Nome: <input type="text" th:field="*{nome}" /></label><br/>
+    <label>Data de Nascimento: <input type="date" th:field="*{dataNascimento}" /></label><br/>
+    <label>CNPJ: <input type="text" th:field="*{cnpj}" /></label><br/>
+    <label>Inscrição Estadual: <input type="text" th:field="*{inscricaoEstadual}" /></label><br/>
+    <label>Telefone: <input type="text" th:field="*{telefone}" /></label><br/>
+    <label>Email Comercial: <input type="email" th:field="*{emailComercial}" /></label><br/>
+
+    <h2>Endereço</h2>
+    <label>Logradouro: <input type="text" th:field="*{logradouro}" /></label><br/>
+    <label>Número: <input type="text" th:field="*{numero}" /></label><br/>
+    <label>Complemento: <input type="text" th:field="*{complemento}" /></label><br/>
+    <label>Bairro: <input type="text" th:field="*{bairro}" /></label><br/>
+    <label>Cidade: <input type="text" th:field="*{cidade}" /></label><br/>
+    <label>Estado: <input type="text" th:field="*{estado}" /></label><br/>
+    <label>CEP: <input type="text" th:field="*{cep}" /></label><br/>
+    <label>País: <input type="text" th:field="*{pais}" /></label><br/><br>
+
+    <button type="submit">Salvar Alterações</button>
+</form>
+<br>
+<a href="/cliente/perfil"><button>Cancelar</button></a>
+</body>
+</html>

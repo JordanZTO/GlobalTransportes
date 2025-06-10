@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Frete</title>
+</head>
+<body>
+
+<form th:action="@{/fretes/salvarFrete}" th:object="${frete}" method="post">
+
+    <fieldset>
+        <legend>Dados do Frete</legend>
+            <input type="text" th:field="*{tipoCarga}" placeholder="Tipo de Carga" required><br>
+            <input type="number" th:field="*{valorFrete}" placeholder="Valor do Frete" required><br>
+            <input type="number" th:field="*{peso}" placeholder="Peso (kg)" required><br>
+            <input type="number" th:field="*{comprimento}" placeholder="Comprimento (cm)" required><br>
+            <input type="number" th:field="*{largura}" placeholder="Largura (cm)" required><br>
+            <input type="number" th:field="*{altura}" placeholder="Altura (cm)" required><br>
+            <input type="number" th:field="*{valorNotaFiscal}" placeholder="Valor da Nota Fiscal (R$)" required><br>
+    </fieldset>
+
+    <br>
+
+    <fieldset>
+        <legend>Endereço de Origem</legend>
+            <input type="text" th:field="*{enderecoOrigem.logradouro}" placeholder="Logradouro" required><br>
+            <input type="text" th:field="*{enderecoOrigem.numero}" placeholder="Número" required><br>
+            <input type="text" th:field="*{enderecoOrigem.complemento}" placeholder="Complemento"><br>
+            <input type="text" th:field="*{enderecoOrigem.bairro}" placeholder="Bairro"><br>
+            <input type="text" th:field="*{enderecoOrigem.cidade}" placeholder="Cidade" required><br>
+            <input type="text" th:field="*{enderecoOrigem.estado}" placeholder="Estado (UF)" maxlength="2" required><br>
+            <input type="text" th:field="*{enderecoOrigem.cep}" placeholder="CEP" required><br>
+    </fieldset>
+
+    <br>
+
+    <fieldset>
+        <legend>Endereço de Destino</legend>
+            <input type="text" th:field="*{enderecoDestino.logradouro}" placeholder="Logradouro" required><br>
+            <input type="text" th:field="*{enderecoDestino.numero}" placeholder="Número" required><br>
+            <input type="text" th:field="*{enderecoDestino.complemento}" placeholder="Complemento"><br>
+            <input type="text" th:field="*{enderecoDestino.bairro}" placeholder="Bairro"><br>
+            <input type="text" th:field="*{enderecoDestino.cidade}" placeholder="Cidade" required><br>
+            <input type="text" th:field="*{enderecoDestino.estado}" placeholder="Estado (UF)" maxlength="2" required><br>
+            <input type="text" th:field="*{enderecoDestino.cep}" placeholder="CEP" required><br>
+    </fieldset>
+
+    <br>
+
+    <button type="submit">Cadastrar Frete</button>
+
+</form>
+
+<br>
+
+<a href="/cliente/home"><button>Voltar</button></a>
+
+</body>
+</html>

@@ -1,10 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Home</title>
 </head>
 <body>
-<h2>OLA CLIENTE</h2>
+<h2>Menu do Cliente</h2>
+
+<!-- Botão para acessar o perfil -->
+<button type="button" onclick="window.location.href='/cliente/perfil'" class="btn btn-secondary">
+    Ver Perfil
+</button>
+
+<!-- Botão para cadastrar frete -->
+<button type="button" onclick="window.location.href='/fretes/cadastrar'" class="btn btn-primary">
+    Cadastrar Frete
+</button>
+
+<p><strong>Cliente:</strong> <span th:text="${cliente.nome}"></span></p>
+
+<h3>Meus Fretes</h3>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>Tipo de Carga</th>
+        <th>Valor</th>
+        <th>Status</th>
+        <th>Data de Criação</th>
+        <th>Ações</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="frete : ${fretes}">
+        <td th:text="${frete.tipoCarga}">Tipo</td>
+        <td th:text="${frete.valorFrete}">Valor</td>
+        <td th:text="${frete.freteStatus.nome}">Status</td>
+        <td th:text="${frete.dataCriacao}">Data</td>
+        <td>
+            <button type="button"
+                    th:onclick="'window.location.href=\'/cliente/frete/' + ${frete.freteId} + '\';'">
+                Ver Detalhes
+            </button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<br><br>
+<form th:action="@{/logout}" method="post">
+    <button type="submit">Sair</button>
+</form>
+
+
 </body>
 </html>
