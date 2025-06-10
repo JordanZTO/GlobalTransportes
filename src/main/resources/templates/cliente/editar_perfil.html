@@ -5,28 +5,31 @@
     <title>Editar Perfil</title>
 </head>
 <body>
-<h1>Editar Perfil do Cliente</h1>
+<h2>Editar informações</h2>
 
-<form th:action="@{/cliente/perfil/editar}" method="post" th:object="${cliente}">
-    <label>Nome: <input type="text" th:field="*{nome}" /></label><br/>
-    <label>Data de Nascimento: <input type="date" th:field="*{dataNascimento}" /></label><br/>
-    <label>CNPJ: <input type="text" th:field="*{cnpj}" /></label><br/>
-    <label>Inscrição Estadual: <input type="text" th:field="*{inscricaoEstadual}" /></label><br/>
-    <label>Telefone: <input type="text" th:field="*{telefone}" /></label><br/>
-    <label>Email Comercial: <input type="email" th:field="*{emailComercial}" /></label><br/>
+<fieldset>
+        <form th:action="@{/cliente/perfil/editar}" method="post" th:object="${cliente}">
+            <h3>Perfil</h3>
+                <label>Nome: <input type="text" th:field="*{nome}" /></label><br/><br>
+                <label>Data de Nascimento: <input type="date" th:field="*{dataNascimento}" /></label><br/><br>
+                <label>CNPJ: <input type="text" th:field="*{cnpj}" /></label><br/><br>
+                <label>Inscrição Estadual: <input type="text" th:field="*{inscricaoEstadual}" /></label><br/><br>
+                <label>Telefone: <input type="text" th:field="*{telefone}" /></label><br/><br>
+                <label>Email Comercial: <input type="email" th:field="*{emailComercial}" /></label><br/><br>
 
-    <h2>Endereço</h2>
-    <label>Logradouro: <input type="text" th:field="*{logradouro}" /></label><br/>
-    <label>Número: <input type="text" th:field="*{numero}" /></label><br/>
-    <label>Complemento: <input type="text" th:field="*{complemento}" /></label><br/>
-    <label>Bairro: <input type="text" th:field="*{bairro}" /></label><br/>
-    <label>Cidade: <input type="text" th:field="*{cidade}" /></label><br/>
-    <label>Estado: <input type="text" th:field="*{estado}" /></label><br/>
-    <label>CEP: <input type="text" th:field="*{cep}" /></label><br/>
-    <label>País: <input type="text" th:field="*{pais}" /></label><br/><br>
+            <h3>Endereço</h3>
+                <label>Logradouro: <input type="text" th:field="*{logradouro}" /></label><br/><br>
+                <label>Número: <input type="text" th:field="*{numero}" /></label><br/><br>
+                <label>Complemento: <input type="text" th:field="*{complemento}" /></label><br/><br>
+                <label>Bairro: <input type="text" th:field="*{bairro}" /></label><br/><br>
+                <label>Cidade: <input type="text" th:field="*{cidade}" /></label><br/><br>
+                <label>Estado: <input type="text" th:field="*{estado}" /></label><br/><br>
+                <label>CEP: <input type="text" th:field="*{cep}" /></label><br/><br>
+                <label>País: <input type="text" th:field="*{pais}" /></label><br/><br>
 
-    <button type="submit">Salvar Alterações</button>
-</form>
+            <button type="submit">Salvar Alterações</button>
+        </form>
+</fieldset>
 <br>
 <a href="/cliente/perfil"><button>Cancelar</button></a>
 </body>

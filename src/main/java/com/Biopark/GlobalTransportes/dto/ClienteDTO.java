@@ -2,7 +2,7 @@ package com.Biopark.GlobalTransportes.dto;
 
 import java.time.LocalDate;
 
-public class CadastroClienteDto {
+public class ClienteDTO {
 
     private String nome;
     private LocalDate dataNascimento;
@@ -11,7 +11,6 @@ public class CadastroClienteDto {
     private String telefone;
     private String emailComercial;
 
-    // Endereço
     private String logradouro;
     private String numero;
     private String complemento;
@@ -21,10 +20,9 @@ public class CadastroClienteDto {
     private String cep;
     private String pais;
 
-    private String email;
-    private String senha;
+    private boolean valido;
 
-    // Getters e setters
+    //Getters e Setters
 
     public String getNome() {
         return nome;
@@ -72,22 +70,6 @@ public class CadastroClienteDto {
 
     public void setEmailComercial(String emailComercial) {
         this.emailComercial = emailComercial;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
     }
 
     public String getLogradouro() {
@@ -153,5 +135,12 @@ public class CadastroClienteDto {
     public void setPais(String pais) {
         this.pais = pais;
     }
-}
 
+    public boolean isValido() {
+        return valido;
+    }
+
+    public void setValido(boolean valido) {
+        this.valido = valido;
+    }
+}

@@ -7,6 +7,8 @@
 <body>
 <h2>Menu do Cliente</h2>
 
+<p><strong>Usuário:</strong> <span th:text="${cliente.nome}"></span></p>
+
 <!-- Botão para acessar o perfil -->
 <button type="button" onclick="window.location.href='/cliente/perfil'" class="btn btn-secondary">
     Ver Perfil
@@ -17,30 +19,32 @@
     Cadastrar Frete
 </button>
 
-<p><strong>Cliente:</strong> <span th:text="${cliente.nome}"></span></p>
-
 <h3>Meus Fretes</h3>
 
 <table border="1">
     <thead>
     <tr>
-        <th>Tipo de Carga</th>
+        <th>Carga</th>
         <th>Valor</th>
+        <th>Data Origem</th>
+        <th>Origem</th>
+        <th>Destino</th>
         <th>Status</th>
-        <th>Data de Criação</th>
-        <th>Ações</th>
+        <th>Detalhes</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="frete : ${fretes}">
-        <td th:text="${frete.tipoCarga}">Tipo</td>
-        <td th:text="${frete.valorFrete}">Valor</td>
-        <td th:text="${frete.freteStatus.nome}">Status</td>
-        <td th:text="${frete.dataCriacao}">Data</td>
+        <td th:text="${frete.tipoCarga}"></td>
+        <td th:text="${frete.valorFrete}"></td>
+        <td th:text="${frete.dataCriacao}"></td>
+        <td th:text="${frete.enderecoOrigem.cidade}"></td>
+        <td th:text="${frete.enderecoDestino.cidade}"></td>
+        <td th:text="${frete.freteStatus.nome}"></td>
         <td>
             <button type="button"
                     th:onclick="'window.location.href=\'/cliente/frete/' + ${frete.freteId} + '\';'">
-                Ver Detalhes
+                    Ver Detalhes
             </button>
         </td>
     </tr>

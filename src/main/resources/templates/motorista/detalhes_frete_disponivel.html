@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalhes do Frete</title>
+</head>
+<body>
+
+<h2>Detalhes do Frete</h2>
+
+<fieldset>
+    <h3>Detalhes da Carga</h3>
+        <p><label>Tipo de Carga:</label> <span th:text="${frete.tipoCarga}"></span></p>
+        <p><label>Valor do Frete:</label> <span th:text="${frete.valorFrete}"></span></p>
+        <p><label>Peso:</label> <span th:text="${frete.peso} + ' kg'"></span></p>
+        <p><label>Dimensões (CxLxA):</label>
+            <span th:text="${frete.comprimento}"></span> x
+            <span th:text="${frete.largura}"></span> x
+            <span th:text="${frete.altura}"></span>
+        </p>
+        <p><label>Valor da Nota Fiscal:</label> <span th:text="${frete.valorNotaFiscal}"></span></p>
+        <p><label>Status:</label> <span th:text="${frete.freteStatus.nome}"></span></p>
+        <p><label>Data de Criação:</label> <span th:text="${frete.dataCriacao}"></span></p>
+
+<br>
+
+    <h3>Endereço de Origem</h3>
+        <p th:text="${frete.enderecoOrigem.logradouro} + ', ' + ${frete.enderecoOrigem.numero}"></p>
+        <p th:text="${frete.enderecoOrigem.cidade} + ' - ' + ${frete.enderecoOrigem.estado}"></p>
+
+<br>
+
+    <h3>Endereço de Destino</h3>
+        <p th:text="${frete.enderecoDestino.logradouro} + ', ' + ${frete.enderecoDestino.numero}"></p>
+        <p th:text="${frete.enderecoDestino.cidade} + ' - ' + ${frete.enderecoDestino.estado}"></p>
+</fieldset>
+
+<br>
+
+<div th:if="${motoristaValido}">
+    <form th:action="@{'/motorista/frete/' + ${frete.freteId} + '/aceitar'}" method="post"
+          th:if="${frete.freteStatus.nome == 'PENDENTE'}">
+        <button type="submit">Aceitar Frete</button>
+    </form>
+</div>
+
+<br>
+
+<div th:unless="${motoristaValido}">
+    <p style="color:red;">Seu cadastro ainda não foi validado. Aguarde aprovação para aceitar fretes.</p>
+</div>
+
+<br>
+
+<a href="/motorista/home"><button>Voltar</button></a>
+
+</body>
+</html>

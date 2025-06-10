@@ -25,7 +25,7 @@ public class FreteController {
 
     }
 
-    //Exibe formulario de cadastrar Frete
+
     @GetMapping("/cadastrar")
     public String exibirFormulario(Model model) {
         model.addAttribute("frete", new FreteCadastroDTO());

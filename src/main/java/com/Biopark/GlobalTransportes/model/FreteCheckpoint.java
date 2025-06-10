@@ -24,8 +24,8 @@ public class FreteCheckpoint {
     private String observacoes;
 
     @ManyToOne
-    @JoinColumn(name = "checkpoint_status_id", nullable = false)
-    private CheckpointStatus checkpointStatus;
+    @JoinColumn(name = "frete_status_id", nullable = false)
+    private FreteStatus freteStatus;
 
     @ManyToOne
     @JoinColumn(name = "frete_id", nullable = false)
@@ -73,12 +73,12 @@ public class FreteCheckpoint {
         this.observacoes = observacoes;
     }
 
-    public CheckpointStatus getCheckpointStatus() {
-        return checkpointStatus;
+    public FreteStatus getFreteStatus() {
+        return freteStatus;
     }
 
-    public void setCheckpointStatus(CheckpointStatus checkpointStatus) {
-        this.checkpointStatus = checkpointStatus;
+    public void setFreteStatus(FreteStatus freteStatus) {
+        this.freteStatus = freteStatus;
     }
 
     public Frete getFrete() {

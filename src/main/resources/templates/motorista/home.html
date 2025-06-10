@@ -1,10 +1,67 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Home</title>
 </head>
 <body>
-<h2>OLA MOTORISTA</h2>
+<h2>Menu do Motorista</h2>
+
+<p><strong>Usuário:</strong> <span th:text="${motorista.nome_completo}"></span></p>
+
+<button type="button" onclick="window.location.href='/motorista/perfil'" class="btn btn-secondary">
+    Ver Perfil
+</button>
+
+<button type="button" onclick="window.location.href='/motorista/fretes_disponiveis'" class="btn btn-primary">
+    Fretes Disponiveis
+</button>
+
+<h2>Meus Fretes</h2>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Carga</th>
+        <th>Valor</th>
+        <th>Data Origem</th>
+        <th>Origem</th>
+        <th>Destino</th>
+        <th>Status</th>
+        <th>Detalhes</th>
+        <th>Rastreio</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="frete : ${fretesMotorista}">
+        <td th:text="${frete.tipoCarga}"></td>
+        <td th:text="${frete.valorFrete}"></td>
+        <td th:text="${frete.dataCriacao}"></td>
+        <td th:text="${frete.enderecoOrigem.cidade}"></td>
+        <td th:text="${frete.enderecoDestino.cidade}"></td>
+        <td th:text="${frete.freteStatus.nome}"></td>
+        <td>
+            <button type="button"
+                    th:onclick="'window.location.href=\'/motorista/frete/' + ${frete.freteId} + '\';'">
+                Ver Detalhes
+            </button>
+        </td>
+        <td>
+            <button type="button"
+                    th:onclick="'window.location.href=\'/motorista/frete/checkpoint/' + ${frete.freteId} + '\';'"
+                    th:attr="disabled=${frete.freteStatus.nome == 'ENTREGUE' or frete.freteStatus.nome == 'CANCELADO' or frete.freteStatus.nome == 'EXTRAVIADO'}"
+            >
+                Cadastrar Checkpoint
+            </button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<br>
+
+<form th:action="@{/logout}" method="post">
+    <button type="submit">Sair</button>
+</form>
+
 </body>
 </html>

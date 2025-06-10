@@ -1,10 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Home</title>
 </head>
 <body>
-    <h2>OLA ADMIN</h2>
+<h2>Menu do Admin</h2>
+
+<p><strong>Usuário: Administrador</strong>
+
+<br>
+
+<button type="button" onclick="window.location.href='/admin/validar_cliente'" class="btn btn-secondary">
+    Validar Clientes
+</button>
+
+<button type="button" onclick="window.location.href='/admin/validar_motorista'" class="btn btn-primary">
+    Validar Motoristas
+</button>
+
+<button type="button" onclick="window.location.href='/admin/fretes'" class="btn btn-primary">
+        Fretes
+</button>
+
+<br><br>
+<form th:action="@{/logout}" method="post">
+    <button type="submit">Sair</button>
+</form>
+
+
 </body>
 </html>

@@ -1,6 +1,7 @@
 package com.Biopark.GlobalTransportes.model;
 
 import jakarta.persistence.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Table(name = "caminhao")
@@ -36,6 +37,12 @@ public class Caminhao {
 
     @Column(nullable = false)
     private String foto_placa;
+
+    @Transient
+    private MultipartFile arquivoFotoFrente;
+
+    @Transient
+    private MultipartFile arquivoFotoPlaca;
 
     //Getters e Setters
     public Long getCaminhaoId() {
@@ -116,5 +123,21 @@ public class Caminhao {
 
     public void setFoto_placa(String foto_placa) {
         this.foto_placa = foto_placa;
+    }
+
+    public MultipartFile getArquivoFotoFrente() {
+        return arquivoFotoFrente;
+    }
+
+    public void setArquivoFotoFrente(MultipartFile arquivoFotoFrente) {
+        this.arquivoFotoFrente = arquivoFotoFrente;
+    }
+
+    public MultipartFile getArquivoFotoPlaca() {
+        return arquivoFotoPlaca;
+    }
+
+    public void setArquivoFotoPlaca(MultipartFile arquivoFotoPlaca) {
+        this.arquivoFotoPlaca = arquivoFotoPlaca;
     }
 }

@@ -38,6 +38,9 @@ public class Cliente {
     @JoinColumn(name = "usuario_id", unique = true)
     private Usuario usuario;
 
+    @Column(nullable = false)
+    private boolean valido;
+
     // Getters e setters
 
     public Long getClienteId() {
@@ -110,5 +113,13 @@ public class Cliente {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+
+    public boolean isValido() {
+        return valido;
+    }
+
+    public void setValido(boolean valido) {
+        this.valido = valido;
     }
 }
