@@ -1,6 +1,7 @@
 package com.Biopark.GlobalTransportes.model;
 
 import jakarta.persistence.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Table(name = "motorista")
@@ -37,6 +38,12 @@ public class Motorista {
     private String email_comercial;
 
     private String foto_cnh;
+
+    @Transient
+    private MultipartFile arquivoFotoCnh;
+
+    @Column(nullable = false)
+    private boolean valido;
 
     @ManyToOne
     @JoinColumn(name = "endereco_id")
@@ -187,5 +194,21 @@ public class Motorista {
 
     public void setFoto_cnh(String foto_cnh) {
         this.foto_cnh = foto_cnh;
+    }
+
+    public boolean isValido() {
+        return valido;
+    }
+
+    public void setValido(boolean valido) {
+        this.valido = valido;
+    }
+
+    public MultipartFile getArquivoFotoCnh() {
+        return arquivoFotoCnh;
+    }
+
+    public void setArquivoFotoCnh(MultipartFile arquivoFotoCnh) {
+        this.arquivoFotoCnh = arquivoFotoCnh;
     }
 }

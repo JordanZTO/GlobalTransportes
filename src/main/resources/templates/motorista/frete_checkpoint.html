@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalhes do Frete</title>
+</head>
+<body>
+
+<h2>Checkpoint</h2>
+
+<form th:action="@{'/motorista/frete/' + ${frete.freteId} + '/checkpoint'}" method="post">
+    <fieldset>
+
+        <h3>Adicionar Checkpoint</h3>
+
+            <label>Data e Hora: <input type="datetime-local" id="dataHora" name="dataHora" required></label><br><br>
+            <label>Estado (UF): <input type="text" id="estado" name="estado" maxlength="2" required></label><br><br>
+            <label>Cidade: <input type="text" id="cidade" name="cidade" required></label><br><br>
+            <label>Observações: <br> <textarea id="observacoes" name="observacoes"></textarea></label><br><br>
+            <label>Status:
+                <select id="freteStatusId" name="freteStatusId">
+                    <option th:each="status : ${freteStatus}" th:value="${status.freteStatusId}" th:text="${status.nome}"></option>
+                </select>
+            </label><br><br>
+
+    </fieldset>
+
+    <br>
+
+    <button type="submit">Salvar Checkpoint</button>
+</form>
+
+<br>
+
+<a href="/motorista/home"><button>Voltar</button></a>
+
+</body>
+</html>

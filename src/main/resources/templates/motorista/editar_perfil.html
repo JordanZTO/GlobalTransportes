@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Perfil</title>
+</head>
+<body>
+
+<h2>Editar Informações</h2>
+
+<form th:action="@{/motorista/editar-perfil}" method="post" enctype="multipart/form-data" th:object="${motorista}">
+
+    <fieldset>
+        <h3>Dados Pessoais</h3>
+            <label>Nome: <input type="text" th:field="*{nome_completo}" /></label><br><br>
+            <label>CNH: <input type="text" th:field="*{numero_cnh}" /></label><br><br>
+            <label>Antt: <input type="text" th:field="*{numero_antt}" /></label><br><br>
+            <label>Telefone Pessoal: <input type="text" th:field="*{telefone_pessoal}" /></label><br><br>
+            <label>Email Comercial: <input type="email" th:field="*{email_comercial}" /></label><br><br>
+            <label>Telefone Referência 1: <input type="text" th:field="*{telefone_referencia_1}" /></label><br><br>
+            <label>Telefone Referência 2: <input type="text" th:field="*{telefone_referencia_2}" /></label><br><br>
+            <label>Telefone Referência 3: <input type="text" th:field="*{telefone_referencia_3}" /></label><br><br>
+            <label>Telefone Segurança 1: <input type="text" th:field="*{telefone_seguranca_1}" /></label><br><br>
+            <label>Telefone Segurança 2: <input type="text" th:field="*{telefone_seguranca_2}" /></label><br><br>
+            <label>Telefone Segurança 3: <input type="text" th:field="*{telefone_seguranca_3}" /></label><br><br><br>
+
+            <label>Foto da CNH: <input type="file" name="fotoCnh" /></label><br><br>
+
+            <span th:if="${motorista.fotoCnhNome}">
+                <a th:href="@{/imagem/{nome}(nome=${motorista.fotoCnhNome})}" target="_blank">
+                    <button type="button">Ver CNH</button>
+                </a><br><br>
+
+                <label><input type="checkbox" name="removerFotoCnh" /> Remover Foto da CNH</label>
+            </span>
+
+        <br><br>
+
+        <h3>Endereço</h3>
+            <label>Logradouro: <input type="text" th:field="*{logradouro}" /></label><br><br>
+            <label>Número: <input type="text" th:field="*{numero}" /></label><br><br>
+            <label>Complemento: <input type="text" th:field="*{complemento}" /></label><br><br>
+            <label>Bairro: <input type="text" th:field="*{bairro}" /></label><br><br>
+            <label>Cidade: <input type="text" th:field="*{cidade}" /></label><br><br>
+            <label>Estado: <input type="text" th:field="*{estado}" /></label><br><br>
+            <label>CEP: <input type="text" th:field="*{cep}" /></label><br><br>
+            <label>País: <input type="text" th:field="*{pais}" /></label><br><br>
+
+        <h3>Caminhão</h3>
+            <label>CRLV: <input type="text" th:field="*{numeroCrlv}" /></label><br><br>
+            <label>Placa: <input type="text" th:field="*{placaVeiculo}" /></label><br><br>
+            <label>Ano: <input type="text" th:field="*{ano}" /></label><br><br>
+            <label>Fabricante: <input type="text" th:field="*{fabricante}" /></label><br><br>
+            <label>Modelo: <input type="text" th:field="*{modelo}" /></label><br><br>
+            <label>Cor: <input type="text" th:field="*{cor}" /></label><br><br>
+            <label>Qtd Eixos: <input type="text" th:field="*{quantidadeEixo}" /></label><br><br><br>
+
+            <label>Foto da frente do caminhão: <input type="file" name="fotoFrente" /></label><br><br>
+
+            <span th:if="${motorista.fotoFrenteNome}">
+                <a th:href="@{/imagem/{nome}(nome=${motorista.fotoFrenteNome})}" target="_blank">
+                    <button type="button">Ver Frente do Caminhão</button>
+                </a>
+                <br><br>
+
+                <label><input type="checkbox" name="removerFotoFrente" /> Remover Foto da Frente do Caminhão</label>
+            </span>
+
+            <br><br><br>
+
+            <label>Foto da Placa do Caminhão: <input type="file" name="fotoPlaca" /></label><br><br>
+
+            <span th:if="${motorista.fotoPlacaNome}">
+                <a th:href="@{/imagem/{nome}(nome=${motorista.fotoPlacaNome})}" target="_blank">
+                     <button type="button">Ver Placa do Caminhão</button>
+                </a>
+                <br><br>
+
+                <label><input type="checkbox" name="removerFotoPlaca" /> Remover Foto da Placa do Caminhão</label>
+            </span>
+    </fieldset>
+
+    <br>
+    <button type="submit">Salvar Alterações</button>
+    <a href="/motorista/perfil"><button type="button">Cancelar</button></a>
+</form>
+
+</body>
+</html>

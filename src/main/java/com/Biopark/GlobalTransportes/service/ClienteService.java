@@ -1,7 +1,7 @@
 package com.Biopark.GlobalTransportes.service;
 
 import com.Biopark.GlobalTransportes.dto.CadastroClienteDto;
-import com.Biopark.GlobalTransportes.dto.EditarClienteDto;
+import com.Biopark.GlobalTransportes.dto.ClienteDTO;
 import com.Biopark.GlobalTransportes.model.Cliente;
 import com.Biopark.GlobalTransportes.model.Endereco;
 import com.Biopark.GlobalTransportes.model.TipoUsuario;
@@ -13,8 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-
-import java.util.List;
 
 @Service
 public class ClienteService {
@@ -77,7 +75,7 @@ public class ClienteService {
         if (principal instanceof UserDetails) {
             email = ((UserDetails) principal).getUsername();
         } else {
-            email = principal.toString(); // fallback
+            email = principal.toString();
         }
 
         Usuario usuario = usuarioService.buscarPorEmail(email)
@@ -87,11 +85,11 @@ public class ClienteService {
                 .orElseThrow(() -> new RuntimeException("Cliente não encontrado para o usuário logado"));
     }
 
-    public EditarClienteDto obterDadosParaEdicao() {
+    public ClienteDTO obterDadosParaEdicao() {
         Cliente cliente = buscarClienteLogado();
         Endereco endereco = cliente.getEndereco();
 
-        EditarClienteDto dto = new EditarClienteDto();
+        ClienteDTO dto = new ClienteDTO();
         dto.setNome(cliente.getNome());
         dto.setDataNascimento(cliente.getDataNascimento());
         dto.setCnpj(cliente.getCnpj());
@@ -111,7 +109,7 @@ public class ClienteService {
         return dto;
     }
 
-    public void atualizarCliente(EditarClienteDto dto) {
+    public void atualizarCliente(ClienteDTO dto) {
         Cliente cliente = buscarClienteLogado();
         Endereco endereco = cliente.getEndereco();
 

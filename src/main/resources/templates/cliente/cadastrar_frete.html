@@ -6,54 +6,50 @@
 </head>
 <body>
 
+<h2>Cadastrar Frete</h2>
+
 <form th:action="@{/fretes/salvarFrete}" th:object="${frete}" method="post">
 
     <fieldset>
-        <legend>Dados do Frete</legend>
-            <input type="text" th:field="*{tipoCarga}" placeholder="Tipo de Carga" required><br>
-            <input type="number" th:field="*{valorFrete}" placeholder="Valor do Frete" required><br>
-            <input type="number" th:field="*{peso}" placeholder="Peso (kg)" required><br>
-            <input type="number" th:field="*{comprimento}" placeholder="Comprimento (cm)" required><br>
-            <input type="number" th:field="*{largura}" placeholder="Largura (cm)" required><br>
-            <input type="number" th:field="*{altura}" placeholder="Altura (cm)" required><br>
-            <input type="number" th:field="*{valorNotaFiscal}" placeholder="Valor da Nota Fiscal (R$)" required><br>
-    </fieldset>
+        <h3>Dados do frete</h3>
 
-    <br>
+        <label for="tipoCarga">Tipo de Carga:</label> <input type="text" th:field="*{tipoCarga}" id="tipoCarga" required><br><br>
+        <label for="valorFrete">Valor do Frete:</label> <input type="number" th:field="*{valorFrete}" id="valorFrete" required><br><br>
+        <label for="peso">Peso (kg):</label> <input type="number" th:field="*{peso}" id="peso" required><br><br>
+        <label for="comprimento">Comprimento (cm):</label> <input type="number" th:field="*{comprimento}" id="comprimento" required><br><br>
+        <label for="largura">Largura (cm):</label> <input type="number" th:field="*{largura}" id="largura" required><br><br>
+        <label for="altura">Altura (cm):</label> <input type="number" th:field="*{altura}" id="altura" required><br><br>
+        <label for="valorNotaFiscal">Valor da Nota Fiscal (R$):</label> <input type="number" th:field="*{valorNotaFiscal}" id="valorNotaFiscal" required><br><br>
 
-    <fieldset>
-        <legend>Endereço de Origem</legend>
-            <input type="text" th:field="*{enderecoOrigem.logradouro}" placeholder="Logradouro" required><br>
-            <input type="text" th:field="*{enderecoOrigem.numero}" placeholder="Número" required><br>
-            <input type="text" th:field="*{enderecoOrigem.complemento}" placeholder="Complemento"><br>
-            <input type="text" th:field="*{enderecoOrigem.bairro}" placeholder="Bairro"><br>
-            <input type="text" th:field="*{enderecoOrigem.cidade}" placeholder="Cidade" required><br>
-            <input type="text" th:field="*{enderecoOrigem.estado}" placeholder="Estado (UF)" maxlength="2" required><br>
-            <input type="text" th:field="*{enderecoOrigem.cep}" placeholder="CEP" required><br>
-    </fieldset>
+        <h3>Endereço de Origem</h3>
 
-    <br>
+        <label for="logradouroOrigem">Logradouro:</label> <input type="text" th:field="*{enderecoOrigem.logradouro}" id="logradouroOrigem" required><br><br>
+        <label for="numeroOrigem">Número:</label> <input type="text" th:field="*{enderecoOrigem.numero}" id="numeroOrigem" required><br><br>
+        <label for="complementoOrigem">Complemento:</label> <input type="text" th:field="*{enderecoOrigem.complemento}" id="complementoOrigem"><br><br>
+        <label for="bairroOrigem">Bairro:</label> <input type="text" th:field="*{enderecoOrigem.bairro}" id="bairroOrigem"><br><br>
+        <label for="cidadeOrigem">Cidade:</label> <input type="text" th:field="*{enderecoOrigem.cidade}" id="cidadeOrigem" required><br><br>
+        <label for="estadoOrigem">Estado (UF):</label> <input type="text" th:field="*{enderecoOrigem.estado}" id="estadoOrigem" maxlength="2" required><br><br>
+        <label for="cepOrigem">CEP:</label> <input type="text" th:field="*{enderecoOrigem.cep}" id="cepOrigem" required><br><br>
 
-    <fieldset>
-        <legend>Endereço de Destino</legend>
-            <input type="text" th:field="*{enderecoDestino.logradouro}" placeholder="Logradouro" required><br>
-            <input type="text" th:field="*{enderecoDestino.numero}" placeholder="Número" required><br>
-            <input type="text" th:field="*{enderecoDestino.complemento}" placeholder="Complemento"><br>
-            <input type="text" th:field="*{enderecoDestino.bairro}" placeholder="Bairro"><br>
-            <input type="text" th:field="*{enderecoDestino.cidade}" placeholder="Cidade" required><br>
-            <input type="text" th:field="*{enderecoDestino.estado}" placeholder="Estado (UF)" maxlength="2" required><br>
-            <input type="text" th:field="*{enderecoDestino.cep}" placeholder="CEP" required><br>
+        <h3>Endereço de Destino</h3>
+
+        <label for="logradouroDestino">Logradouro:</label> <input type="text" th:field="*{enderecoDestino.logradouro}" id="logradouroDestino" required><br><br>
+        <label for="numeroDestino">Número:</label> <input type="text" th:field="*{enderecoDestino.numero}" id="numeroDestino" required><br><br>
+        <label for="complementoDestino">Complemento:</label> <input type="text" th:field="*{enderecoDestino.complemento}" id="complementoDestino"><br><br>
+        <label for="bairroDestino">Bairro:</label> <input type="text" th:field="*{enderecoDestino.bairro}" id="bairroDestino"><br><br>
+        <label for="cidadeDestino">Cidade:</label> <input type="text" th:field="*{enderecoDestino.cidade}" id="cidadeDestino" required><br><br>
+        <label for="estadoDestino">Estado (UF):</label> <input type="text" th:field="*{enderecoDestino.estado}" id="estadoDestino" maxlength="2" required><br><br>
+        <label for="cepDestino">CEP:</label> <input type="text" th:field="*{enderecoDestino.cep}" id="cepDestino" required><br>
     </fieldset>
 
     <br>
 
     <button type="submit">Cadastrar Frete</button>
-
 </form>
 
 <br>
 
-<a href="/cliente/home"><button>Voltar</button></a>
+<a href="/cliente/home"><button type="button">Voltar</button></a>
 
 </body>
 </html>

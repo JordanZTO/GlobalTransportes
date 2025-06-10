@@ -1,6 +1,7 @@
 package com.Biopark.GlobalTransportes.service;
 
 import com.Biopark.GlobalTransportes.dto.FreteCadastroDTO;
+import com.Biopark.GlobalTransportes.dto.FreteCheckpointDTO;
 import com.Biopark.GlobalTransportes.model.*;
 import com.Biopark.GlobalTransportes.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,15 @@ public class FreteService {
     @Autowired
     private FreteStatusRepository freteStatusRepository;
 
+    @Autowired
+    private MotoristaRepository motoristaRepository;
+
+    @Autowired
+    private FreteCheckpointRepository freteCheckpointRepository;
+
+    @Autowired
+    private CheckpointStatusRepository checkpointStatusRepository;
+
     public void excluirFreteSePendente(Long id) {
         Frete frete = freteRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Frete não encontrado com ID: " + id));
@@ -44,10 +54,15 @@ public class FreteService {
                 .orElseThrow(() -> new RuntimeException("Frete não encontrado"));
     }
 
+    public List<FreteCheckpoint> listarCheckpointsPorFrete(Long freteId) {
+        return freteCheckpointRepository.findByFreteFreteIdOrderByDataHoraAsc(freteId);
+    }
+
+
 
     public List<Frete> listarFretesDoClienteLogado() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String email = auth.getName(); // email do usuário logado
+        String email = auth.getName();
 
         Cliente cliente = clienteRepository.findByUsuarioEmail(email)
                 .orElseThrow(() -> new RuntimeException("Cliente não encontrado para o usuário com e-mail: " + email));
@@ -55,9 +70,41 @@ public class FreteService {
         return freteRepository.findByCliente(cliente);
     }
 
+    public List<Frete> listarFretesDoMotoristaLogado() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String email = auth.getName();
+
+        Motorista motorista = motoristaRepository.findByUsuarioEmail(email)
+                .orElseThrow(() -> new RuntimeException("Motorista não encontrado para o usuário com e-mail: " + email));
+
+        return freteRepository.findByMotorista(motorista);
+    }
+
+    public void cadastrarCheckpoint(FreteCheckpointDTO dto) {
+        Frete frete = freteRepository.findById(dto.getFreteId())
+                .orElseThrow(() -> new RuntimeException("Frete não encontrado"));
+
+        FreteStatus status = freteStatusRepository.findById(dto.getFreteStatusId())
+                .orElseThrow(() -> new RuntimeException("Status do frete não encontrado"));
+
+        FreteCheckpoint checkpoint = new FreteCheckpoint();
+        checkpoint.setDataHora(dto.getDataHora());
+        checkpoint.setCidade(dto.getCidade());
+        checkpoint.setEstado(dto.getEstado());
+        checkpoint.setObservacoes(dto.getObservacoes());
+        checkpoint.setFrete(frete);
+        checkpoint.setFreteStatus(status);
+
+        frete.setFreteStatus(status);
+        freteRepository.save(frete);
+
+        freteCheckpointRepository.save(checkpoint);
+    }
+
+
     public Frete cadastrarFrete(FreteCadastroDTO dto) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String email = auth.getName(); // e-mail do usuário logado
+        String email = auth.getName();
 
         Cliente cliente = clienteRepository.findByUsuarioEmail(email)
                 .orElseThrow(() -> new RuntimeException("Cliente não encontrado para o usuário com e-mail: " + email));
