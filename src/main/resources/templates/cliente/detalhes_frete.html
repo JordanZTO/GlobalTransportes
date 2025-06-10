@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalhes do Frete</title>
+</head>
+<body>
+
+<fieldset>
+    <legend><strong> Detalhes do Frete</strong></legend>
+        <p><strong>Tipo de Carga:</strong> <span th:text="${frete.tipoCarga}"></span></p>
+        <p><strong>Valor do Frete:</strong> <span th:text="${frete.valorFrete}"></span></p>
+        <p><strong>Peso:</strong> <span th:text="${frete.peso} + ' kg'"></span></p>
+        <p><strong>Dimensões (CxLxA):</strong>
+            <span th:text="${frete.comprimento}"></span> x
+            <span th:text="${frete.largura}"></span> x
+            <span th:text="${frete.altura}"></span>
+        </p>
+        <p><strong>Valor da Nota Fiscal:</strong> <span th:text="${frete.valorNotaFiscal}"></span></p>
+        <p><strong>Status:</strong> <span th:text="${frete.freteStatus.nome}"></span></p>
+        <p><strong>Data de Criação:</strong> <span th:text="${frete.dataCriacao}"></span></p>
+</fieldset>
+<br>
+<fieldset>
+    <legend><strong>Endereço de Origem</strong></legend>
+        <p th:text="${frete.enderecoOrigem.logradouro} + ', ' + ${frete.enderecoOrigem.numero}"></p>
+        <p th:text="${frete.enderecoOrigem.cidade} + ' - ' + ${frete.enderecoOrigem.estado}"></p>
+</fieldset>
+<br>
+<fieldset>
+    <legend><strong>Endereço de Destino</strong></legend>
+        <p th:text="${frete.enderecoDestino.logradouro} + ', ' + ${frete.enderecoDestino.numero}"></p>
+        <p th:text="${frete.enderecoDestino.cidade} + ' - ' + ${frete.enderecoDestino.estado}"></p>
+</fieldset>
+<br>
+<form th:if="${frete.freteStatus.nome == 'PENDENTE'}"
+      th:action="@{'/cliente/frete/' + ${frete.freteId} + '/excluir'}"
+      method="post"
+      onsubmit="return confirm('Tem certeza que deseja excluir este frete?');">
+    <button type="submit">Excluir Frete</button>
+</form>
+<br>
+
+<a href="/cliente/home"><button>Voltar</button></a>
+
+</body>
+</html>

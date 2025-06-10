@@ -23,7 +23,7 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable()) // Em produção, mantenha o CSRF habilitado!
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/login","/cadastro","/cadastro-motorista", "/cadastro-cliente","/css/**", "/js/**").permitAll()
+                        .requestMatchers("/login","/cadastro","/cadastro-motorista","/api/**","/fretes/**","/cliente/cadastrar_frete","/cadastro-cliente","/css/**", "/js/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
