@@ -3,41 +3,143 @@
 <head>
     <meta charset="UTF-8">
     <title>Perfil do Cliente</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body {
+          font-family: 'Montserrat', sans-serif;
+        }
+        .sidebar {
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 250px;
+            background-color: #030039;
+            color: white;
+            display: flex;
+            flex-direction: column;
+        }
+        .main-content {
+            margin-left: 250px;
+            background-color: #f5f6fa;
+            min-height: 100vh;
+        }
+        .active-link {
+            background-color: rgba(255, 213, 0, 0.2);
+            border-left: 4px solid #ffd500;
+            color: #ffd500;
+        }
+        .status-dot {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 6px;
+        }
+        .status-in-progress { background-color: #ffd500; }
+        .status-waiting { background-color: #a0a0a0; }
+        .status-cancelled { background-color: #ff4d4d; }
+        .status-delivered { background-color: #444444; }
+        .table-row:hover {
+            background-color: #f9f9f9;
+        }
+    </style>
 </head>
 <body>
-
-<h2>Informações do Usuário</h2>
-
-<fieldset>
-    <h3>Perfil</h3>
-        <p>Nome: <span th:text="${cliente.nome}"></span></p>
-        <p>Data de Nascimento: <span th:text="${cliente.dataNascimento}"></span></p>
-        <p>CNPJ: <span th:text="${cliente.cnpj}"></span></p>
-        <p>Inscrição Estadual: <span th:text="${cliente.inscricaoEstadual}"></span></p>
-        <p>Telefone: <span th:text="${cliente.telefone}"></span></p>
-        <p>Email Comercial: <span th:text="${cliente.emailComercial}"></span></p>
-    <br>
-
-    <h3>Endereço</h3>
-        <div th:if="${cliente.endereco != null}">
-            <p>Logradouro: <span th:text="${cliente.endereco.logradouro}"></span></p>
-            <p>Número: <span th:text="${cliente.endereco.numero}"></span></p>
-            <p>Complemento: <span th:text="${cliente.endereco.complemento}"></span></p>
-            <p>Bairro: <span th:text="${cliente.endereco.bairro}"></span></p>
-            <p>Cidade: <span th:text="${cliente.endereco.cidade}"></span></p>
-            <p>Estado: <span th:text="${cliente.endereco.estado}"></span></p>
-            <p>CEP: <span th:text="${cliente.endereco.cep}"></span></p>
-            <p>País: <span th:text="${cliente.endereco.pais}"></span></p>
+<div class="sidebar shadow-lg z-10">
+    <div class="p-6 flex justify-center">
+        <!-- Logo placeholder -->
+        <div class="text-2xl font-bold text-white flex items-center">
+            <i class="fas fa-truck-fast mr-2"></i>
+            <span>FretesFácil</span>
         </div>
-</fieldset>
+    </div>
 
-<br>
+    <div class="mt-8 flex-grow">
+        <a href="inicio.html" class="flex items-center px-6 py-4 text-gray-300 hover:bg-blue-800 transition-allk">
+            <i class="fas fa-home mr-3"></i>
+            <span>Início</span>
+        </a>
+        <a href="meus-fretes.html" class="flex items-center px-6 py-4 text-gray-300 hover:bg-blue-800 transition-all">
+            <i class="fas fa-truck mr-3"></i>
+            <span>Meus fretes</span>
+        </a>
+    </div>
 
-<button type="button" onclick="window.location.href='/cliente/perfil/editar'" class="btn btn-primary">
-    Editar perfil
-</button>
+    <div class="mt-auto mb-6 px-6">
+        <button onclick="window.location.href='/index'" class="w-full bg-yellow-400 hover:bg-yellow-500 text-white font-medium py-2 px-4 rounded-lg flex items-center justify-center transition-all">
+            <i class="fas fa-sign-out-alt mr-2"></i>
+            <span>Sair</span>
+        </button>
 
-<a href="/cliente/home"><button>Voltar</button></a>
 
+    </div>
+</div>
+<div class="main-content">
+    <!-- Top Bar -->
+    <div class="bg-white shadow-sm p-4 flex justify-end items-center">
+        <div class="flex items-center">
+            <span class="mr-3 text-gray-700">Cliente</span>
+            <div class="w-10 h-10 rounded-full bg-blue-800 flex items-center justify-center text-white">
+                <i class="fas fa-user"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Content Area -->
+    <div class="p-8">
+        <div class="bg-white rounded-lg shadow-sm p-6">
+            <!-- Header -->
+            <div class="mb-8">
+            <h1 class="text-2xl font-bold text-yellow-500">Informações do Usuário</h1>
+            </div>
+
+            <fieldset>
+                <div class="flex gap-8">
+
+                    <!-- Coluna do Perfil -->
+                    <div class="w-1/2 p-4 bg-gray-100 rounded-lg shadow">
+                        <h3 class="text-lg font-semibold mb-2 ">Perfil</h3>
+                        <p class="text-blue-400">Nome: <span th:text="${cliente.nome}"></span></p>
+                        <p class="text-blue-400">Data de Nascimento: <span th:text="${cliente.dataNascimento}"></span></p>
+                        <p class="text-blue-400">CNPJ: <span th:text="${cliente.cnpj}"></span></p>
+                        <p class="text-blue-400">Inscrição Estadual: <span th:text="${cliente.inscricaoEstadual}"></span></p>
+                        <p class="text-blue-400">Telefone: <span th:text="${cliente.telefone}"></span></p>
+                        <p class="text-blue-400">Email Comercial: <span th:text="${cliente.emailComercial}"></span></p>
+                    </div>
+
+                    <!-- Coluna do Endereço -->
+                    <div class="w-1/2 p-4 bg-gray-100 rounded-lg shadow">
+                        <h3 class="text-lg font-semibold mb-2">Endereço</h3>
+                        <div th:if="${cliente.endereco != null}">
+                            <p class="text-blue-400">Logradouro: <span th:text="${cliente.endereco.logradouro}"></span></p>
+                            <p class="text-blue-400">Número: <span th:text="${cliente.endereco.numero}"></span></p>
+                            <p class="text-blue-400">Complemento: <span th:text="${cliente.endereco.complemento}"></span></p>
+                            <p class="text-blue-400">Bairro: <span th:text="${cliente.endereco.bairro}"></span></p>
+                            <p class="text-blue-400">Cidade: <span th:text="${cliente.endereco.cidade}"></span></p>
+                            <p class="text-blue-400">Estado: <span th:text="${cliente.endereco.estado}"></span></p>
+                            <p class="text-blue-400">CEP: <span th:text="${cliente.endereco.cep}"></span></p>
+                            <p class="text-blue-400">País: <span th:text="${cliente.endereco.pais}"></span></p>
+                        </div>
+                    </div>
+
+                </div>
+            </fieldset>
+            <br>
+
+            <div class="flex">
+                <button type="button" onclick="window.location.href='/cliente/perfil/editar'" class="m-2 btn btn-primary w-100 bg-blue-400 hover:bg-blue-200 text-white font-medium py-2 px-4 rounded-lg flex items-center justify-center transition-all">
+                    <i class="fas fa-edit mr-2"></i>Editar perfil
+                </button>
+                <button>
+                <a href="/cliente/home"><button class=" m-2 btn btn-primary w-100 bg-yellow-400 hover:bg-yellow-300 text-white font-medium py-2 px-4 rounded-lg flex items-center justify-center transition-all"><i class="fas fa-arrow-left mr-2"></i>Voltar
+                </button></a>
+            </div>
+        </div>
+        </div>
+</div>
 </body>
 </html>
