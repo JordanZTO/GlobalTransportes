@@ -47,5 +47,28 @@ public interface FreteRepository extends JpaRepository<Frete, Long> {
             "OR LOWER(f.freteStatus.nome) LIKE LOWER(CONCAT('%', :filtro, '%'))")
     List<Frete> buscarPorFiltro(@Param("filtro") String filtro);
 
+    @Query("SELECT f FROM Frete f " +
+            "WHERE f.cliente.clienteId = :clienteId AND (" +
+            "LOWER(f.tipoCarga) LIKE LOWER(CONCAT('%', :filtro, '%')) " +
+            "OR LOWER(f.enderecoOrigem.cidade) LIKE LOWER(CONCAT('%', :filtro, '%')) " +
+            "OR LOWER(f.enderecoDestino.cidade) LIKE LOWER(CONCAT('%', :filtro, '%')) " +
+            "OR LOWER(f.freteStatus.nome) LIKE LOWER(CONCAT('%', :filtro, '%')))")
+    List<Frete> buscarFretesDoClientePorFiltro(@Param("clienteId") Long clienteId, @Param("filtro") String filtro);
+
+    @Query("SELECT f FROM Frete f " +
+            "WHERE f.motorista.motorista_id = :motoristaId AND (" +
+            "LOWER(f.tipoCarga) LIKE LOWER(CONCAT('%', :filtro, '%')) " +
+            "OR LOWER(f.enderecoOrigem.cidade) LIKE LOWER(CONCAT('%', :filtro, '%')) " +
+            "OR LOWER(f.enderecoDestino.cidade) LIKE LOWER(CONCAT('%', :filtro, '%')) " +
+            "OR LOWER(f.freteStatus.nome) LIKE LOWER(CONCAT('%', :filtro, '%')))")
+    List<Frete> buscarFretesDoMotoristaPorFiltro(@Param("motoristaId") Long motoristaId, @Param("filtro") String filtro);
+
+    @Query("SELECT f FROM Frete f " +
+            "WHERE f.freteStatus.nome = 'PENDENTE' AND (" +
+            "LOWER(f.tipoCarga) LIKE LOWER(CONCAT('%', :filtro, '%')) " +
+            "OR LOWER(f.enderecoOrigem.cidade) LIKE LOWER(CONCAT('%', :filtro, '%')) " +
+            "OR LOWER(f.enderecoDestino.cidade) LIKE LOWER(CONCAT('%', :filtro, '%')) " +
+            "OR LOWER(f.freteStatus.nome) LIKE LOWER(CONCAT('%', :filtro, '%')))")
+    List<Frete> buscarFretesPendentesPorFiltro(@Param("filtro") String filtro);
 
 }

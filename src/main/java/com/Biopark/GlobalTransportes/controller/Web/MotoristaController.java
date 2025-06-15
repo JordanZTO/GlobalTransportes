@@ -73,20 +73,35 @@ public class MotoristaController {
         return "cadastro-motorista";
     }
 
-    //Exibe a pagina de home do cliente
     @GetMapping("/motorista/home")
-    public String mostrarHomeMotorista(Model model) {
-        List<Frete> fretesMotorista = freteService.listarFretesDoMotoristaLogado();
+    public String mostrarHomeMotorista(@RequestParam(name = "filtro", required = false) String filtro, Model model) {
         Motorista motorista = motoristaService.buscarMotoristaLogado();
+        List<Frete> fretesMotorista;
+
+        if (filtro != null && !filtro.isEmpty()) {
+            fretesMotorista = freteService.buscarFretesDoMotoristaPorFiltro(motorista.getMotorista_id(), filtro);
+        } else {
+            fretesMotorista = freteService.listarFretesDoMotoristaLogado();
+        }
+
         model.addAttribute("fretesMotorista", fretesMotorista);
+        model.addAttribute("filtro", filtro);
         model.addAttribute("motorista", motorista);
         return "motorista/home";
     }
 
     @GetMapping("/motorista/fretes_disponiveis")
-    public String listarFretesDisponiveis(Model model) {
-        List<Frete> fretesPendentes = freteRepository.findByFreteStatusNome("PENDENTE");
+    public String listarFretesDisponiveis(@RequestParam(name = "filtro", required = false) String filtro, Model model) {
+        List<Frete> fretesPendentes;
+
+        if (filtro != null && !filtro.isEmpty()) {
+            fretesPendentes = freteService.buscarFretesPendentesPorFiltro(filtro);
+        } else {
+            fretesPendentes = freteRepository.findByFreteStatusNome("PENDENTE");
+        }
+
         model.addAttribute("fretes", fretesPendentes);
+        model.addAttribute("filtro", filtro);
         return "motorista/fretes_disponiveis";
     }
 

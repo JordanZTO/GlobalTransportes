@@ -63,7 +63,17 @@ public class FreteService {
         return freteRepository.buscarPorFiltro(filtro);
     }
 
+    public List<Frete> buscarFretesDoClientePorFiltro(Long clienteId, String filtro) {
+        return freteRepository.buscarFretesDoClientePorFiltro(clienteId, filtro);
+    }
 
+    public List<Frete> buscarFretesDoMotoristaPorFiltro(Long motoristaId, String filtro) {
+        return freteRepository.buscarFretesDoMotoristaPorFiltro(motoristaId, filtro);
+    }
+
+    public List<Frete> buscarFretesPendentesPorFiltro(String filtro) {
+        return freteRepository.buscarFretesPendentesPorFiltro(filtro);
+    }
 
     public List<Frete> listarFretesDoClienteLogado() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();

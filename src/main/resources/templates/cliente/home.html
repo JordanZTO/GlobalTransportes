@@ -22,7 +22,18 @@
     Cadastrar Frete
 </button>
 
+<br>
+
 <h3>Meus Fretes</h3>
+
+<br>
+
+<form method="get" action="/cliente/home">
+    <input type="text" name="filtro" placeholder="Filtrar fretes" th:value="${filtro}">
+    <button type="submit">Filtrar</button>
+</form>
+
+<br>
 
 <table border="1">
     <thead>

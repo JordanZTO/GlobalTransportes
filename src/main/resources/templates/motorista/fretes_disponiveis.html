@@ -5,7 +5,18 @@
   <meta charset="UTF-8">
 </head>
 <body>
+
 <h2>Fretes Disponíveis</h2>
+
+<br>
+
+<form method="get" action="/motorista/fretes_disponiveis">
+  <input type="text" name="filtro" placeholder="Filtrar fretes disponíveis" th:value="${filtro}">
+  <button type="submit">Filtrar</button>
+</form>
+
+<br>
+
 <table border="1">
   <thead>
   <tr>
@@ -19,6 +30,7 @@
   </tr>
   </thead>
   <tbody>
+
   <tr th:each="frete : ${fretes}">
     <td th:text="${frete.tipoCarga}"></td>
     <td th:text="${frete.valorFrete}"></td>

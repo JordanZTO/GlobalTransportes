@@ -47,12 +47,22 @@ public class ClienteController {
     }
 
     @GetMapping("/cliente/home")
-    public String mostrarHomeCliente(Model model) {
-        model.addAttribute("fretes", freteService.listarFretesDoClienteLogado());
+    public String mostrarHomeCliente(@RequestParam(name = "filtro", required = false) String filtro, Model model) {
         Cliente cliente = clienteService.buscarClienteLogado();
+        List<Frete> fretes;
+
+        if (filtro != null && !filtro.isEmpty()) {
+            fretes = freteService.buscarFretesDoClientePorFiltro(cliente.getClienteId(), filtro);
+        } else {
+            fretes = freteService.listarFretesDoClienteLogado();
+        }
+
+        model.addAttribute("fretes", fretes);
+        model.addAttribute("filtro", filtro);
         model.addAttribute("cliente", cliente);
         return "cliente/home";
     }
+
 
     @GetMapping("/cliente/frete/{id}")
     public String exibirDetalhesFrete(@PathVariable Long id, Model model) {

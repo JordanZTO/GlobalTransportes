@@ -17,7 +17,19 @@
     Fretes Disponiveis
 </button>
 
+<br>
+
 <h2>Meus Fretes</h2>
+
+<br>
+
+<form method="get" action="/motorista/home">
+    <input type="text" name="filtro" placeholder="Filtrar fretes" th:value="${filtro}">
+    <button type="submit">Filtrar</button>
+</form>
+
+<br>
+
 <table border="1">
     <thead>
     <tr>
