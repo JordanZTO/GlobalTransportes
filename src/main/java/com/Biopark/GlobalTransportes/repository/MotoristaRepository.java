@@ -11,5 +11,5 @@ public interface MotoristaRepository extends JpaRepository<Motorista, Long> {
     boolean existsByCpf(String cpf);
     Optional<Motorista> findByUsuario(Usuario usuario);
     Optional<Motorista> findByUsuarioEmail(String email);
-
+    long countByValidoFalse();
 }

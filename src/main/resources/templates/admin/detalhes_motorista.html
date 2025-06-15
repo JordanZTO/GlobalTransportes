@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h2>Informações do Usuário</h2>
+
+<fieldset>
+    <h3>Dados Pessoais</h3>
+    <p>Nome: <span th:text="${motorista.nome_completo}"></span></p>
+    <p>CPF: <span th:text="${motorista.cpf}"></span></p>
+    <p>CNH: <span th:text="${motorista.numero_cnh}"></span></p>
+    <p>Antt: <span th:text="${motorista.numero_antt}"></span></p>
+    <p>Telefone: <span th:text="${motorista.telefone_pessoal}"></span></p>
+    <p>Telefone de Refencia 1: <span th:text="${motorista.telefone_referencia_1}"></span></p>
+    <p>Telefone de Refencia 2: <span th:text="${motorista.telefone_referencia_2}"></span></p>
+    <p>Telefone de Refencia 3: <span th:text="${motorista.telefone_referencia_3}"></span></p>
+    <p>Telefone de Segurança 1: <span th:text="${motorista.telefone_seguranca_1}"></span></p>
+    <p>Telefone de Segurança 2: <span th:text="${motorista.telefone_seguranca_2}"></span></p>
+    <p>Telefone de Segurança 3: <span th:text="${motorista.telefone_seguranca_3}"></span></p>
+    <p>Email: <span th:text="${motorista.email_comercial}"></span></p><br>
+    <a th:href="@{/imagem/{nome}(nome=${motorista.fotoCnhNome})}" target="_blank">
+        <button type="button">Ver CNH</button>
+    </a>
+
+    <br>
+
+    <h3>Endereço</h3>
+    <p>Logradouro: <span th:text="${motorista.logradouro}"></span></p>
+    <p>Número: <span th:text="${motorista.numero}"></span></p>
+    <p>Complemento: <span th:text="${motorista.complemento}"></span></p>
+    <p>Bairro: <span th:text="${motorista.bairro}"></span></p>
+    <p>Cidade: <span th:text="${motorista.cidade}"></span></p>
+    <p>Estado: <span th:text="${motorista.estado}"></span></p>
+    <p>CEP: <span th:text="${motorista.cep}"></span></p>
+    <p>País: <span th:text="${motorista.pais}"></span></p>
+
+    <br>
+
+    <h3>Caminhão</h3>
+    <p>CRLV: <span th:text="${motorista.numeroCrlv}"></span></p>
+    <p>Placa: <span th:text="${motorista.placaVeiculo}"></span></p>
+    <p>Ano: <span th:text="${motorista.ano}"></span></p>
+    <p>Fabricante: <span th:text="${motorista.fabricante}"></span></p>
+    <p>Modelo: <span th:text="${motorista.modelo}"></span></p>
+    <p>Cor: <span th:text="${motorista.cor}"></span></p>
+    <p>Quantidade de Eixos: <span th:text="${motorista.quantidadeEixo}"></span></p><br>
+    <a th:href="@{/imagem/{nome}(nome=${motorista.fotoFrenteNome})}" target="_blank">
+        <button type="button">Ver Frente Caminhão</button>
+    </a>
+    <br><br>
+    <a th:href="@{/imagem/{nome}(nome=${motorista.fotoPlacaNome})}" target="_blank">
+        <button type="button">Ver Placa</button>
+    </a>
+</fieldset>
+
+<br>
+
+<!-- Formulário para atualizar o status de validação -->
+<form th:action="@{'/admin/validar_motorista/' + ${motorista.motorista_id}}" method="post">
+    <label>
+        <input type="checkbox" name="valido" th:checked="${motorista.valido}"> Motorista válido
+    </label>
+    <br><br>
+    <button type="submit">Salvar Validação</button>
+</form>
+
+<br>
+
+<br>
+
+<a href="/admin/home"><button>Voltar</button></a>
+
+</body>
+</html>

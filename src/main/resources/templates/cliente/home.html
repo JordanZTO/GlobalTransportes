@@ -15,7 +15,10 @@
 </button>
 
 <!-- Botão para cadastrar frete -->
-<button type="button" onclick="window.location.href='/fretes/cadastrar'" class="btn btn-primary">
+<button type="button"
+        onclick="window.location.href='/fretes/cadastrar'"
+        class="btn btn-primary"
+        th:disabled="${!cliente.valido}">
     Cadastrar Frete
 </button>
 
@@ -54,6 +57,11 @@
 <form th:action="@{/logout}" method="post">
     <button type="submit">Sair</button>
 </form>
+
+<p th:if="${!cliente.valido}" style="color: red;">
+    Seu perfil está incompleto ou inválido. Atualize-o ou contate o suporte para poder cadastrar fretes.
+</p>
+
 
 
 </body>

@@ -5,6 +5,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class MotoristaDTO {
 
     //Motorista
+    private Long motorista_id;
     private String nome_completo;
     private String cpf;
     private String numero_cnh;
@@ -54,6 +55,14 @@ public class MotoristaDTO {
     public MotoristaDTO() {}
 
     // Getters e Setters
+
+    public Long getMotorista_id() {
+        return motorista_id;
+    }
+
+    public void setMotorista_id(Long motorista_id) {
+        this.motorista_id = motorista_id;
+    }
 
     public boolean isValido() {
         return valido;

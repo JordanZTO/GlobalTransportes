@@ -34,9 +34,6 @@ public class FreteService {
     @Autowired
     private FreteCheckpointRepository freteCheckpointRepository;
 
-    @Autowired
-    private CheckpointStatusRepository checkpointStatusRepository;
-
     public void excluirFreteSePendente(Long id) {
         Frete frete = freteRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Frete não encontrado com ID: " + id));
@@ -56,6 +53,14 @@ public class FreteService {
 
     public List<FreteCheckpoint> listarCheckpointsPorFrete(Long freteId) {
         return freteCheckpointRepository.findByFreteFreteIdOrderByDataHoraAsc(freteId);
+    }
+
+    public List<Frete> listarTodos() {
+        return freteRepository.findAll();
+    }
+
+    public List<Frete> buscarFretesPorFiltro(String filtro) {
+        return freteRepository.buscarPorFiltro(filtro);
     }
 
 

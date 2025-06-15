@@ -143,9 +143,9 @@ public class MotoristaController {
 
     @GetMapping("/motorista/perfil")
     public String exibirPerfilMotorista(Model model) {
-        Motorista motorista = motoristaService.buscarMotoristaLogado(); // ou outro método que você tenha
+        Motorista motorista = motoristaService.buscarMotoristaLogado();
 
-        MotoristaDTO dto = motoristaService.obterDadosParaEdicao(motorista); // Crie este método no service
+        MotoristaDTO dto = motoristaService.obterDadosParaEdicao(motorista);
 
         model.addAttribute("motorista", dto);
         return "motorista/perfil";

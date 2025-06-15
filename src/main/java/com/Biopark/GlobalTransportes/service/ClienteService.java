@@ -14,6 +14,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.List;
+
 @Service
 public class ClienteService {
 
@@ -28,6 +30,10 @@ public class ClienteService {
 
     @Autowired
     private TipoUsuarioRepository tipoUsuarioRepository;
+
+    public List<Cliente> listarTodosClientes() {
+        return clienteRepository.findAll();
+    }
 
     public void cadastrarCliente(CadastroClienteDto dto) {
         if (usuarioService.emailJaCadastrado(dto.getEmail())) {

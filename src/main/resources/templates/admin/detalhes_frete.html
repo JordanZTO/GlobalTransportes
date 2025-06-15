@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalhes do Frete</title>
+</head>
+<body>
+
+<h2>Detalhes do Frete</h2>
+
+<fieldset>
+    <h3>Detalhes da Carga</h3>
+    <p><label>Tipo de Carga:</label> <span th:text="${frete.tipoCarga}"></span></p>
+    <p><label>Valor do Frete:</label> <span th:text="${frete.valorFrete}"></span></p>
+    <p><label>Peso:</label> <span th:text="${frete.peso} + ' kg'"></span></p>
+    <p><label>Dimensões (CxLxA):</label>
+        <span th:text="${frete.comprimento}"></span> x
+        <span th:text="${frete.largura}"></span> x
+        <span th:text="${frete.altura}"></span>
+    </p>
+    <p><label>Valor da Nota Fiscal:</label> <span th:text="${frete.valorNotaFiscal}"></span></p>
+    <p><label>Status:</label> <span th:text="${frete.freteStatus.nome}"></span></p>
+    <p><label>Data de Criação:</label> <span th:text="${frete.dataCriacao}"></span></p>
+
+    <br>
+
+    <h3>Endereço de Origem</h3>
+    <p th:text="${frete.enderecoOrigem.logradouro} + ', ' + ${frete.enderecoOrigem.numero}"></p>
+    <p th:text="${frete.enderecoOrigem.cidade} + ' - ' + ${frete.enderecoOrigem.estado}"></p>
+
+    <br>
+
+    <h3>Endereço de Destino</h3>
+    <p th:text="${frete.enderecoDestino.logradouro} + ', ' + ${frete.enderecoDestino.numero}"></p>
+    <p th:text="${frete.enderecoDestino.cidade} + ' - ' + ${frete.enderecoDestino.estado}"></p>
+
+</fieldset>
+
+<br>
+
+<fieldset th:if="${frete.motorista != null}">
+    <h3>Informações do Motorista</h3>
+    <p><label>Nome:</label> <span th:text="${frete.motorista.nome_completo}"></span></p>
+    <p><label>Email:</label> <span th:text="${frete.motorista.email_comercial}"></span></p>
+    <p><label>Telefone:</label> <span th:text="${frete.motorista.telefone_pessoal}"></span></p>
+</fieldset>
+
+<fieldset th:if="${frete.motorista == null}">
+    <h3>Informações do Motorista</h3>
+    <p>Frete ainda não aceito por nenhum motorista.</p>
+</fieldset>
+
+<br>
+
+<fieldset>
+    <h3>Rastreamento - Checkpoints</h3>
+    <div th:if="${#lists.isEmpty(checkpoints)}">
+        <p>Nenhum checkpoint registrado até o momento.</p>
+    </div>
+    <div th:unless="${#lists.isEmpty(checkpoints)}">
+        <table border="1" cellpadding="5">
+            <thead>
+            <tr>
+                <th>Data e Hora</th>
+                <th>Cidade</th>
+                <th>Estado</th>
+                <th>Status</th>
+                <th>Observações</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="cp : ${checkpoints}">
+                <td th:text="${#temporals.format(cp.dataHora, 'dd/MM/yyyy HH:mm')}"></td>
+                <td th:text="${cp.cidade}"></td>
+                <td th:text="${cp.estado}"></td>
+                <td th:text="${cp.freteStatus.nome}"></td>
+                <td th:text="${cp.observacoes}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</fieldset>
+
+<br>
+
+<a href="/admin/fretes"><button>Voltar</button></a>
+
+</body>
+</html>

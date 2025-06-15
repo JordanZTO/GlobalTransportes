@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Validar Motoristas</title>
+</head>
+<body>
+
+<h2>Lista de Motoristas</h2>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>Nome</th>
+        <th>CPF</th>
+        <th>Email Comercial</th>
+        <th>Telefone</th>
+        <th>Validado</th>
+        <th>Detalhes</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="motorista : ${motoristas}">
+        <td th:text="${motorista.nome_completo}">Nome</td>
+        <td th:text="${motorista.cpf}">CPF</td>
+        <td th:text="${motorista.email_comercial}">Email</td>
+        <td th:text="${motorista.telefone_pessoal}">Telefone</td>
+        <td th:text="${motorista.valido ? 'Sim' : 'Não'}">Valido</td>
+        <td>
+            <a th:href="@{/admin/motorista/{id}(id=${motorista.motorista_id})}">
+                <button>Ver detalhes</button>
+            </a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<br>
+<a href="/admin/home"><button>Voltar</button></a>
+
+</body>
+</html>
