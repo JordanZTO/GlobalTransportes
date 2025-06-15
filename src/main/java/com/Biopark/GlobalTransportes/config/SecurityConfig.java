@@ -23,7 +23,20 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable()) // Em produção, mantenha o CSRF habilitado!
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/login","/cadastro","/cadastro-motorista","/api/**","/fretes/**","/cliente/cadastrar_frete","/cadastro-cliente","/css/**", "/js/**").permitAll()
+                        .requestMatchers(
+                                "/login",
+                                "/cadastro",
+                                "/cadastro-motorista",
+                                "/api/**",
+                                "/fretes/**",
+                                "/cliente/cadastrar_frete",
+                                "/cadastro-cliente",
+                                "/css/**",
+                                "/js/**",
+                                "/recuperar_senha",                 // <-- Liberando página do "esqueci minha senha"
+                                "/redefinir_senha",                // <-- Liberando tela de redefinição
+                                "/redefinir_senha/**"              // <-- Liberando URL com token na redefinição
+                        ).permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
@@ -44,7 +57,7 @@ public class SecurityConfig {
     }
 
     @Bean
-    public DaoAuthenticationProvider authenticationProvider(){
+    public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
         authProvider.setUserDetailsService(userDetailsService);
         authProvider.setPasswordEncoder(passwordEncoder());
@@ -52,8 +65,7 @@ public class SecurityConfig {
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
 }
