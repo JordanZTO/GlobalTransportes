@@ -30,6 +30,9 @@ public class Cliente {
     @Column(nullable = false)
     private String emailComercial;
 
+    @Column(nullable = false)
+    private boolean valido;
+
     @ManyToOne
     @JoinColumn(name = "endereco_id")
     private Endereco endereco;
@@ -37,9 +40,6 @@ public class Cliente {
     @OneToOne
     @JoinColumn(name = "usuario_id", unique = true)
     private Usuario usuario;
-
-    @Column(nullable = false)
-    private boolean valido;
 
     // Getters e setters
 

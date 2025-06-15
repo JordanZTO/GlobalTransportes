@@ -9,7 +9,7 @@
 
 <p><strong>Usuário: Administrador</strong>
 
-<br>
+<br><br>
 
 <button type="button" onclick="window.location.href='/admin/validar_cliente'" class="btn btn-secondary">
     Validar Clientes
@@ -23,11 +23,15 @@
         Fretes
 </button>
 
+<button type="button" onclick="window.location.href='/admin/dashboard'" class="btn btn-primary">
+        Dashboard
+</button>
+
 <br><br>
+
 <form th:action="@{/logout}" method="post">
     <button type="submit">Sair</button>
 </form>
-
 
 </body>
 </html>

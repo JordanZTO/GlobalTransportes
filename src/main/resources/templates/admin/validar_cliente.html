@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Validar Cliente</title>
+</head>
+<body>
+
+<h2>Lista de Clientes</h2>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>Nome</th>
+        <th>CNPJ</th>
+        <th>Email Comercial</th>
+        <th>Telefone</th>
+        <th>Validado</th>
+        <th>Detalhes</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="cliente : ${clientes}">
+        <td th:text="${cliente.nome}"></td>
+        <td th:text="${cliente.cnpj}"></td>
+        <td th:text="${cliente.emailComercial}"></td>
+        <td th:text="${cliente.telefone}"></td>
+        <td th:text="${cliente.valido ? 'Sim' : 'Não'}"></td>
+        <td>
+            <a th:href="@{/admin/cliente/{id}(id=${cliente.clienteId})}">
+                <button>Ver detalhes</button>
+            </a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<br>
+
+
+
+<a href="/admin/home"><button>Voltar</button></a>
+
+</body>
+</html>

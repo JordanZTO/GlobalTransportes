@@ -10,6 +10,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MotoristaService {
@@ -30,6 +32,10 @@ public class MotoristaService {
     FreteRepository freteRepository;
     @Autowired
     FreteStatusRepository freteStatusRepository;
+
+    public void salvar(Motorista motorista) {
+        motoristaRepository.save(motorista);
+    }
 
     public void cadastrarMotorista(MotoristaDTO dto) {
 
@@ -154,6 +160,7 @@ public class MotoristaService {
     public MotoristaDTO obterDadosParaEdicao(Motorista motorista) {
         MotoristaDTO dto = new MotoristaDTO();
 
+        dto.setMotorista_id(motorista.getMotorista_id());
         dto.setNome_completo(motorista.getNome_completo());
         dto.setCpf(motorista.getCpf());
         dto.setNumero_cnh(motorista.getNumero_cnh());
@@ -272,6 +279,15 @@ public class MotoristaService {
 
         caminhaoRepository.save(caminhao);
         motoristaRepository.save(motorista);
+    }
+
+    public List<Motorista> listarTodos() {
+        return motoristaRepository.findAll();
+    }
+
+    public Motorista buscarPorId(Long id) {
+        return motoristaRepository.findById(id)
+                .orElse(null);
     }
 
 }

@@ -154,7 +154,6 @@ VALUES (
   1
 );
 
-
 select * from frete_checkpoint;
 select * from frete_status;
 select * from cliente;

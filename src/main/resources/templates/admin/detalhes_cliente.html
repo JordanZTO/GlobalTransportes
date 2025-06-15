@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Validar Cliente</title>
+</head>
+<body>
+
+<h2>Informações do Usuário</h2>
+
+<fieldset>
+  <h3>Perfil</h3>
+  <p>Nome: <span th:text="${cliente.nome}"></span></p>
+  <p>Data de Nascimento: <span th:text="${cliente.dataNascimento}"></span></p>
+  <p>CNPJ: <span th:text="${cliente.cnpj}"></span></p>
+  <p>Inscrição Estadual: <span th:text="${cliente.inscricaoEstadual}"></span></p>
+  <p>Telefone: <span th:text="${cliente.telefone}"></span></p>
+  <p>Email Comercial: <span th:text="${cliente.emailComercial}"></span></p>
+  <br>
+
+  <h3>Endereço</h3>
+  <div th:if="${cliente.endereco != null}">
+    <p>Logradouro: <span th:text="${cliente.endereco.logradouro}"></span></p>
+    <p>Número: <span th:text="${cliente.endereco.numero}"></span></p>
+    <p>Complemento: <span th:text="${cliente.endereco.complemento}"></span></p>
+    <p>Bairro: <span th:text="${cliente.endereco.bairro}"></span></p>
+    <p>Cidade: <span th:text="${cliente.endereco.cidade}"></span></p>
+    <p>Estado: <span th:text="${cliente.endereco.estado}"></span></p>
+    <p>CEP: <span th:text="${cliente.endereco.cep}"></span></p>
+    <p>País: <span th:text="${cliente.endereco.pais}"></span></p>
+  </div>
+</fieldset>
+
+<br>
+
+<!-- Formulário para atualizar o status de validação -->
+<form th:action="@{'/admin/validar_cliente/' + ${cliente.clienteId}}" method="post">
+  <label>
+    <input type="checkbox" name="valido" th:checked="${cliente.valido}"> Cliente válido
+  </label>
+  <br><br>
+  <button type="submit">Salvar Validação</button>
+</form>
+
+<br>
+
+<a href="/admin/validar_cliente"><button>Voltar</button></a>
+
+</body>
+</html>
