@@ -1,0 +1,138 @@
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: linear-gradient(120deg, #f7f8fa 0%, #f0f2f8 100%);
+  margin: 0;
+  padding: 0;
+}
+.main-bg {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 40px 0 0 0;
+}
+.titulo-perfil {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #ffbe0b;
+  margin-bottom: 32px;
+  text-align: center;
+  letter-spacing: 1px;
+}
+.perfil-container {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  max-width: 1200px;
+  margin-bottom: 32px;
+}
+.card-perfil {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  padding: 32px 28px 28px 28px;
+  min-width: 300px;
+  flex: 1 1 340px;
+  margin-bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.card-perfil h3 {
+  font-size: 1.25rem;
+  color: #222;
+  margin-bottom: 18px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+.card-perfil p {
+  margin: 0 0 8px 0;
+  color: #222;
+  font-size: 1.05rem;
+  line-height: 1.5;
+}
+.label {
+  color: #1a73e8;
+  font-weight: 600;
+  margin-right: 2px;
+}
+.valor {
+  color: #222;
+  font-weight: 400;
+}
+.actions {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 32px;
+}
+.btn-yellow,
+.btn-yellow:visited,
+.btn-yellow:active,
+.btn-yellow:hover {
+  text-decoration: none;
+}
+.btn-yellow {
+  background: linear-gradient(90deg, #ffbe0b 60%, #ffb300 100%);
+  color: #222;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 32px;
+  font-size: 1.08rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin: 0 8px;
+  transition: background 0.2s, transform 0.1s, color 0.2s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  display: inline-block;
+}
+.btn-yellow:hover {
+  background: linear-gradient(90deg, #ffb300 60%, #ffbe0b 100%);
+  color: #111;
+  transform: translateY(-2px) scale(1.03);
+}
+.btn-voltar {
+  margin-left: 12px;
+}
+.checkbox-label {
+  font-size: 1rem;
+  color: #222;
+  margin-left: 8px;
+  margin-right: 16px;
+}
+@media (max-width: 1100px) {
+  .perfil-container {
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+  }
+  .card-perfil {
+    min-width: 220px;
+    width: 100%;
+    max-width: 600px;
+  }
+}
+@media (max-width: 700px) {
+  .main-bg {
+    padding: 18px 0 0 0;
+  }
+  .titulo-perfil {
+    font-size: 1.5rem;
+    margin-bottom: 18px;
+  }
+  .perfil-container {
+    gap: 12px;
+    padding: 0 2vw;
+  }
+  .card-perfil {
+    padding: 18px 8px 18px 8px;
+    min-width: 0;
+    max-width: 98vw;
+  }
+  .btn-yellow {
+    padding: 10px 16px;
+    font-size: 1rem;
+  }
+}

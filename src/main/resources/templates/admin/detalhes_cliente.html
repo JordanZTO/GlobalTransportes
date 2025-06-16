@@ -2,48 +2,46 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>Validar Cliente</title>
+  <title>Detalhes do Perfil</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" th:href="@{/css/DetaCli.css}">
 </head>
 <body>
-
-<h2>Informações do Usuário</h2>
-
-<fieldset>
-  <h3>Perfil</h3>
-  <p>Nome: <span th:text="${cliente.nome}"></span></p>
-  <p>Data de Nascimento: <span th:text="${cliente.dataNascimento}"></span></p>
-  <p>CNPJ: <span th:text="${cliente.cnpj}"></span></p>
-  <p>Inscrição Estadual: <span th:text="${cliente.inscricaoEstadual}"></span></p>
-  <p>Telefone: <span th:text="${cliente.telefone}"></span></p>
-  <p>Email Comercial: <span th:text="${cliente.emailComercial}"></span></p>
-  <br>
-
-  <h3>Endereço</h3>
-  <div th:if="${cliente.endereco != null}">
-    <p>Logradouro: <span th:text="${cliente.endereco.logradouro}"></span></p>
-    <p>Número: <span th:text="${cliente.endereco.numero}"></span></p>
-    <p>Complemento: <span th:text="${cliente.endereco.complemento}"></span></p>
-    <p>Bairro: <span th:text="${cliente.endereco.bairro}"></span></p>
-    <p>Cidade: <span th:text="${cliente.endereco.cidade}"></span></p>
-    <p>Estado: <span th:text="${cliente.endereco.estado}"></span></p>
-    <p>CEP: <span th:text="${cliente.endereco.cep}"></span></p>
-    <p>País: <span th:text="${cliente.endereco.pais}"></span></p>
+  <div class="main-bg">
+    <div class="titulo-perfil">Detalhes do Perfil</div>
+    <div class="perfil-container">
+      <div class="card-perfil">
+        <h3>Perfil do usuário</h3>
+        <p><span class="label">Nome:</span> <span class="valor" th:text="${cliente.nome}"></span></p>
+        <p><span class="label">Data de Nascimento:</span> <span class="valor" th:text="${cliente.dataNascimento}"></span></p>
+        <p><span class="label">CNPJ:</span> <span class="valor" th:text="${cliente.cnpj}"></span></p>
+        <p><span class="label">Inscrição Estadual:</span> <span class="valor" th:text="${cliente.inscricaoEstadual}"></span></p>
+        <p><span class="label">Telefone:</span> <span class="valor" th:text="${cliente.telefone}"></span></p>
+        <p><span class="label">Email Comercial:</span> <span class="valor" th:text="${cliente.emailComercial}"></span></p>
+      </div>
+      <div class="card-perfil">
+        <h3>Endereço</h3>
+        <div th:if="${cliente.endereco != null}">
+          <p><span class="label">Logradouro:</span> <span class="valor" th:text="${cliente.endereco.logradouro}"></span></p>
+          <p><span class="label">Número:</span> <span class="valor" th:text="${cliente.endereco.numero}"></span></p>
+          <p><span class="label">Complemento:</span> <span class="valor" th:text="${cliente.endereco.complemento}"></span></p>
+          <p><span class="label">Bairro:</span> <span class="valor" th:text="${cliente.endereco.bairro}"></span></p>
+          <p><span class="label">Cidade:</span> <span class="valor" th:text="${cliente.endereco.cidade}"></span></p>
+          <p><span class="label">Estado:</span> <span class="valor" th:text="${cliente.endereco.estado}"></span></p>
+          <p><span class="label">CEP:</span> <span class="valor" th:text="${cliente.endereco.cep}"></span></p>
+          <p><span class="label">País:</span> <span class="valor" th:text="${cliente.endereco.pais}"></span></p>
+        </div>
+      </div>
+    </div>
+    <div class="actions">
+      <form th:action="@{'/admin/validar_cliente/' + ${cliente.clienteId}}" method="post" style="display:inline-block;">
+        <label class="checkbox-label">
+          <input type="checkbox" name="valido" th:checked="${cliente.valido}"> Cliente válido
+        </label>
+        <button type="submit" class="btn-yellow">Salvar Validação</button>
+      </form>
+      <a href="/admin/validar_cliente" class="btn-yellow btn-voltar">Voltar</a>
+    </div>
   </div>
-</fieldset>
-
-<br>
-
-<form th:action="@{'/admin/validar_cliente/' + ${cliente.clienteId}}" method="post">
-  <label>
-    <input type="checkbox" name="valido" th:checked="${cliente.valido}"> Cliente válido
-  </label>
-  <br><br>
-  <button type="submit">Salvar Validação</button>
-</form>
-
-<br>
-
-<a href="/admin/validar_cliente"><button>Voltar</button></a>
-
 </body>
 </html>

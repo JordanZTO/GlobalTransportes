@@ -2,35 +2,124 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Editar Perfil</title>
+    <title>Editar Perfil do Cliente</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/EditarCli.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-<h2>Editar informações</h2>
-
-<fieldset>
+    <div class="sidebar">
+        <div class="sidebar-logo">
+            <img src="/img/LogoSem.png" alt="Logo" />
+        </div>
+        <div class="sidebar-title">Global Transportes</div>
+        <nav class="sidebar-nav">
+            <a th:href="@{/cliente/home}" class="sidebar-link"><i class="fas fa-home"></i> <span>Início</span></a>
+            <a th:href="@{/cliente/fretes}" class="sidebar-link"><i class="fas fa-truck"></i> <span>Meus fretes</span></a>
+            <a th:href="@{/cliente/fretes-disponiveis}" class="sidebar-link"><i class="fas fa-list"></i> <span>Fretes Disponíveis</span></a>
+        </nav>
+        <div class="sidebar-separator"></div>
+        <div class="sidebar-bottom">
+            <a href="/logout" class="sidebar-logout"><i class="fas fa-sign-out-alt"></i> <span>Sair</span></a>
+        </div>
+    </div>
+    <div class="main-content">
+        <h2 class="text-center mb-4">Editar Perfil do Cliente</h2>
         <form th:action="@{/cliente/perfil/editar}" method="post" th:object="${cliente}">
-            <h3>Perfil</h3>
-                <label>Nome: <input type="text" th:field="*{nome}" /></label><br/><br>
-                <label>Data de Nascimento: <input type="date" th:field="*{dataNascimento}" /></label><br/><br>
-                <label>CNPJ: <input type="text" th:field="*{cnpj}" /></label><br/><br>
-                <label>Inscrição Estadual: <input type="text" th:field="*{inscricaoEstadual}" /></label><br/><br>
-                <label>Telefone: <input type="text" th:field="*{telefone}" /></label><br/><br>
-                <label>Email Comercial: <input type="email" th:field="*{emailComercial}" /></label><br/><br>
-
-            <h3>Endereço</h3>
-                <label>Logradouro: <input type="text" th:field="*{logradouro}" /></label><br/><br>
-                <label>Número: <input type="text" th:field="*{numero}" /></label><br/><br>
-                <label>Complemento: <input type="text" th:field="*{complemento}" /></label><br/><br>
-                <label>Bairro: <input type="text" th:field="*{bairro}" /></label><br/><br>
-                <label>Cidade: <input type="text" th:field="*{cidade}" /></label><br/><br>
-                <label>Estado: <input type="text" th:field="*{estado}" /></label><br/><br>
-                <label>CEP: <input type="text" th:field="*{cep}" /></label><br/><br>
-                <label>País: <input type="text" th:field="*{pais}" /></label><br/><br>
-
-            <button type="submit">Salvar Alterações</button>
+            <!-- Card Dados Pessoais -->
+            <div class="card mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="section-title mb-0">Dados Pessoais</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 form-group">
+                            <label class="form-label">Nome</label>
+                            <input type="text" class="form-control" th:field="*{nome}" />
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label class="form-label">Data de Nascimento</label>
+                            <input type="date" class="form-control" th:field="*{dataNascimento}" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 form-group">
+                            <label class="form-label">CNPJ</label>
+                            <input type="text" class="form-control" th:field="*{cnpj}" />
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label class="form-label">Inscrição Estadual</label>
+                            <input type="text" class="form-control" th:field="*{inscricaoEstadual}" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 form-group">
+                            <label class="form-label">Telefone</label>
+                            <input type="text" class="form-control" th:field="*{telefone}" />
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label class="form-label">Email Comercial</label>
+                            <input type="email" class="form-control" th:field="*{emailComercial}" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Card Endereço -->
+            <div class="card mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="section-title mb-0">Endereço</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4 form-group">
+                            <label class="form-label">Logradouro</label>
+                            <input type="text" class="form-control" th:field="*{logradouro}" />
+                        </div>
+                        <div class="col-md-4 form-group">
+                            <label class="form-label">Complemento</label>
+                            <input type="text" class="form-control" th:field="*{complemento}" />
+                        </div>
+                        <div class="col-md-4 form-group">
+                            <label class="form-label">Cidade</label>
+                            <input type="text" class="form-control" th:field="*{cidade}" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 form-group">
+                            <label class="form-label">Número</label>
+                            <input type="text" class="form-control" th:field="*{numero}" />
+                        </div>
+                        <div class="col-md-4 form-group">
+                            <label class="form-label">Bairro</label>
+                            <input type="text" class="form-control" th:field="*{bairro}" />
+                        </div>
+                        <div class="col-md-4 form-group">
+                            <label class="form-label">Estado</label>
+                            <input type="text" class="form-control" th:field="*{estado}" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 form-group">
+                            <label class="form-label">CEP</label>
+                            <input type="text" class="form-control" th:field="*{cep}" />
+                        </div>
+                        <div class="col-md-4 form-group">
+                            <label class="form-label">País</label>
+                            <input type="text" class="form-control" th:field="*{pais}" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <button type="submit" class="btn btn-primary me-2">
+                    <i class="fas fa-save"></i> Salvar Alterações
+                </button>
+                <a href="/cliente/perfil" class="btn btn-secondary">
+                    <i class="fas fa-times"></i> Cancelar
+                </a>
+            </div>
         </form>
-</fieldset>
-<br>
-<a href="/cliente/perfil"><button>Cancelar</button></a>
+    </div>
+        <script th:src="@{/js/Perfil.js}"></script>
 </body>
 </html>

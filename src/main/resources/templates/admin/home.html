@@ -2,36 +2,48 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
+    <title>Home - Administrador</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/css/homeadm.css}">
 </head>
 <body>
-<h2>Menu do Admin</h2>
-
-<p><strong>Usuário: Administrador</strong>
-
-<br><br>
-
-<button type="button" onclick="window.location.href='/admin/validar_cliente'" class="btn btn-secondary">
-    Validar Clientes
-</button>
-
-<button type="button" onclick="window.location.href='/admin/validar_motorista'" class="btn btn-primary">
-    Validar Motoristas
-</button>
-
-<button type="button" onclick="window.location.href='/admin/fretes'" class="btn btn-primary">
-        Fretes
-</button>
-
-<button type="button" onclick="window.location.href='/admin/dashboard'" class="btn btn-primary">
-        Dashboard
-</button>
-
-<br><br>
-
-<form th:action="@{/logout}" method="post">
-    <button type="submit">Sair</button>
-</form>
-
+<div class="main-homeadm">
+    <div class="card-homeadm">
+        <div class="titulo-homeadm">
+            <i class="fas fa-user-shield"></i>
+            Menu do Administrador
+        </div>
+        <p><i class="fas fa-user"></i> <strong>Usuário:</strong> Administrador</p>
+        
+        <div class="menu-separator"></div>
+        
+        <button type="button" onclick="window.location.href='/admin/validar_cliente'" class="btn-homeadm">
+            <i class="fas fa-building"></i>
+            Validar Clientes
+        </button>
+        <button type="button" onclick="window.location.href='/admin/validar_motorista'" class="btn-homeadm">
+            <i class="fas fa-truck"></i>
+            Validar Motoristas
+        </button>
+        <button type="button" onclick="window.location.href='/admin/fretes'" class="btn-homeadm">
+            <i class="fas fa-route"></i>
+            Gerenciar Fretes
+        </button>
+        <button type="button" onclick="window.location.href='/admin/dashboard'" class="btn-homeadm">
+            <i class="fas fa-chart-line"></i>
+            Dashboard
+        </button>
+        
+        <div class="menu-separator"></div>
+        
+        <form th:action="@{/logout}" method="post" style="width:100%;">
+            <button type="submit" class="btn-sair">
+                <i class="fas fa-sign-out-alt"></i>
+                Sair
+            </button>
+        </form>
+    </div>
+</div>
 </body>
 </html>

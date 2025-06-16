@@ -1,0 +1,118 @@
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: linear-gradient(120deg, #f7f8fa 0%, #f0f2f8 100%);
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+.vali-bg {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 40px 0 0 0;
+}
+.vali-card {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  padding: 36px 32px 32px 32px;
+  min-width: 320px;
+  max-width: 900px;
+  width: 100%;
+  margin-bottom: 32px;
+}
+.vali-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #ffbe0b;
+  margin-bottom: 24px;
+  text-align: center;
+  letter-spacing: 1px;
+}
+table.vali-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 18px;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+table.vali-table thead {
+  background: linear-gradient(90deg, #ffbe0b 60%, #ffb300 100%);
+}
+table.vali-table th {
+  color: #222;
+  font-size: 1.05rem;
+  font-weight: 700;
+  padding: 12px 8px;
+  text-align: left;
+  border-bottom: 2px solid #f0f2f8;
+}
+table.vali-table td {
+  color: #222;
+  font-size: 1rem;
+  padding: 10px 8px;
+  border-bottom: 1px solid #f0f2f8;
+}
+table.vali-table tr:nth-child(even) td {
+  background: #fafafa;
+}
+table.vali-table tr:last-child td {
+  border-bottom: none;
+}
+.btn-detalhes {
+  background: linear-gradient(90deg, #1a73e8 60%, #64b5f6 100%);
+  color: #fff;
+  border: none;
+  border-radius: 7px;
+  padding: 7px 18px;
+  font-size: 0.98rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  text-decoration: none;
+}
+.btn-detalhes:hover {
+  background: linear-gradient(90deg, #1565c0 60%, #64b5f6 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.03);
+}
+.btn-voltar {
+  background: linear-gradient(90deg, #ffbe0b 60%, #ffb300 100%);
+  color: #222;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 32px;
+  font-size: 1.08rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin: 0 8px;
+  transition: background 0.2s, transform 0.1s, color 0.2s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  text-decoration: none;
+  display: inline-block;
+}
+.btn-voltar:hover {
+  background: linear-gradient(90deg, #ffb300 60%, #ffbe0b 100%);
+  color: #111;
+  transform: translateY(-2px) scale(1.03);
+}
+@media (max-width: 900px) {
+  .vali-card {
+    padding: 18px 4vw 18px 4vw;
+    min-width: 0;
+    max-width: 98vw;
+  }
+  .vali-title {
+    font-size: 1.3rem;
+    margin-bottom: 18px;
+  }
+  table.vali-table th, table.vali-table td {
+    font-size: 0.95rem;
+    padding: 7px 4px;
+  }
+}

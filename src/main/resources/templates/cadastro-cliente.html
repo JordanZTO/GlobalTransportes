@@ -1,50 +1,122 @@
 <!DOCTYPE html>
-<html lang="pt-br"
-      xmlns:th="http://www.thymeleaf.org">
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Cadastro de Cliente</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cadastro Cliente | Global Transportes</title>
+    <link rel="stylesheet" th:href="@{/css/CliCadastro.css}" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
 </head>
 <body>
-<h2>Cadastro de Cliente</h2>
-
-<form th:action="@{/cadastro-cliente}" th:object="${cliente}" method="post">
-
-    <fieldset>
-        <legend>Dados de Acesso</legend>
-        <input type="email" th:field="*{email}" placeholder="Email" required><br>
-        <input type="password" th:field="*{senha}" placeholder="Senha" required><br>
-    </fieldset><br>
-
-    <fieldset>
-        <legend>Dados do Cliente</legend>
-        <input type="text" th:field="*{nome}" placeholder="Nome Completo" required><br>
-        <label for="dataNascimento">Data de Nascimento</label>
-        <input type="date" th:field="*{dataNascimento}" id="dataNascimento" required><br>
-        <input type="text" th:field="*{cnpj}" placeholder="Cnpj" required><br>
-        <input type="text" th:field="*{inscricaoEstadual}" placeholder="Inscrição Estadual" required><br>
-        <input type="text" th:field="*{telefone}" placeholder="Telefone" required><br>
-        <input type="email" th:field="*{emailComercial}" placeholder="Email Comercial" required><br>
-    </fieldset><br>
-
-    <fieldset>
-        <legend>Endereço</legend>
-        <input type="text" th:field="*{logradouro}" placeholder="Logradouro" required><br>
-        <input type="text" th:field="*{numero}" placeholder="Numero" required><br>
-        <input type="text" th:field="*{complemento}" placeholder="Complemento" ><br>
-        <input type="text" th:field="*{bairro}" placeholder="Bairro" ><br>
-        <input type="text" th:field="*{cidade}" placeholder="Cidade" required><br>
-        <input type="text" th:field="*{estado}" placeholder="Estado" maxlength="2" required><br>
-        <input type="text" th:field="*{cep}" placeholder="Cep" required><br>
-        <input type="text" th:field="*{pais}" placeholder="Pais" value="Brasil" required><br>
-    </fieldset><br>
-    
-    <button type="submit">Cadastrar</button>
-</form>
-
-<br>
-
-<a href="/login"><button>Voltar</button></a>
-
+<a th:href="@{/cadastro}" class="btn-voltar">
+    <img th:src="@{/img/desfazer1.png}" alt="Voltar" />
+</a>
+<div class="cadastro-container">
+    <div class="cadastro-header">
+        <img th:src="@{/img/LogoSem.png}" alt="Logo Anatanelly" class="cadastro-logo" />
+        <h2>Cadastro Cliente</h2>
+        <p>Preencha os dados abaixo.</p>
+    </div>
+    <form th:action="@{/cadastro-cliente}" th:object="${cliente}" method="post" class="cadastro-form">
+        <div class="form-row">
+            <input type="text" th:field="*{nome}" placeholder="Nome completo" required />
+            <input type="date" th:field="*{dataNascimento}" placeholder="Data de Nascimento" required
+                   onfocus="this.showPicker()" style="cursor: pointer;" />
+        </div>
+        <div class="form-row">
+            <input type="text" th:field="*{cnpj}" placeholder="CPF/CNPJ" required id="cpfCnpj" inputmode="numeric" maxlength="18" />
+            <input type="text" th:field="*{inscricaoEstadual}" placeholder="Inscrição Estadual" required />
+        </div>
+        <div class="form-row">
+            <input type="text" th:field="*{logradouro}" placeholder="Endereço" required />
+            <input type="text" th:field="*{numero}" placeholder="Número" required />
+        </div>
+        <div class="form-row">
+            <input type="text" th:field="*{complemento}" placeholder="Complemento" />
+            <input type="text" th:field="*{bairro}" placeholder="Bairro" required />
+        </div>
+        <div class="form-row">
+            <input type="text" th:field="*{cidade}" placeholder="Cidade" required />
+            <select name="estado" id="estado" required>
+                <option value="" disabled selected>Estado</option>
+                <option value="AC">Acre (AC)</option>
+                <option value="AL">Alagoas (AL)</option>
+                <option value="AP">Amapá (AP)</option>
+                <option value="AM">Amazonas (AM)</option>
+                <option value="BA">Bahia (BA)</option>
+                <option value="CE">Ceará (CE)</option>
+                <option value="DF">Distrito Federal (DF)</option>
+                <option value="ES">Espírito Santo (ES)</option>
+                <option value="GO">Goiás (GO)</option>
+                <option value="MA">Maranhão (MA)</option>
+                <option value="MT">Mato Grosso (MT)</option>
+                <option value="MS">Mato Grosso do Sul (MS)</option>
+                <option value="MG">Minas Gerais (MG)</option>
+                <option value="PA">Pará (PA)</option>
+                <option value="PB">Paraíba (PB)</option>
+                <option value="PR">Paraná (PR)</option>
+                <option value="PE">Pernambuco (PE)</option>
+                <option value="PI">Piauí (PI)</option>
+                <option value="RJ">Rio de Janeiro (RJ)</option>
+                <option value="RN">Rio Grande do Norte (RN)</option>
+                <option value="RS">Rio Grande do Sul (RS)</option>
+                <option value="RO">Rondônia (RO)</option>
+                <option value="RR">Roraima (RR)</option>
+                <option value="SC">Santa Catarina (SC)</option>
+                <option value="SP">São Paulo (SP)</option>
+                <option value="SE">Sergipe (SE)</option>
+                <option value="TO">Tocantins (TO)</option>
+            </select>
+        </div>
+        <div class="form-row">
+            <input type="text" th:field="*{cep}" placeholder="CEP" required />
+            <input type="text" th:field="*{telefone}" placeholder="Celular" required />
+        </div>
+        <div class="form-row">
+            <input type="email" th:field="*{emailComercial}" placeholder="Email Comercial" required style="width: 100%;" />
+        </div>
+        <div class="form-row">
+            <input type="email" th:field="*{email}" placeholder="Email para Login" required />
+            <input type="password" th:field="*{senha}" placeholder="Senha" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                   title="A senha deve ter pelo menos 8 caracteres, incluindo uma letra maiúscula, uma letra minúscula e um número."/>
+        </div>
+        <button type="submit" class="cadastro-btn">Cadastrar</button>
+    </form>
+</div>
+<footer>
+    <div class="footer-logo">
+        <img th:src="@{/img/LogoSem.png}" alt="Logo Anatanelly" />
+        <div class="footer-logo-text">
+            <strong>Anatonelly</strong>
+            <span>Global Transportes</span>
+        </div>
+    </div>
+    <div class="footer-content-right">
+        <div class="footer-contact">
+            <span>Contato</span>
+            <span>
+                    <img th:src="@{/img/gmail.png}" alt="gmail">
+                    comercial@globaltransportes.log.br
+                </span>
+            <span>
+                    <img th:src="@{/img/telefone.png}" alt="telefone">
+                    +55 (31) 99431-6561
+                </span>
+        </div>
+        <div class="footer-social">
+            <span>Redes Sociais</span>
+            <div class="footer-social-icons">
+                <a href="https://facebook.com/seu_perfil" target="_blank">
+                    <img th:src="@{/img/Face.png}" alt="Facebook" />
+                </a>
+                <a href="https://instagram.com/seu_perfil" target="_blank">
+                    <img th:src="@{/img/Insta.png}" alt="Instagram" />
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copy">© 2023 Anatonelly. Todos os direitos reservados.</div>
+</footer>
+<script th:src="@{/js/Cadastro.js}"></script>
 </body>
 </html>
