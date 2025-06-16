@@ -3,95 +3,192 @@
 <head>
   <meta charset="UTF-8">
   <title>Detalhes do Frete</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+          font-family: 'Montserrat', sans-serif;
+        }
+        .sidebar {
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 250px;
+            background-color: #030039;
+            color: white;
+            display: flex;
+            flex-direction: column;
+        }
+        .main-content {
+            margin-left: 250px;
+            background-color: #f5f6fa;
+            min-height: 100vh;
+        }
+        .active-link {
+            background-color: rgba(255, 213, 0, 0.2);
+            border-left: 4px solid #ffd500;
+            color: #ffd500;
+        }
+        .status-dot {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 6px;
+        }
+        .status-in-progress { background-color: #ffd500; }
+        .status-waiting { background-color: #a0a0a0; }
+        .status-cancelled { background-color: #ff4d4d; }
+        .status-delivered { background-color: #444444; }
+        .table-row:hover {
+            background-color: #f9f9f9;
+        }
+    </style>
 </head>
-<body>
+<body class="bg-gray-100">
 
-<h2>Detalhes do Frete</h2>
-
-<fieldset>
-    <h3>Detalhes da Carga</h3>
-        <p><label>Tipo de Carga:</label> <span th:text="${frete.tipoCarga}"></span></p>
-        <p><label>Valor do Frete:</label> <span th:text="${frete.valorFrete}"></span></p>
-        <p><label>Peso:</label> <span th:text="${frete.peso} + ' kg'"></span></p>
-        <p><label>Dimensões (CxLxA):</label>
-          <span th:text="${frete.comprimento}"></span> x
-          <span th:text="${frete.largura}"></span> x
-          <span th:text="${frete.altura}"></span>
-        </p>
-        <p><label>Valor da Nota Fiscal:</label> <span th:text="${frete.valorNotaFiscal}"></span></p>
-        <p><label>Status:</label> <span th:text="${frete.freteStatus.nome}"></span></p>
-        <p><label>Data de Criação:</label> <span th:text="${frete.dataCriacao}"></span></p>
-
-<br>
-
-    <h3>Endereço de Origem</h3>
-        <p th:text="${frete.enderecoOrigem.logradouro} + ', ' + ${frete.enderecoOrigem.numero}"></p>
-        <p th:text="${frete.enderecoOrigem.cidade} + ' - ' + ${frete.enderecoOrigem.estado}"></p>
-
-<br>
-
-    <h3>Endereço de Destino</h3>
-        <p th:text="${frete.enderecoDestino.logradouro} + ', ' + ${frete.enderecoDestino.numero}"></p>
-        <p th:text="${frete.enderecoDestino.cidade} + ' - ' + ${frete.enderecoDestino.estado}"></p>
-</fieldset>
-
-<br>
-
-<fieldset th:if="${frete.cliente != null}">
-    <h3>Informações do Cliente</h3>
-    <p><label>Nome:</label> <span th:text="${frete.cliente.nome}"></span></p>
-    <p><label>Email:</label> <span th:text="${frete.cliente.emailComercial}"></span></p>
-    <p><label>Telefone:</label> <span th:text="${frete.cliente.telefone}"></span></p>
-</fieldset>
-
-<br>
-
-<fieldset>
-    <h3>Rastreamento - Checkpoints</h3>
-        <div th:if="${#lists.isEmpty(checkpoints)}">
-          <p>Nenhum checkpoint registrado até o momento.</p>
+<div class="sidebar shadow-lg z-10">
+    <div class="p-6 flex justify-center">
+        <!-- Logo placeholder -->
+        <div class="text-2xl font-bold text-white flex items-center">
+            <i class="fas fa-truck-fast mr-2"></i>
+            <span>FretesFácil</span>
         </div>
-      <div th:unless="${#lists.isEmpty(checkpoints)}">
-        <table border="1" cellpadding="5">
-          <thead>
-          <tr>
-            <th>Data e Hora</th>
-            <th>Cidade</th>
-            <th>Estado</th>
-            <th>Status</th>
-            <th>Observações</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr th:each="cp : ${checkpoints}">
-            <td th:text="${#temporals.format(cp.dataHora, 'dd/MM/yyyy HH:mm')}"></td>
-            <td th:text="${cp.cidade}"></td>
-            <td th:text="${cp.estado}"></td>
-            <td th:text="${cp.freteStatus.nome}"></td>
-            <td th:text="${cp.observacoes}"></td>
-          </tr>
-          </tbody>
-        </table>
-      </div>
-</fieldset>
+    </div>
 
-<br>
-<div th:if="${motoristaValido}">
-  <form th:action="@{'/motorista/frete/' + ${frete.freteId} + '/aceitar'}" method="post"
-        th:if="${frete.freteStatus.nome == 'PENDENTE'}">
-    <button type="submit">Aceitar Frete</button>
-  </form>
+    <div class="mt-8 flex-grow">
+        <a href="inicio.html" class="flex items-center px-6 py-4 text-gray-300 hover:bg-blue-800 transition-allk">
+            <i class="fas fa-home mr-3"></i>
+            <span>Início</span>
+        </a>
+        <a href="meus-fretes.html" class="flex items-center px-6 py-4 text-gray-300 hover:bg-blue-800 transition-all">
+            <i class="fas fa-truck mr-3"></i>
+            <span>Meus fretes</span>
+        </a>
+    </div>
+
+    <div class="mt-auto mb-6 px-6">
+        <button onclick="window.location.href='/index'" class="w-full bg-yellow-400 hover:bg-yellow-500 text-white font-medium py-2 px-4 rounded-lg flex items-center justify-center transition-all">
+            <i class="fas fa-sign-out-alt mr-2"></i>
+            <span>Sair</span>
+        </button>
+
+
+    </div>
 </div>
+<div class="main-content">
+    <!-- Top Bar -->
+    <div class="bg-white shadow-sm p-4 flex justify-end items-center">
+        <div class="flex items-center">
+            <span class="mr-3 text-gray-700">Motorista</span>
+            <div class="w-10 h-10 rounded-full bg-blue-800 flex items-center justify-center text-white">
+                <i class="fas fa-user"></i>
+            </div>
+        </div>
+    </div>
 
-<br>
 
-<div th:unless="${motoristaValido}">
-  <p style="color:red;">Seu cadastro ainda não foi validado. Aguarde aprovação para aceitar fretes.</p>
+    <div class="p-8">
+        <div class="bg-white rounded-lg shadow-sm p-6">
+            <div class="grid grid-cols-2 gap-6 mb-8">
+                <div class="col-span-2">
+                    <h2 class="text-2xl font-bold text-yellow-500">Detalhes do Frete</h2>
+                </div>
+                <fieldset>
+                    <div class="p-4 bg-gray-100 rounded-lg shadow">
+                        <h3 class="font-bold text-gray-800">Detalhes da Carga</h3>
+                            <p class="text-blue-400"><label>Tipo de Carga:</label> <span th:text="${frete.tipoCarga}"></span></p>
+                            <p class="text-blue-400" ><label>Valor do Frete:</label> <span th:text="${frete.valorFrete}"></span></p0>
+                            <p class="text-blue-400"><label>Peso:</label> <span th:text="${frete.peso} + ' kg'"></span></p>
+                            <p class="text-blue-400"><label>Dimensões (CxLxA):</label>
+                              <span th:text="${frete.comprimento}"></span> x
+                              <span th:text="${frete.largura}"></span> x
+                              <span th:text="${frete.altura}"></span>
+                            </p>
+                            <p class="text-blue-400"><label>Valor da Nota Fiscal:</label> <span th:text="${frete.valorNotaFiscal}"></span></p>
+                            <p class="text-blue-400"><label>Status:</label> <span th:text="${frete.freteStatus.nome}"></span></p>
+                            <p class="text-blue-400"><label>Data de Criação:</label> <span th:text="${frete.dataCriacao}"></span></p>
+
+                    <br>
+
+                        <h3>Endereço de Origem</h3>
+                            <p th:text="${frete.enderecoOrigem.logradouro} + ', ' + ${frete.enderecoOrigem.numero}"></p>
+                            <p th:text="${frete.enderecoOrigem.cidade} + ' - ' + ${frete.enderecoOrigem.estado}"></p>
+
+                    <br>
+
+                        <h3>Endereço de Destino</h3>
+                            <p th:text="${frete.enderecoDestino.logradouro} + ', ' + ${frete.enderecoDestino.numero}"></p>
+                            <p th:text="${frete.enderecoDestino.cidade} + ' - ' + ${frete.enderecoDestino.estado}"></p>
+                    </div>
+                </fieldset>
+
+                <br>
+
+                <fieldset th:if="${frete.cliente != null}">
+                    <div class="p-4 bg-gray-100 rounded-lg shadow">
+                        <h3 class="font-bold text-gray-800">Informações do Cliente</h3>
+                        <p class="text-blue-400"><label>Nome:</label> <span th:text="${frete.cliente.nome}"></span></p>
+                        <p class="text-blue-400"><label>Email:</label> <span th:text="${frete.cliente.emailComercial}"></span></p>
+                        <p class="text-blue-400"><label>Telefone:</label> <span th:text="${frete.cliente.telefone}"></span></p>
+                    </div>
+                </fieldset>
+
+                <br>
+
+                <fieldset>
+                    <div class="col-span-2 p-4 bg-gray-100 rounded-lg shadow">
+                    <h3 class="font-bold text-gray-800">Rastreamento - Checkpoints</h3>
+                        <div th:if="${#lists.isEmpty(checkpoints)}">
+                          <p>Nenhum checkpoint registrado até o momento.</p>
+                        </div>
+                      <div class="p-3 min-w-full bg-white rounded-lg overflow-hidden" th:unless="${#lists.isEmpty(checkpoints)}">
+                        <table border="1" cellpadding="5">
+                          <thead class="p-8 bg-gray-100 text-gray-700"->
+                          <tr>
+                            <th class="py-3 px-4 text-left font-medium">Data e Hora</th>
+                            <th class="py-3 px-4 text-left font-medium">Cidade</th>
+                            <th class="py-3 px-4 text-left font-medium">Estado</th>
+                            <th class="py-3 px-4 text-left font-medium">Status</th>
+                            <th class="py-3 px-4 text-left font-medium">Observações</th>
+                          </tr>
+                          </thead>
+                          <tbody class="divide-y divide-gray-200">
+                          <tr class="table-row" th:each="cp : ${checkpoints}">
+                            <td class="py-3 px-4 text-gray-800" th:text="${#temporals.format(cp.dataHora, 'dd/MM/yyyy HH:mm')}"></td>
+                            <td class="py-3 px-4 text-gray-800" th:text="${cp.cidade}"></td>
+                            <td class="py-3 px-4 text-gray-800" th:text="${cp.estado}"></td>
+                            <td class="py-3 px-4 text-gray-800" th:text="${cp.freteStatus.nome}"></td>
+                            <td class="py-3 px-4 text-gray-800" th:text="${cp.observacoes}"></td>
+                          </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                </fieldset>
+
+                <br>
+                <div th:if="${motoristaValido}">
+                  <form th:action="@{'/motorista/frete/' + ${frete.freteId} + '/aceitar'}" method="post"
+                        th:if="${frete.freteStatus.nome == 'PENDENTE'}">
+                    <button class="w-full bg-yellow-400 hover:bg-yellow-500 text-white font-medium py-2 px-4 rounded-lg flex items-center justify-center transition-all" type="submit">Aceitar Frete</button>
+                  </form>
+                </div>
+
+                <br>
+
+                <div th:unless="${motoristaValido}">
+                  <p style="color:red;">Seu cadastro ainda não foi validado. Aguarde aprovação para aceitar fretes.</p>
+                </div>
+
+                <br>
+
+                <a href="/motorista/home"><button class=" bg-blue-400 hover:bg-blue-300 text-white font-medium py-2 px-4 rounded-lg flex items-center justify-center transition-all"><i class="fas fa-arrow-left mr-2"></i>Voltar</button></a>
+            </div>
+        </div>
+    </div>
 </div>
-
-<br>
-
-<a href="/motorista/home"><button>Voltar</button></a>
-
 </body>
 </html>
