@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 public class EditarClienteDto {
 
+    //cliente
     private String nome;
     private LocalDate dataNascimento;
     private String cnpj;
@@ -11,6 +12,7 @@ public class EditarClienteDto {
     private String telefone;
     private String emailComercial;
 
+    //endereco
     private String logradouro;
     private String numero;
     private String complemento;

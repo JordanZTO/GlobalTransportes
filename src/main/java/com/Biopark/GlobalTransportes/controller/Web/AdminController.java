@@ -52,7 +52,7 @@ public class AdminController {
     public String listarClientes(Model model) {
         List<Cliente> clientes = clienteRepository.findAll();
         model.addAttribute("clientes", clientes);
-        return "admin/validar_cliente"; // nome da view thymeleaf
+        return "admin/validar_cliente";
     }
 
     @GetMapping("/admin/cliente/{id}")
@@ -72,7 +72,6 @@ public class AdminController {
         Cliente cliente = clienteRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
 
-        // Se o checkbox não estiver marcado, o valor será null, então consideramos false
         cliente.setValido(validoCheckbox != null);
 
         clienteRepository.save(cliente);
@@ -105,16 +104,16 @@ public class AdminController {
 
     @GetMapping("/admin/motorista/{id}")
     public String mostrarDetalhesMotorista(@PathVariable Long id, Model model) {
-        Motorista motorista = motoristaService.buscarPorId(id); // Crie esse método se ainda não existir
+        Motorista motorista = motoristaService.buscarPorId(id);
 
         if (motorista == null) {
-            return "redirect:/admin/motoristas"; // ou página de erro
+            return "redirect:/admin/motoristas";
         }
 
         MotoristaDTO dto = motoristaService.obterDadosParaEdicao(motorista);
 
         model.addAttribute("motorista", dto);
-        return "admin/detalhes_motorista"; // nome do seu template HTML de detalhes
+        return "admin/detalhes_motorista";
     }
 
     @GetMapping("/admin/fretes")

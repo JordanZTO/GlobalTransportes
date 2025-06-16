@@ -33,7 +33,6 @@
 
 <br>
 
-<!-- Formulário para atualizar o status de validação -->
 <form th:action="@{'/admin/validar_cliente/' + ${cliente.clienteId}}" method="post">
   <label>
     <input type="checkbox" name="valido" th:checked="${cliente.valido}"> Cliente válido

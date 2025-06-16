@@ -59,7 +59,6 @@
 
 <br>
 
-<!-- Formulário para atualizar o status de validação -->
 <form th:action="@{'/admin/validar_motorista/' + ${motorista.motorista_id}}" method="post">
     <label>
         <input type="checkbox" name="valido" th:checked="${motorista.valido}"> Motorista válido
@@ -68,9 +67,7 @@
     <button type="submit">Salvar Validação</button>
 </form>
 
-<br>
-
-<br>
+<br><br>
 
 <a href="/admin/home"><button>Voltar</button></a>
 

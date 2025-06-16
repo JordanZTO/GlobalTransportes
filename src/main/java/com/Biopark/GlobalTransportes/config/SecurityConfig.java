@@ -21,7 +21,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf.disable()) // Em produção, mantenha o CSRF habilitado!
+                .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(
                                 "/login",
@@ -33,9 +33,9 @@ public class SecurityConfig {
                                 "/cadastro-cliente",
                                 "/css/**",
                                 "/js/**",
-                                "/recuperar_senha",                 // <-- Liberando página do "esqueci minha senha"
-                                "/redefinir_senha",                // <-- Liberando tela de redefinição
-                                "/redefinir_senha/**"              // <-- Liberando URL com token na redefinição
+                                "/recuperar_senha",
+                                "/redefinir_senha",
+                                "/redefinir_senha/**"
                         ).permitAll()
                         .anyRequest().authenticated()
                 )

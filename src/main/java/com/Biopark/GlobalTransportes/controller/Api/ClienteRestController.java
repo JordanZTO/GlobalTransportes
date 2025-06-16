@@ -14,7 +14,6 @@ public class ClienteRestController {
     @Autowired
     private ClienteService clienteService;
 
-    // Cria um novo cliente via JSON (POST)
     @PostMapping
     public ResponseEntity<String> cadastrarCliente(@RequestBody CadastroClienteDto dto) {
         clienteService.cadastrarCliente(dto);

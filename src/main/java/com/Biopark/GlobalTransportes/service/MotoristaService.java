@@ -39,7 +39,6 @@ public class MotoristaService {
 
     public void cadastrarMotorista(MotoristaDTO dto) {
 
-        // Validações de negócio
         if (usuarioService.emailJaCadastrado(dto.getEmail())) {
             throw new RecursoJaExistenteException("Email já cadastrado.");
         }
@@ -52,7 +51,6 @@ public class MotoristaService {
             throw new RecursoJaExistenteException("Placa do veículo já cadastrada.");
         }
 
-        // Salvar endereço
         Endereco endereco = new Endereco();
         endereco.setLogradouro(dto.getLogradouro());
         endereco.setNumero(dto.getNumero());
@@ -64,7 +62,6 @@ public class MotoristaService {
         endereco.setPais(dto.getPais() == null ? "Brasil" : dto.getPais());
         enderecoRepository.save(endereco);
 
-        // Criar usuário
         Usuario usuario = new Usuario();
         usuario.setEmail(dto.getEmail());
         usuario.setSenha(dto.getSenha());
@@ -73,15 +70,12 @@ public class MotoristaService {
                 .orElseThrow(() -> new RuntimeException("Tipo MOTORISTA não encontrado"));
 
         usuario.setTipo(tipo);
-        usuarioService.cadastrarUsuario(usuario); // já criptografa a senha
+        usuarioService.cadastrarUsuario(usuario);
 
-
-        // Salvar imagens e obter os nomes dos arquivos
         String nomeFotoFrente = arquivoService.salvarImagem(dto.getFotoFrente());
         String nomeFotoPlaca = arquivoService.salvarImagem(dto.getFotoPlaca());
         String nomeFotoCnh = arquivoService.salvarImagem(dto.getFotoCnh());
 
-        // Criar caminhão
         Caminhao caminhao = new Caminhao();
         caminhao.setNumeroCrlv(dto.getNumeroCrlv());
         caminhao.setPlacaVeiculo(dto.getPlacaVeiculo());
@@ -94,7 +88,6 @@ public class MotoristaService {
         caminhao.setFoto_placa(nomeFotoPlaca);
         caminhaoRepository.save(caminhao);
 
-        // Criar motorista
         Motorista motorista = new Motorista();
         motorista.setNome_completo(dto.getNome_completo());
         motorista.setCpf(dto.getCpf());
@@ -175,7 +168,6 @@ public class MotoristaService {
         dto.setEmail_comercial(motorista.getEmail_comercial());
         dto.setValido(motorista.isValido());
 
-        // Endereço
         Endereco endereco = motorista.getEndereco();
         if (endereco != null) {
             dto.setLogradouro(endereco.getLogradouro());
@@ -188,7 +180,6 @@ public class MotoristaService {
             dto.setPais(endereco.getPais());
         }
 
-        // Caminhão
         Caminhao caminhao = motorista.getCaminhao();
         if (caminhao != null) {
             dto.setNumeroCrlv(caminhao.getNumeroCrlv());
@@ -210,7 +201,6 @@ public class MotoristaService {
     public void atualizarPerfil(MotoristaDTO dto) {
         Motorista motorista = buscarMotoristaLogado();
 
-        // Atualiza os dados pessoais
         motorista.setNome_completo(dto.getNome_completo());
         motorista.setNumero_cnh(dto.getNumero_cnh());
         motorista.setNumero_antt(dto.getNumero_antt());
@@ -223,7 +213,6 @@ public class MotoristaService {
         motorista.setTelefone_referencia_3(dto.getTelefone_referencia_3());
         motorista.setEmail_comercial(dto.getEmail_comercial());
 
-        // Atualiza imagem CNH (se enviada)
         if (dto.getFotoCnh() != null && !dto.getFotoCnh().isEmpty()) {
             String nomeFotoCnh = arquivoService.salvarImagem(dto.getFotoCnh());
             motorista.setFoto_cnh(nomeFotoCnh);
@@ -234,7 +223,6 @@ public class MotoristaService {
             motorista.setFoto_cnh(null);
         }
 
-        // Atualiza endereço
         Endereco endereco = motorista.getEndereco();
         endereco.setLogradouro(dto.getLogradouro());
         endereco.setNumero(dto.getNumero());
@@ -246,7 +234,6 @@ public class MotoristaService {
         endereco.setPais(dto.getPais());
         enderecoRepository.save(endereco);
 
-        // Atualiza caminhão
         Caminhao caminhao = motorista.getCaminhao();
         caminhao.setNumeroCrlv(dto.getNumeroCrlv());
         caminhao.setPlacaVeiculo(dto.getPlacaVeiculo());
@@ -265,7 +252,6 @@ public class MotoristaService {
             String nomeFotoPlaca = arquivoService.salvarImagem(dto.getFotoPlaca());
             caminhao.setFoto_placa(nomeFotoPlaca);
         }
-
 
         if (dto.isRemoverFotoPlaca()) {
             arquivoService.excluirImagem(motorista.getCaminhao().getFoto_placa());
