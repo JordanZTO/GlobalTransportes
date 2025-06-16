@@ -1,70 +1,174 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Cadastro de Motorista</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cadastro Motorista | Global Transportes</title>
+  <link rel="stylesheet" th:href="@{/css/MotoCadastro.css}" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
 </head>
 <body>
-<h3>Cadastro de Motorista</h3>
-<form th:action="@{/cadastro-motorista}" th:object="${motorista}" method="post" enctype="multipart/form-data">
+  <a th:href="@{/cadastro}" class="btn-voltar">
+    <img th:src="@{/img/desfazer1.png}" alt="Voltar" />
+  </a>
+  <div class="moto-cadastro-container">
+    <div class="moto-cadastro-header">
+      <img th:src="@{/img/LogoSem.png}" alt="Logo Anatanelly" class="moto-cadastro-logo" />
+      <h2>Cadastro motorista</h2>
+      <p>Preencha os dados abaixo.</p>
+    </div>
+    <form class="moto-cadastro-form" th:action="@{/cadastro-motorista}" th:object="${motorista}" method="post" enctype="multipart/form-data">
+      <h3>Documentos pessoais</h3>
+      <div class="form-row">
+        <input th:field="*{nome_completo}" type="text" placeholder="Nome completo" required />
+        <input th:field="*{cpf}" type="text" placeholder="CPF" required />
+      </div>
+      <div class="form-row">
+        <input th:field="*{logradouro}" type="text" placeholder="Endereço" required />
+        <input th:field="*{numero}" type="text" placeholder="Número" required />
+      </div>
+      <div class="form-row">
+        <input th:field="*{complemento}" type="text" placeholder="Complemento" />
+        <input th:field="*{bairro}" type="text" placeholder="Bairro" required />
+      </div>
+      <div class="form-row">
+        <input th:field="*{cidade}" type="text" placeholder="Cidade" required />
+        <select th:field="*{estado}" id="estado" required>
+          <option value="" disabled selected>Estado</option>
+          <option value="AC">Acre (AC)</option>
+          <option value="AL">Alagoas (AL)</option>
+          <option value="AP">Amapá (AP)</option>
+          <option value="AM">Amazonas (AM)</option>
+          <option value="BA">Bahia (BA)</option>
+          <option value="CE">Ceará (CE)</option>
+          <option value="DF">Distrito Federal (DF)</option>
+          <option value="ES">Espírito Santo (ES)</option>
+          <option value="GO">Goiás (GO)</option>
+          <option value="MA">Maranhão (MA)</option>
+          <option value="MT">Mato Grosso (MT)</option>
+          <option value="MS">Mato Grosso do Sul (MS)</option>
+          <option value="MG">Minas Gerais (MG)</option>
+          <option value="PA">Pará (PA)</option>
+          <option value="PB">Paraíba (PB)</option>
+          <option value="PR">Paraná (PR)</option>
+          <option value="PE">Pernambuco (PE)</option>
+          <option value="PI">Piauí (PI)</option>
+          <option value="RJ">Rio de Janeiro (RJ)</option>
+          <option value="RN">Rio Grande do Norte (RN)</option>
+          <option value="RS">Rio Grande do Sul (RS)</option>
+          <option value="RO">Rondônia (RO)</option>
+          <option value="RR">Roraima (RR)</option>
+          <option value="SC">Santa Catarina (SC)</option>
+          <option value="SP">São Paulo (SP)</option>
+          <option value="SE">Sergipe (SE)</option>
+          <option value="TO">Tocantins (TO)</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <input th:field="*{cep}" type="text" placeholder="CEP" required />
+        <input th:field="*{pais}" type="text" placeholder="País" required />
+      </div>
+      <div class="form-row">
+        <input th:field="*{telefone_pessoal}" type="text" placeholder="Celular" required />
+        <input th:field="*{email_comercial}" type="email" placeholder="Email Comercial" required />
+      </div>
+      <div class="form-row">
+        <input th:field="*{numero_cnh}" type="text" placeholder="Número CNH" required />
+        <input th:field="*{numero_antt}" type="text" placeholder="Número do ANTT" required />
+      </div>
+      <div class="form-row">
+        <input th:field="*{telefone_seguranca_1}" type="text" placeholder="Telefone de Segurança 1" />
+        <input th:field="*{telefone_seguranca_2}" type="text" placeholder="Telefone de Segurança 2" />
+      </div>
+      <div class="form-row">
+        <input th:field="*{telefone_seguranca_3}" type="text" placeholder="Telefone de Segurança 3" />
+        <input th:field="*{telefone_referencia_1}" type="text" placeholder="Telefone de Referência 1" />
+      </div>
+      <div class="form-row">
+        <input th:field="*{telefone_referencia_2}" type="text" placeholder="Telefone de Referência 2" />
+        <input th:field="*{telefone_referencia_3}" type="text" placeholder="Telefone de Referência 3" />
+      </div>
+     
+      <div class="form-row upload-row">
+        <div class="upload-box">
+          <label for="fotoCnh" class="upload-label">
+            <span class="upload-icon">&#8682;</span>
+            <span class="upload-text">Faça o upload da sua CNH</span>
+          </label>
+          <input type="file" th:field="*{fotoCnh}" accept="image/*" required onchange="previewImage(this, 'cnhPreview')" />
+          <div class="image-preview" id="cnhPreview"></div>
+        </div>
+        <div class="upload-box">
+          <label for="fotoFrente" class="upload-label">
+            <span class="upload-icon">&#8682;</span>
+            <span class="upload-text">Foto frontal do caminhão</span>
+          </label>
+          <input type="file" th:field="*{fotoFrente}" accept="image/*" required onchange="previewImage(this, 'frontPreview')" />
+          <div class="image-preview" id="frontPreview"></div>
+        </div>
+        <div class="upload-box">
+          <label for="fotoPlaca" class="upload-label">
+            <span class="upload-icon">&#8682;</span>
+            <span class="upload-text">Foto da placa</span>
+          </label>
+          <input type="file" th:field="*{fotoPlaca}" accept="image/*" required onchange="previewImage(this, 'platePreview')" />
+          <div class="image-preview" id="platePreview"></div>
+        </div>
+      </div>
 
-    <fieldset>
-        <legend>Dados de Acesso</legend>
-        <input th:field="*{email}" type="email" placeholder="Email" required><br>
-        <input th:field="*{senha}" type="password" placeholder="Senha" required><br>
-    </fieldset><br>
+      <h3>Dados do Caminhão</h3>
+      <div class="form-row">
+        <input th:field="*{numeroCrlv}" type="text" placeholder="Número CRLV" required />
+        <input th:field="*{placaVeiculo}" type="text" placeholder="Placa" required />
+      </div>
+      <div class="form-row">
+        <input th:field="*{ano}" type="text" placeholder="Ano" required />
+        <input th:field="*{fabricante}" type="text" placeholder="Fabricante" required />
+      </div>
+      <div class="form-row">
+        <input th:field="*{modelo}" type="text" placeholder="Modelo" required />
+        <input th:field="*{cor}" type="text" placeholder="Cor" required />
+      </div>
+      <div class="form-row">
+        <input th:field="*{quantidadeEixo}" type="text" placeholder="Quantidade de Eixos" required />
+      </div>
 
-    <fieldset>
-        <legend>Dados do Motorista</legend>
-        <input th:field="*{nome_completo}" type="text" placeholder ="Nome Completo" required><br>
-        <input th:field="*{cpf}" type="text" placeholder ="Cpf" required><br>
-        <input th:field="*{numero_cnh}" type="text" placeholder ="Numero da CNH" required><br>
-        <input th:field="*{numero_antt}" type="text" placeholder ="Numero Antt" required><br>
-        <input th:field="*{telefone_pessoal}" type="text" placeholder ="Telefone Pessoal" required><br>
-        <input th:field="*{telefone_seguranca_1}" type="text" placeholder ="Telefone de Segurança 1"><br>
-        <input th:field="*{telefone_seguranca_2}" type="text" placeholder ="Telefone de Segurança 2"><br>
-        <input th:field="*{telefone_seguranca_3}" type="text" placeholder ="Telefone de Segurança 3"><br>
-        <input th:field="*{telefone_referencia_1}" type="text" placeholder ="Telefone de Referencia 1"><br>
-        <input th:field="*{telefone_referencia_2}" type="text" placeholder ="Telefone de Referencia 2"><br>
-        <input th:field="*{telefone_referencia_3}" type="text" placeholder ="Telefone de Referencia 3"><br>
-        <input th:field="*{email_comercial}" type="text" placeholder="Email Comercial"><br><br>
-        <label for="fotoCnh">Foto da Cnh</label>
-        <input type="file" name="fotoCnh" id="fotoCnh" accept="image/*">
-    </fieldset><br>
-
-    <fieldset>
-        <legend>Endereço</legend>
-        <input th:field="*{logradouro}" type="text" placeholder="Logradouro" required><br>
-        <input th:field="*{numero}" type="text" placeholder="Número" required><br>
-        <input th:field="*{complemento}" type="text" placeholder="Complemento"><br>
-        <input th:field="*{bairro}" type="text" placeholder="Bairro"><br>
-        <input th:field="*{cidade}" type="text" placeholder="Cidade" required><br>
-        <input th:field="*{estado}" type="text" placeholder="Estado (UF)" required><br>
-        <input th:field="*{cep}" type="text" placeholder="CEP" required><br>
-        <input th:field="*{pais}" type="text" placeholder="País"><br>
-    </fieldset><br>
-
-    <fieldset>
-        <legend>Caminhão</legend>
-        <input th:field="*{numeroCrlv}" type="text" placeholder="Número CRLV" required><br>
-        <input th:field="*{placaVeiculo}" type="text" placeholder="Placa" required><br>
-        <input th:field="*{ano}" type="number" placeholder="Ano" required><br>
-        <input th:field="*{fabricante}" type="text" placeholder="Fabricante" required><br>
-        <input th:field="*{modelo}" type="text" placeholder="Modelo" required><br>
-        <input th:field="*{cor}" type="text" placeholder="Cor" required><br>
-        <input th:field="*{quantidadeEixo}" type="number" placeholder="Quantidade de Eixos" required><br><br>
-        <label for="fotoFrente">Foto da frente do Caminhão</label>
-        <input type="file" name="fotoFrente" id="fotoFrente" accept="image/*"><br>
-        <label for="fotoPlaca">Foto da placa do Caminhão</label>
-        <input type="file" name="fotoPlaca" id="fotoPlaca" accept="image/*">
-    </fieldset><br>
-
-    <button type="submit">Cadastrar</button>
-</form>
-
-<br>
-
-<a href="/login"><button>Voltar</button></a>
-
+      <div class="form-row">
+        <input th:field="*{email}" type="email" placeholder="Email para Login" required />
+        <input th:field="*{senha}" type="password" placeholder="Senha" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+        title="A senha deve ter pelo menos 8 caracteres, incluindo uma letra maiúscula, uma letra minúscula e um número."/>
+      </div>
+      <button type="submit" class="moto-cadastro-btn">Cadastrar</button>
+    </form>
+  </div>
+  <footer>
+    <div class="footer-logo">
+      <img th:src="@{/img/LogoSem.png}" alt="Logo Anatanelly" />
+      <div class="footer-logo-text">
+        <strong>Anatonelly</strong>
+        <span>Global Transportes</span>
+      </div>
+    </div>
+    <div class="footer-content-right">
+      <div class="footer-contact">
+        <span>Contato</span>
+        <span><img th:src="@{/img/gmail.png}" alt="gmail">comercial@globaltransportes.log.br</span>
+        <span><img th:src="@{/img/telefone.png}" alt="telefone">+55 (31) 99431-6561</span>
+      </div>
+      <div class="footer-social">
+        <span>Redes Sociais</span>
+        <div class="footer-social-icons">
+          <a href="https://facebook.com/seu_perfil" target="_blank">
+            <img th:src="@{/img/Face.png}" alt="Facebook" />
+          </a>
+          <a href="https://instagram.com/seu_perfil" target="_blank">
+            <img th:src="@{/img/Insta.png}" alt="Instagram" />
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copy">© 2023 Anatonelly. Todos os direitos reservados.</div>
+  </footer>
+  <script th:src="@{/js/Cadastro.js}"></script>
 </body>
-</html>
+</html> 

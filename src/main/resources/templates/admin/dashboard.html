@@ -3,71 +3,95 @@
 <head>
   <meta charset="UTF-8">
   <title>Dashboard Admin</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" th:href="@{/css/dashboard.css}">
 </head>
 <body>
-
-<h2>Dashboard - Admin</h2>
-
-<h3>Indicadores Gerais de Cadastro</h3>
-<ul>
-  <li>Total de Clientes: <span th:text="${totalClientes}"></span></li>
-  <li>Clientes Pendentes de Validação: <span th:text="${clientesPendentes}"></span></li>
-  <li>Total de Motoristas: <span th:text="${totalMotoristas}"></span></li>
-  <li>Motoristas Pendentes de Validação: <span th:text="${motoristasPendentes}"></span></li>
-  <li>Total de Caminhões: <span th:text="${totalCaminhoes}"></span></li>
-</ul>
-
-<h3>Indicadores sobre Fretes</h3>
-<ul>
-  <li>Total de Fretes: <span th:text="${totalFretes}"></span></li>
-  <li>Fretes criados neste mês: <span th:text="${fretesNoMes}"></span></li>
-  <li>Valor Total Movimentado em Fretes: R$ <span th:text="${valorTotalFretes}"></span></li>
-</ul>
-
-<h4>Fretes por Status:</h4>
-<ul>
-  <li th:each="statusEntry : ${fretesPorStatus}">
-    <span th:text="${statusEntry.key}"></span>: <span th:text="${statusEntry.value}"></span>
-  </li>
-</ul>
-
-<h4>Top 5 Motoristas com mais Fretes:</h4>
-<ul>
-  <li th:each="motorista : ${topMotoristas}">
-    <span th:text="${motorista[0]}"></span>: <span th:text="${motorista[1]}"></span> fretes
-  </li>
-</ul>
-
-<h4>Top 5 Clientes com mais Fretes:</h4>
-<ul>
-  <li th:each="cliente : ${topClientes}">
-    <span th:text="${cliente[0]}"></span>: <span th:text="${cliente[1]}"></span> fretes
-  </li>
-</ul>
-
-<h4>Top 5 Cidades de Origem:</h4>
-<ul>
-  <li th:each="cidade : ${topCidadesOrigem}">
-    <span th:text="${cidade[0]}"></span>: <span th:text="${cidade[1]}"></span> fretes
-  </li>
-</ul>
-
-<h4>Top 5 Cidades de Destino:</h4>
-<ul>
-  <li th:each="cidade : ${topCidadesDestino}">
-    <span th:text="${cidade[0]}"></span>: <span th:text="${cidade[1]}"></span> fretes
-  </li>
-</ul>
-
-<h4>Fretes em Andamento por Estado:</h4>
-<ul>
-  <li th:each="estado : ${fretesPorEstado}">
-    <span th:text="${estado[0]}"></span>: <span th:text="${estado[1]}"></span> fretes
-  </li>
-</ul>
-
-<br><br>
-<a href="/admin/home"><button>Voltar</button></a>
-
+<div class="dashboard-bg">
+  <div class="dashboard-card">
+    <div class="dashboard-title">Dashboard - Admin</div>
+    <div class="dashboard-section-title">Indicadores Gerais de Cadastro</div>
+    <div class="dashboard-indicadores">
+      <div class="indicador-card">
+        <div class="indicador-label">Total de Clientes</div>
+        <div class="indicador-numero" th:text="${totalClientes}"></div>
+      </div>
+      <div class="indicador-card">
+        <div class="indicador-label">Clientes Pendentes</div>
+        <div class="indicador-numero" th:text="${clientesPendentes}"></div>
+      </div>
+      <div class="indicador-card">
+        <div class="indicador-label">Total de Motoristas</div>
+        <div class="indicador-numero" th:text="${totalMotoristas}"></div>
+      </div>
+      <div class="indicador-card">
+        <div class="indicador-label">Motoristas Pendentes</div>
+        <div class="indicador-numero" th:text="${motoristasPendentes}"></div>
+      </div>
+      <div class="indicador-card">
+        <div class="indicador-label">Total de Caminhões</div>
+        <div class="indicador-numero" th:text="${totalCaminhoes}"></div>
+      </div>
+    </div>
+    <div class="dashboard-section-title">Indicadores sobre Fretes</div>
+    <div class="dashboard-indicadores">
+      <div class="indicador-card">
+        <div class="indicador-label">Total de Fretes</div>
+        <div class="indicador-numero" th:text="${totalFretes}"></div>
+      </div>
+      <div class="indicador-card">
+        <div class="indicador-label">Fretes no Mês</div>
+        <div class="indicador-numero" th:text="${fretesNoMes}"></div>
+      </div>
+      <div class="indicador-card">
+        <div class="indicador-label">Valor Total Movimentado</div>
+        <div class="indicador-numero">R$ <span th:text="${valorTotalFretes}"></span></div>
+      </div>
+    </div>
+    <div class="dashboard-section-title">Fretes por Status</div>
+    <ul class="dashboard-list">
+      <li th:each="statusEntry : ${fretesPorStatus}">
+        <span th:text="${statusEntry.key}"></span>
+        <span th:text="${statusEntry.value}"></span>
+      </li>
+    </ul>
+    <div class="dashboard-section-title">Top 5 Motoristas com mais Fretes</div>
+    <ul class="dashboard-list">
+      <li th:each="motorista : ${topMotoristas}">
+        <span th:text="${motorista[0]}"></span>
+        <span th:text="${motorista[1]}"></span> 
+      </li>
+    </ul>
+    <div class="dashboard-section-title">Top 5 Clientes com mais Fretes</div>
+    <ul class="dashboard-list">
+      <li th:each="cliente : ${topClientes}">
+        <span th:text="${cliente[0]}"></span>
+        <span th:text="${cliente[1]}"></span>
+      </li>
+    </ul>
+    <div class="dashboard-section-title">Top 5 Cidades de Origem</div>
+    <ul class="dashboard-list">
+      <li th:each="cidade : ${topCidadesOrigem}">
+        <span th:text="${cidade[0]}"></span>
+        <span th:text="${cidade[1]}"></span>
+      </li>
+    </ul>
+    <div class="dashboard-section-title">Top 5 Cidades de Destino</div>
+    <ul class="dashboard-list">
+      <li th:each="cidade : ${topCidadesDestino}">
+        <span th:text="${cidade[0]}"></span>
+        <span th:text="${cidade[1]}"></span>
+      </li>
+    </ul>
+    <div class="dashboard-section-title">Fretes em Andamento por Estado</div>
+    <ul class="dashboard-list">
+      <li th:each="estado : ${fretesPorEstado}">
+        <span th:text="${estado[0]}"></span>
+        <span th:text="${estado[1]}"></span>
+      </li>
+    </ul>
+    <a href="/admin/home" class="btn-voltar">Voltar</a>
+  </div>
+</div>
 </body>
 </html>

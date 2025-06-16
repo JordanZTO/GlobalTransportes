@@ -3,51 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <title>Fretes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/fretesAdm.css}">
 </head>
 <body>
-
-<h3>Fretes</h3>
-
-<form method="get" action="/admin/fretes">
-    <input type="text" name="filtro" placeholder="Filtrar por palavra-chave" th:value="${filtro}">
-    <button type="submit">Filtrar</button>
-</form>
-
-<table border="1">
-    <thead>
-    <tr>
-        <th>Carga</th>
-        <th>Valor</th>
-        <th>Data Origem</th>
-        <th>Origem</th>
-        <th>Destino</th>
-        <th>Status</th>
-        <th>Detalhes</th>
-    </tr>
-    </thead>
-    <tbody>
-
-    <br>
-
-    <tr th:each="frete : ${fretes}">
-        <td th:text="${frete.tipoCarga}"></td>
-        <td th:text="${frete.valorFrete}"></td>
-        <td th:text="${frete.dataCriacao}"></td>
-        <td th:text="${frete.enderecoOrigem.cidade}"></td>
-        <td th:text="${frete.enderecoDestino.cidade}"></td>
-        <td th:text="${frete.freteStatus.nome}"></td>
-        <td>
-            <button type="button"
-                    th:onclick="'window.location.href=\'/admin/frete/' + ${frete.freteId} + '\';'">
-                Ver Detalhes
-            </button>
-        </td>
-    </tr>
-    </tbody>
-</table>
-<br><br>
-
-<a href="/admin/home"><button>Voltar</button></a>
-
+<div class="fretes-bg">
+    <div class="fretes-card">
+        <div class="fretes-title">Fretes</div>
+        <form method="get" action="/admin/fretes" class="filtro-form">
+            <input type="text" name="filtro" placeholder="Filtrar por palavra-chave" th:value="${filtro}">
+            <button type="submit">Filtrar</button>
+        </form>
+        <table class="fretes-table">
+            <thead>
+            <tr>
+                <th>Carga</th>
+                <th>Valor</th>
+                <th>Data Origem</th>
+                <th>Origem</th>
+                <th>Destino</th>
+                <th>Status</th>
+                <th>Detalhes</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="frete : ${fretes}">
+                <td th:text="${frete.tipoCarga}"></td>
+                <td th:text="${frete.valorFrete}"></td>
+                <td th:text="${frete.dataCriacao}"></td>
+                <td th:text="${frete.enderecoOrigem.cidade}"></td>
+                <td th:text="${frete.enderecoDestino.cidade}"></td>
+                <td th:text="${frete.freteStatus.nome}"></td>
+                <td>
+                    <button type="button"
+                            class="btn-detalhes"
+                            th:onclick="'window.location.href=\'/admin/frete/' + ${frete.freteId} + '\';'">
+                        Ver Detalhes
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <a href="/admin/home" class="btn-voltar">Voltar</a>
+    </div>
+</div>
 </body>
 </html>

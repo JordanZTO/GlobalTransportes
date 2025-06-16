@@ -1,0 +1,133 @@
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: linear-gradient(135deg, #f7f8fa 0%, #e0e7ff 100%);
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+.main-homeadm {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.card-homeadm {
+  background: #fff;
+  border-radius: 22px;
+  box-shadow: 0 8px 32px rgba(44, 62, 80, 0.10), 0 1.5px 4px rgba(44, 62, 80, 0.04);
+  padding: 56px 44px 40px 44px;
+  min-width: 320px;
+  max-width: 420px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1.5px solid #f0f2f8;
+  position: relative;
+}
+.titulo-homeadm {
+  font-size: 2.3rem;
+  font-weight: 800;
+  color: #ffbe0b;
+  margin-bottom: 12px;
+  text-align: center;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.titulo-homeadm i {
+  color: #ffbe0b;
+  font-size: 2.1rem;
+  margin-right: 4px;
+}
+.card-homeadm p {
+  font-size: 1.1rem;
+  color: #222;
+  margin-bottom: 32px;
+  text-align: center;
+}
+.menu-separator {
+  width: 100%;
+  height: 1.5px;
+  background: linear-gradient(90deg, #ffbe0b 0%, #fff 100%);
+  margin: 18px 0 18px 0;
+  border-radius: 2px;
+  opacity: 0.25;
+}
+.btn-homeadm {
+  width: 100%;
+  padding: 15px 0;
+  margin-bottom: 14px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.13rem;
+  font-weight: 700;
+  cursor: pointer;
+  background: linear-gradient(90deg, #ffbe0b 60%, #ffb300 100%);
+  color: #222;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  letter-spacing: 0.5px;
+}
+.btn-homeadm:last-child {
+  margin-bottom: 0;
+}
+.btn-homeadm i {
+  font-size: 1.2em;
+  color: #222;
+  margin-right: 4px;
+}
+.btn-homeadm:hover {
+  background: linear-gradient(90deg, #ffb300 60%, #ffbe0b 100%);
+  color: #111;
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 6px 18px rgba(44, 62, 80, 0.10);
+}
+.btn-sair {
+  margin-top: 18px;
+  width: 100%;
+  background: linear-gradient(90deg, #e74c3c 60%, #ff7675 100%);
+  color: #fff;
+  font-weight: 700;
+  border-radius: 8px;
+  padding: 14px 0;
+  font-size: 1.05rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.btn-sair i {
+  font-size: 1.2em;
+  color: #fff;
+  margin-right: 4px;
+}
+.btn-sair:hover {
+  background: linear-gradient(90deg, #c0392b 60%, #e17055 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.03);
+}
+@media (max-width: 600px) {
+  .card-homeadm {
+    padding: 24px 8px 24px 8px;
+    min-width: 0;
+    max-width: 98vw;
+  }
+  .titulo-homeadm {
+    font-size: 1.3rem;
+    margin-bottom: 18px;
+  }
+  .btn-homeadm, .btn-sair {
+    font-size: 1rem;
+    padding: 12px 0;
+  }
+}

@@ -1,23 +1,61 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Cadastro de Usuário</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Criar Conta | Global Transportes</title>
+    <link rel="stylesheet" th:href="@{/css/Criar.css}" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-<h2>Cadastro de Usuário</h2>
-
-<button type="button" onclick="window.location.href='/cadastro-cliente'" class="btn btn-primary">
-    Cliente
-</button>
-
-<button type="button" onclick="window.location.href='/cadastro-motorista'" class="btn btn-primary">
-    Motorista
-</button>
-
-<br><br>
-
-<a href="/login"><button>Voltar</button></a>
-
+<div class="background">
+    <img th:src="@{/img/caminhoes.jpg}" alt="Caminhões" class="bg-img" />
+    <div class="overlay"></div>
+</div>
+<div class="container">
+    <div class="logo">
+        <img th:src="@{/img/LogoSem.png}" alt="Logo Anatanelly" />
+    </div>
+    <div class="new-account-box">
+        <h3>Criar nova conta</h3>
+        <p>Selecione o tipo de conta a ser criada!</p>
+        <a class="buton" th:href="@{/cadastro-motorista}">Motoristas</a>
+        <a class="buton" th:href="@{/cadastro-cliente}">Cliente</a>
+    </div>
+</div>
+<footer>
+    <div class="footer-logo">
+        <img th:src="@{/img/LogoSem.png}" alt="Logo Anatanelly" />
+        <div class="footer-logo-text">
+            <strong>Anatonelly</strong>
+            <span>Global Transportes</span>
+        </div>
+    </div>
+    <div class="footer-content-right">
+        <div class="footer-contact">
+            <span>Contato</span>
+            <span>
+                    <img th:src="@{/img/gmail.png}" alt="gmail">
+                    comercial@globaltransportes.log.br
+                </span>
+            <span>
+                    <img th:src="@{/img/telefone.png}" alt="telefone">
+                    +55 (31) 99431-6561
+                </span>
+        </div>
+        <div class="footer-social">
+            <span>Redes Sociais</span>
+            <div class="footer-social-icons">
+                <a href="https://facebook.com/seu_perfil" target="_blank">
+                    <img th:src="@{/img/Face.png}" alt="Facebook" />
+                </a>
+                <a href="https://instagram.com/seu_perfil" target="_blank">
+                    <img th:src="@{/img/Insta.png}" alt="Instagram" />
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copy">© 2023 Anatonelly. Todos os direitos reservados.</div>
+</footer>
 </body>
 </html>
