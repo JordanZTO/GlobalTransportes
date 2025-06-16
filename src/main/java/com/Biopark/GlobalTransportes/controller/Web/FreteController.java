@@ -22,15 +22,12 @@ public class FreteController {
     public String salvarFrete(@ModelAttribute("frete") FreteCadastroDTO dto) {
         freteService.cadastrarFrete(dto);
         return "redirect:/cliente/home";
-
     }
-
 
     @GetMapping("/cadastrar")
     public String exibirFormulario(Model model) {
         model.addAttribute("frete", new FreteCadastroDTO());
         return "cliente/cadastrar_frete";
     }
-
 
 }

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Suporte</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+<h2>Suporte</h2>
+
+<form th:action="@{/motorista/suporte}" th:object="${contatoDTO}" method="post">
+    <label>Assunto:</label>
+    <select th:field="*{assunto}">
+        <option value="Frete">Frete</option>
+        <option value="Sugestão">Sugestão</option>
+        <option value="Reclamação">Reclamação</option>
+    </select>
+    <br><br>
+
+    <label>Detalhes:</label><br>
+    <textarea th:field="*{detalhes}" rows="5" cols="40"></textarea>
+    <br><br>
+
+    <button type="submit">Enviar</button>
+</form>
+
+<div th:if="${mensagem}" style="color: green;">
+    <p th:text="${mensagem}"></p>
+</div>
+
+<div th:if="${erro}" style="color: red;">
+    <p th:text="${erro}"></p>
+</div>
+
+<br>
+
+<a href="/motorista/home"><button>Voltar</button></a>
+
+</body>
+</html>

@@ -2,14 +2,18 @@ package com.Biopark.GlobalTransportes.controller.Web;
 
 import com.Biopark.GlobalTransportes.dto.CadastroClienteDto;
 import com.Biopark.GlobalTransportes.dto.ClienteDTO;
+import com.Biopark.GlobalTransportes.dto.ContatoDTO;
 import com.Biopark.GlobalTransportes.model.Cliente;
 import com.Biopark.GlobalTransportes.model.Frete;
 import com.Biopark.GlobalTransportes.model.FreteCheckpoint;
 import com.Biopark.GlobalTransportes.model.Motorista;
 import com.Biopark.GlobalTransportes.repository.FreteStatusRepository;
 import com.Biopark.GlobalTransportes.service.ClienteService;
+import com.Biopark.GlobalTransportes.service.EmailService;
 import com.Biopark.GlobalTransportes.service.FreteService;
+import com.Biopark.GlobalTransportes.service.MotoristaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -27,6 +31,12 @@ public class ClienteController {
 
     @Autowired
     private FreteStatusRepository freteStatusRepository;
+
+    @Autowired
+    private MotoristaService motoristaService;
+
+    @Autowired
+    private EmailService emailService;
 
     @PostMapping("/cadastro-cliente")
     public String processarCadastroCliente(@ModelAttribute("cliente") CadastroClienteDto dto) {
@@ -96,6 +106,38 @@ public class ClienteController {
         return "redirect:/cliente/perfil";
     }
 
+    @GetMapping("/cliente/suporte")
+    public String exibirFormulario(Model model) {
+        model.addAttribute("contatoDTO", new ContatoDTO());
+        return "cliente/suporte";
+    }
 
+    @PostMapping("/cliente/suporte")
+    public String enviarMensagem(@ModelAttribute ContatoDTO contatoDTO, Authentication authentication, Model model) {
+        String emailUsuario = authentication.getName();
+
+        String nomeRemetente;
+        String emailRemetente;
+
+        try {
+            Cliente cliente = clienteService.buscarClienteLogado();
+            nomeRemetente = cliente.getNome();
+            emailRemetente = cliente.getEmailComercial();
+        } catch (Exception e1) {
+            try {
+                Motorista motorista = motoristaService.buscarMotoristaLogado();
+                nomeRemetente = motorista.getNome_completo();
+                emailRemetente = motorista.getEmail_comercial();
+            } catch (Exception e2) {
+                model.addAttribute("erro", "Usuário não encontrado!");
+                return "cliente/suporte";
+            }
+        }
+
+        emailService.enviarEmail(contatoDTO.getAssunto(), contatoDTO.getDetalhes(), nomeRemetente, emailRemetente);
+
+        model.addAttribute("mensagem", "Sua mensagem foi enviada com sucesso!");
+        return "cliente/suporte";
+    }
 
 }

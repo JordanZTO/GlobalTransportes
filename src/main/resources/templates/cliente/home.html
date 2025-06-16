@@ -9,12 +9,14 @@
 
 <p><strong>Usuário:</strong> <span th:text="${cliente.nome}"></span></p>
 
-<!-- Botão para acessar o perfil -->
+<button type="button" onclick="window.location.href='/cliente/suporte'" class="btn btn-info">
+    Contato / Suporte
+</button>
+
 <button type="button" onclick="window.location.href='/cliente/perfil'" class="btn btn-secondary">
     Ver Perfil
 </button>
 
-<!-- Botão para cadastrar frete -->
 <button type="button"
         onclick="window.location.href='/fretes/cadastrar'"
         class="btn btn-primary"
@@ -72,8 +74,6 @@
 <p th:if="${!cliente.valido}" style="color: red;">
     Seu perfil está incompleto ou inválido. Atualize-o ou contate o suporte para poder cadastrar fretes.
 </p>
-
-
 
 </body>
 </html>

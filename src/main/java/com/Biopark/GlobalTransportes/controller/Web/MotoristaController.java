@@ -1,16 +1,17 @@
 package com.Biopark.GlobalTransportes.controller.Web;
 
+import com.Biopark.GlobalTransportes.dto.ContatoDTO;
 import com.Biopark.GlobalTransportes.dto.MotoristaDTO;
 import com.Biopark.GlobalTransportes.dto.FreteCheckpointDTO;
-import com.Biopark.GlobalTransportes.model.Frete;
-import com.Biopark.GlobalTransportes.model.FreteCheckpoint;
-import com.Biopark.GlobalTransportes.model.FreteStatus;
-import com.Biopark.GlobalTransportes.model.Motorista;
+import com.Biopark.GlobalTransportes.model.*;
 import com.Biopark.GlobalTransportes.repository.FreteRepository;
 import com.Biopark.GlobalTransportes.repository.FreteStatusRepository;
+import com.Biopark.GlobalTransportes.service.ClienteService;
+import com.Biopark.GlobalTransportes.service.EmailService;
 import com.Biopark.GlobalTransportes.service.FreteService;
 import com.Biopark.GlobalTransportes.service.MotoristaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -44,6 +45,12 @@ public class MotoristaController {
 
     @Autowired
     private FreteStatusRepository freteStatusRepository;
+
+    @Autowired
+    private EmailService emailService;
+
+    @Autowired
+    private ClienteService clienteService;
 
     @PostMapping("/cadastro-motorista")
     public String cadastrarMotorista(
@@ -110,13 +117,12 @@ public class MotoristaController {
         Frete frete = freteService.buscarPorId(id);
         Motorista motorista = motoristaService.buscarMotoristaLogado();
 
-        // Aqui adicionamos os checkpoints do frete
         List<FreteCheckpoint> checkpoints = freteService.listarCheckpointsPorFrete(id);
 
         model.addAttribute("frete", frete);
         model.addAttribute("motoristaValido", motorista.isValido());
         model.addAttribute("freteStatus", freteStatusRepository.findAll());
-        model.addAttribute("checkpoints", checkpoints); // <- Passa para a view
+        model.addAttribute("checkpoints", checkpoints);
 
         return "motorista/detalhes_frete";
     }
@@ -172,7 +178,7 @@ public class MotoristaController {
         Motorista motorista = motoristaService.buscarMotoristaLogado();
         MotoristaDTO dto = motoristaService.obterDadosParaEdicao(motorista);
         model.addAttribute("motorista", dto);
-        return "motorista/editar_perfil"; // Thymeleaf irá procurar por editar_perfil.html
+        return "motorista/editar_perfil";
     }
 
     @GetMapping("/imagem/{nome:.+}")
@@ -226,6 +232,38 @@ public class MotoristaController {
         return "redirect:/motorista/perfil";
     }
 
+    @GetMapping("/motorista/suporte")
+    public String exibirFormulario(Model model) {
+        model.addAttribute("contatoDTO", new ContatoDTO());
+        return "motorista/suporte";
+    }
 
+    @PostMapping("/motorista/suporte")
+    public String enviarMensagem(@ModelAttribute ContatoDTO contatoDTO, Authentication authentication, Model model) {
+        String emailUsuario = authentication.getName();
+
+        String nomeRemetente;
+        String emailRemetente;
+
+        try {
+            Cliente cliente = clienteService.buscarClienteLogado();
+            nomeRemetente = cliente.getNome();
+            emailRemetente = cliente.getEmailComercial();
+        } catch (Exception e1) {
+            try {
+                Motorista motorista = motoristaService.buscarMotoristaLogado();
+                nomeRemetente = motorista.getNome_completo();
+                emailRemetente = motorista.getEmail_comercial();
+            } catch (Exception e2) {
+                model.addAttribute("erro", "Usuário não encontrado!");
+                return "motorista/suporte";
+            }
+        }
+
+        emailService.enviarEmail(contatoDTO.getAssunto(), contatoDTO.getDetalhes(), nomeRemetente, emailRemetente);
+
+        model.addAttribute("mensagem", "Sua mensagem foi enviada com sucesso!");
+        return "motorista/suporte";
+    }
 
 }

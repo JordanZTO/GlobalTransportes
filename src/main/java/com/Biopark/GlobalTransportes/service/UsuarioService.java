@@ -41,7 +41,6 @@ public class UsuarioService {
     }
 
     public void cadastrarUsuario(Usuario usuario) {
-        // Criptografa a senha antes de salvar
         String senhaCriptografada = passwordEncoder.encode(usuario.getSenha());
         usuario.setSenha(senhaCriptografada);
         usuarioRepository.save(usuario);
@@ -50,7 +49,6 @@ public class UsuarioService {
     public Optional<Usuario> buscarPorEmail(String email) {
         return usuarioRepository.findByEmail(email);
     }
-
 
     public boolean enviarLinkRedefinicaoSenha(String email) {
         Optional<Usuario> optionalUsuario = usuarioRepository.findByEmail(email);

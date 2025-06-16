@@ -18,7 +18,6 @@ public class UsuarioServiceAutenticacao implements UserDetailsService {
         Usuario usuario = usuarioRepository.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado: " + email));
 
-        // Cria a autoridade com o prefixo "ROLE_" (necessário para compatibilidade com Spring Security)
         String role = "ROLE_" + usuario.getTipo().getNome();
         return org.springframework.security.core.userdetails.User
                 .builder()
