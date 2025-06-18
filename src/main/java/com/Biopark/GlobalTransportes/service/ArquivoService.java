@@ -12,7 +12,7 @@ import java.util.UUID;
 @Service
 public class ArquivoService {
 
-    private final String uploadDir = "C:\\Users\\Cliente\\Desktop\\GlobalTransportes\\uploads\\imagens"; // caminho base
+    private final String uploadDir = "C:\\Users\\Jordan\\Desktop\\GlobalTransportes\\uploads\\imagens"; // caminho base
 
     public String salvarImagem(MultipartFile imagem) {
         if (imagem == null || imagem.isEmpty()) {

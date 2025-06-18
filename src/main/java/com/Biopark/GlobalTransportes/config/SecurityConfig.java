@@ -36,7 +36,8 @@ public class SecurityConfig {
                                 "/img/**",
                                 "/recuperar_senha",
                                 "/redefinir_senha",
-                                "/redefinir_senha/**"
+                                "/redefinir_senha/**",
+                                "/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html"
                         ).permitAll()
                         .anyRequest().authenticated()
                 )
