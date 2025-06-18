@@ -1,4 +1,3 @@
-drop database globaltransportes;
 create database globaltransportes;
 use globaltransportes;
 
@@ -132,6 +131,21 @@ CREATE TABLE frete_checkpoint (
     FOREIGN KEY (frete_id) REFERENCES frete(frete_id)
 );
 
+CREATE TABLE password_reset_token (
+  id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  token VARCHAR(255) NOT NULL,
+  usuario_id BIGINT NOT NULL,
+  expiration_date DATETIME NOT NULL,
+
+  UNIQUE (token),
+
+  INDEX fk_usuario_token (usuario_id),
+
+  CONSTRAINT fk_usuario_token
+    FOREIGN KEY (usuario_id)
+    REFERENCES usuario (usuario_id)
+);
+
 INSERT INTO tipo_usuario (tipo_usuario_id, nome) VALUES
 (1, 'ADMIN'),
 (2, 'CLIENTE'),
@@ -153,16 +167,6 @@ VALUES (
   TRUE,
   1
 );
-
-select * from frete_checkpoint;
-select * from frete_status;
-select * from cliente;
-select * from usuario;
-select * from tipo_usuario;
-select * from endereco;
-select * from motorista;
-select * from caminhao;
-select * from frete;
 
 
 

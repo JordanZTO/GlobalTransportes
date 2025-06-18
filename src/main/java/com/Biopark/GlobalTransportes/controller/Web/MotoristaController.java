@@ -10,6 +10,7 @@ import com.Biopark.GlobalTransportes.service.ClienteService;
 import com.Biopark.GlobalTransportes.service.EmailService;
 import com.Biopark.GlobalTransportes.service.FreteService;
 import com.Biopark.GlobalTransportes.service.MotoristaService;
+import io.swagger.v3.oas.annotations.Hidden;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -181,6 +182,7 @@ public class MotoristaController {
         return "motorista/editar_perfil";
     }
 
+    @Hidden
     @GetMapping("/imagem/{nome:.+}")
     @ResponseBody
     public ResponseEntity<Resource> servirImagem(@PathVariable String nome) {
