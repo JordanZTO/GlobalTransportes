@@ -5,9 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Precisa de Ajuda?</title>
     <link rel="stylesheet" th:href="@{/css/PrecisaAjuda.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #34495e;
+        }
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-family: 'Poppins', sans-serif;
+            transition: border-color 0.2s;
+            box-sizing: border-box;
+        }
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+        }
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+    </style>
 </head>
 <body>
     <div class="top-bar">
@@ -22,18 +55,20 @@
         <section class="ajuda-container">
             <h1>Algum problema? <span class="emoji">☹️</span></h1>
             <p class="subtitulo"><a href="#">Deixe nossa equipe ajudar você</a></p>
-            <form class="ajuda-form" th:action="@{/cliente/suporte}" th:object="${contatoDTO}" method="post">
-                <input type="text" id="nome" name="nome" required placeholder="Nome do contato">
-                <input type="email" id="email" name="email" required placeholder="E-mail">
-                <select id="assunto" th:field="*{assunto}" required>
-                    <option value="" disabled selected>Tópico &lt;&gt;</option>
-                    <option value="cadastro">Cadastro de frete</option>
-                    <option value="interface">Erros de Interface</option>
-                    <option value="permissao">Erros de Permissão / Acesso</option>
-                    <option value="calculo">Cálculo de Frete</option>
-                    <option value="outro">Outro</option>
-                </select>
-                <textarea id="detalhes" th:field="*{detalhes}" rows="4" placeholder="Detalhes"></textarea>
+            <form class="ajuda-form" th:action="@{/motorista/suporte}" th:object="${contatoDTO}" method="post">
+                <div class="form-group">
+                    <label for="assunto">Assunto</label>
+                    <select id="assunto" th:field="*{assunto}" required>
+                        <option value="" disabled selected>-- Selecione um assunto --</option>
+                        <option value="Frete">Frete</option>
+                        <option value="Reclamação">Reclamação</option>
+                        <option value="Sugestão">Sugestão</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="detalhes">Detalhes</label>
+                    <textarea id="detalhes" th:field="*{detalhes}" rows="4" placeholder="Detalhes"></textarea>
+                </div>
                 <button type="submit" class="btn-enviar">Enviar</button>
             </form>
         </section>

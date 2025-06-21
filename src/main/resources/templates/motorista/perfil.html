@@ -11,17 +11,31 @@
 <body>
     <div class="sidebar">
         <div class="sidebar-logo">
-            <img th:src="@{/img/LogoSem.png}" alt="Logo Anatanelly" />
+            <img th:src="@{/img/LogoSem.png}" alt="Logo Global Transportes">
         </div>
         <div class="sidebar-title">Global Transportes</div>
         <nav class="sidebar-nav">
-            <a th:href="@{/motorista/home}" class="sidebar-link"><i class="fas fa-home"></i> <span>Início</span></a>
-            <a th:href="@{/motorista/fretes}" class="sidebar-link"><i class="fas fa-truck"></i> <span>Meus fretes</span></a>
-            <a th:href="@{/motorista/fretes_disponiveis}" class="sidebar-link"><i class="fas fa-list"></i> <span>Fretes Disponíveis</span></a>
+            <a th:href="@{/motorista/home}" class="sidebar-link">
+                <i class="fas fa-home"></i> <span>Início</span>
+            </a>
+            <a th:href="@{/motorista/perfil}" class="sidebar-link active">
+                <i class="fas fa-user"></i> <span>Meu Perfil</span>
+            </a>
+            <a th:href="@{/motorista/fretes_disponiveis}" class="sidebar-link">
+                <i class="fas fa-list"></i> <span>Fretes Disponíveis</span>
+            </a>
+            <a th:href="@{/motorista/home}" class="sidebar-link">
+                <i class="fas fa-truck"></i> <span>Meus Fretes</span>
+            </a>
+            <a th:href="@{/motorista/suporte}" class="sidebar-link">
+                <i class="fas fa-headset"></i> <span>Suporte</span>
+            </a>
         </nav>
         <div class="sidebar-separator"></div>
         <div class="sidebar-bottom">
-            <a href="/logout" class="sidebar-logout"><i class="fas fa-sign-out-alt"></i> <span>Sair</span></a>
+            <a th:href="@{/logout}" class="sidebar-logout">
+                <i class="fas fa-sign-out-alt"></i> <span>Sair</span>
+            </a>
         </div>
     </div>
     <div class="main-content">

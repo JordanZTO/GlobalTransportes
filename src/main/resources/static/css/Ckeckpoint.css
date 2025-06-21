@@ -1,0 +1,215 @@
+/* General Body and Container Styles */
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f4f7fc;
+    margin-left: 220px;
+    color: #333;
+}
+
+.main-content {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+}
+
+.main-content h2 {
+    color: #0a174e;
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: 700;
+    font-size: 2rem;
+}
+
+/* Form Card */
+.form-card {
+    background: #fff;
+    padding: 35px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+.form-card h3 {
+    color: #0a174e;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #ffd700;
+}
+
+/* Form Group */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #34495e;
+}
+
+.form-group input[type="datetime-local"],
+.form-group input[type="text"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-family: 'Montserrat', sans-serif;
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+}
+
+.form-group textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+/* Action Buttons */
+.actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.btn {
+    padding: 12px 28px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #0a174e 0%, #1a237e 100%);
+    color: white;
+}
+
+.btn-primary:hover {
+    color: white;
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+    color: white;
+}
+
+.btn-secondary:hover {
+    color: white;
+}
+
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 220px;
+    height: 100vh;
+    background: rgba(10, 23, 78, 0.95);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 100;
+    font-family: 'Montserrat', sans-serif;
+    box-shadow: 2px 0 16px 0 rgba(0,0,0,0.18);
+    backdrop-filter: blur(4px);
+}
+
+.sidebar-logo {
+    margin: 32px 0 8px 0;
+}
+
+.sidebar-logo img {
+    width: 90px;
+}
+
+.sidebar-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 32px;
+    color: #ffd700;
+}
+
+.sidebar-nav {
+    flex: 1;
+    width: 100%;
+}
+
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #fff;
+    text-decoration: none;
+    padding: 12px 24px;
+    font-size: 1rem;
+    border-left: 4px solid transparent;
+    transition: all 0.2s;
+}
+
+.sidebar-link i {
+    color: #ffd700;
+}
+
+.sidebar-link:hover, .sidebar-link.active {
+    background: rgba(255, 215, 0, 0.08);
+    color: #ffd700;
+    border-left-color: #ffd700;
+}
+
+.sidebar-separator {
+    width: 80%;
+    height: 1px;
+    background: #ffffff55;
+    margin: 18px 0;
+}
+
+.sidebar-bottom {
+    width: 100%;
+    margin-bottom: 24px;
+    display: flex;
+    justify-content: center;
+}
+
+.sidebar-logout {
+    background: linear-gradient(90deg, #ffd700 60%, #fffbe0 100%);
+    color: #0a174e;
+    padding: 10px 32px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 2px 8px #ffd70044;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.sidebar-logout:hover {
+    background: #fff;
+    color: #0a174e;
+    box-shadow: 0 4px 16px #ffd70055;
+}

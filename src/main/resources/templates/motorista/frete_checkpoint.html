@@ -2,37 +2,107 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Detalhes do Frete</title>
+    <title>Cadastrar Checkpoint</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/Ckeckpoint.css}">
 </head>
 <body>
 
-<h2>Checkpoint</h2>
+<div class="sidebar">
+    <div class="sidebar-logo">
+        <img th:src="@{/img/LogoSem.png}" alt="Logo Global Transportes">
+    </div>
+    <div class="sidebar-title">Global Transportes</div>
+    <nav class="sidebar-nav">
+        <a th:href="@{/motorista/home}" class="sidebar-link">
+            <i class="fas fa-home"></i> <span>Início</span>
+        </a>
+        <a th:href="@{/motorista/perfil}" class="sidebar-link">
+            <i class="fas fa-user"></i> <span>Meu Perfil</span>
+        </a>
+        <a th:href="@{/motorista/fretes_disponiveis}" class="sidebar-link">
+            <i class="fas fa-list"></i> <span>Fretes Disponíveis</span>
+        </a>
+        <a th:href="@{/motorista/home}" class="sidebar-link active">
+            <i class="fas fa-truck"></i> <span>Meus Fretes</span>
+        </a>
+        <a th:href="@{/motorista/suporte}" class="sidebar-link">
+            <i class="fas fa-headset"></i> <span>Suporte</span>
+        </a>
+    </nav>
+    <div class="sidebar-separator"></div>
+    <div class="sidebar-bottom">
+        <a th:href="@{/logout}" class="sidebar-logout">
+            <i class="fas fa-sign-out-alt"></i> <span>Sair</span>
+        </a>
+    </div>
+</div>
 
-<form th:action="@{'/motorista/frete/' + ${frete.freteId} + '/checkpoint'}" method="post">
-    <fieldset>
-
-        <h3>Adicionar Checkpoint</h3>
-
-            <label>Data e Hora: <input type="datetime-local" id="dataHora" name="dataHora" required></label><br><br>
-            <label>Estado (UF): <input type="text" id="estado" name="estado" maxlength="2" required></label><br><br>
-            <label>Cidade: <input type="text" id="cidade" name="cidade" required></label><br><br>
-            <label>Observações: <br> <textarea id="observacoes" name="observacoes"></textarea></label><br><br>
-            <label>Status:
-                <select id="freteStatusId" name="freteStatusId">
+<div class="main-content">
+    <h2>Cadastrar Checkpoint</h2>
+    <div class="form-card">
+        <form th:action="@{'/motorista/frete/' + ${frete.freteId} + '/checkpoint'}" method="post">
+            <div class="form-group">
+                <label for="dataHora">Data e Hora</label>
+                <input type="datetime-local" id="dataHora" name="dataHora" required>
+            </div>
+            <div class="form-group">
+                <label for="estado">Estado (UF)</label>
+                <select id="estado" name="estado" required>
+                    <option value="" disabled selected>-- Selecione um estado --</option>
+                    <option value="AC">Acre (AC)</option>
+                    <option value="AL">Alagoas (AL)</option>
+                    <option value="AP">Amapá (AP)</option>
+                    <option value="AM">Amazonas (AM)</option>
+                    <option value="BA">Bahia (BA)</option>
+                    <option value="CE">Ceará (CE)</option>
+                    <option value="DF">Distrito Federal (DF)</option>
+                    <option value="ES">Espírito Santo (ES)</option>
+                    <option value="GO">Goiás (GO)</option>
+                    <option value="MA">Maranhão (MA)</option>
+                    <option value="MT">Mato Grosso (MT)</option>
+                    <option value="MS">Mato Grosso do Sul (MS)</option>
+                    <option value="MG">Minas Gerais (MG)</option>
+                    <option value="PA">Pará (PA)</option>
+                    <option value="PB">Paraíba (PB)</option>
+                    <option value="PR">Paraná (PR)</option>
+                    <option value="PE">Pernambuco (PE)</option>
+                    <option value="PI">Piauí (PI)</option>
+                    <option value="RJ">Rio de Janeiro (RJ)</option>
+                    <option value="RN">Rio Grande do Norte (RN)</option>
+                    <option value="RS">Rio Grande do Sul (RS)</option>
+                    <option value="RO">Rondônia (RO)</option>
+                    <option value="RR">Roraima (RR)</option>
+                    <option value="SC">Santa Catarina (SC)</option>
+                    <option value="SP">São Paulo (SP)</option>
+                    <option value="SE">Sergipe (SE)</option>
+                    <option value="TO">Tocantins (TO)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="cidade">Cidade</label>
+                <input type="text" id="cidade" name="cidade" required>
+            </div>
+            <div class="form-group">
+                <label for="observacoes">Observações</label>
+                <textarea id="observacoes" name="observacoes"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="freteStatusId">Status</label>
+                <select id="freteStatusId" name="freteStatusId" required>
+                    <option value="" disabled selected>-- Selecione um status --</option>
                     <option th:each="status : ${freteStatus}" th:value="${status.freteStatusId}" th:text="${status.nome}"></option>
                 </select>
-            </label><br><br>
-
-    </fieldset>
-
-    <br>
-
-    <button type="submit">Salvar Checkpoint</button>
-</form>
-
-<br>
-
-<a href="/motorista/home"><button>Voltar</button></a>
+            </div>
+            <div class="actions">
+                <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Salvar Checkpoint</button>
+                <a th:href="@{/motorista/home}" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Voltar</a>
+            </div>
+        </form>
+    </div>
+</div>
 
 </body>
 </html>

@@ -128,7 +128,7 @@ public class MotoristaController {
         return "motorista/detalhes_frete";
     }
 
-    @GetMapping("/motorista/frete/disponivel{id}")
+    @GetMapping("/motorista/frete/disponivel/{id}")
     public String exibirDetalhesFreteDisponivel(@PathVariable Long id, Model model) {
         Frete frete = freteService.buscarPorId(id);
         Motorista motorista = motoristaService.buscarMotoristaLogado();
