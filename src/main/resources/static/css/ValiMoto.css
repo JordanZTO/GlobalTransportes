@@ -4,7 +4,130 @@ body {
   min-height: 100vh;
   margin: 0;
   padding: 0;
+  display: flex;
 }
+
+.sidebar {
+  width: 280px;
+  background: #0a174e;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  padding: 24px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 4px 0 24px rgba(0,0,0,0.1);
+  z-index: 1000;
+}
+
+.sidebar-logo {
+  width: 120px;
+  height: 120px;
+  margin-bottom: 16px;
+}
+
+.sidebar-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.sidebar-title {
+  color: #ffd700;
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-bottom: 32px;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+.sidebar-nav {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 0 16px;
+}
+
+.sidebar-link {
+  color: #fff;
+  text-decoration: none;
+  padding: 12px 16px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.2s;
+  font-weight: 600;
+}
+
+.sidebar-link i {
+  font-size: 1.2rem;
+  width: 24px;
+  text-align: center;
+}
+
+.sidebar-link:hover {
+  background: rgba(255,255,255,0.1);
+  color: #ffd700;
+}
+
+.sidebar-link.active {
+  background: linear-gradient(90deg, #ffd700 60%, #fffbe0 100%);
+  color: #0a174e;
+}
+
+.sidebar-separator {
+  width: 80%;
+  height: 1px;
+  background: rgba(255,255,255,0.1);
+  margin: 24px 0;
+}
+
+.sidebar-bottom {
+  width: 100%;
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 12px;
+}
+
+.sidebar-logout {
+  background: linear-gradient(90deg, #ffd700 60%, #fffbe0 100%);
+  color: #0a174e;
+  padding: 8px 24px;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 2px 8px #ffd70044;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  width: 80%;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 0.95rem;
+  margin: 0 auto;
+}
+
+.sidebar-logout:hover {
+  background: #fff;
+  color: #0a174e;
+  box-shadow: 0 4px 16px #ffd70055;
+  transform: translateY(-1px);
+}
+
+.main-content {
+  margin-left: 280px;
+  width: calc(100% - 280px);
+  min-height: 100vh;
+}
+
 .vali-bg {
   min-height: 100vh;
   display: flex;
@@ -13,6 +136,7 @@ body {
   justify-content: flex-start;
   padding: 40px 0 0 0;
 }
+
 .vali-card {
   background: #fff;
   border-radius: 18px;
@@ -23,6 +147,7 @@ body {
   width: 100%;
   margin-bottom: 32px;
 }
+
 .vali-title {
   font-size: 2rem;
   font-weight: 800;
@@ -31,6 +156,7 @@ body {
   text-align: center;
   letter-spacing: 1px;
 }
+
 table.vali-table {
   width: 100%;
   border-collapse: collapse;
@@ -40,9 +166,11 @@ table.vali-table {
   overflow: hidden;
   box-shadow: 0 1px 4px rgba(0,0,0,0.04);
 }
+
 table.vali-table thead {
   background: linear-gradient(90deg, #ffbe0b 60%, #ffb300 100%);
 }
+
 table.vali-table th {
   color: #222;
   font-size: 1.05rem;
@@ -51,18 +179,22 @@ table.vali-table th {
   text-align: left;
   border-bottom: 2px solid #f0f2f8;
 }
+
 table.vali-table td {
   color: #222;
   font-size: 1rem;
   padding: 10px 8px;
   border-bottom: 1px solid #f0f2f8;
 }
+
 table.vali-table tr:nth-child(even) td {
   background: #fafafa;
 }
+
 table.vali-table tr:last-child td {
   border-bottom: none;
 }
+
 .btn-detalhes {
   background: linear-gradient(90deg, #1a73e8 60%, #64b5f6 100%);
   color: #fff;
@@ -76,11 +208,13 @@ table.vali-table tr:last-child td {
   box-shadow: 0 1px 4px rgba(0,0,0,0.08);
   text-decoration: none;
 }
+
 .btn-detalhes:hover {
   background: linear-gradient(90deg, #1565c0 60%, #64b5f6 100%);
   color: #fff;
   transform: translateY(-2px) scale(1.03);
 }
+
 .btn-voltar {
   background: linear-gradient(90deg, #ffbe0b 60%, #ffb300 100%);
   color: #222;
@@ -96,21 +230,67 @@ table.vali-table tr:last-child td {
   text-decoration: none;
   display: inline-block;
 }
+
 .btn-voltar:hover {
   background: linear-gradient(90deg, #ffb300 60%, #ffbe0b 100%);
   color: #111;
   transform: translateY(-2px) scale(1.03);
 }
+
 @media (max-width: 900px) {
+  .sidebar {
+    width: 80px;
+    padding: 16px 0;
+  }
+
+  .sidebar-logo {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 12px;
+  }
+
+  .sidebar-title {
+    display: none;
+  }
+
+  .sidebar-link span {
+    display: none;
+  }
+
+  .sidebar-link {
+    justify-content: center;
+    padding: 12px;
+  }
+
+  .sidebar-link i {
+    font-size: 1.4rem;
+  }
+
+  .sidebar-logout span {
+    display: none;
+  }
+
+  .sidebar-logout {
+    width: 48px;
+    padding: 12px;
+  }
+
+  .main-content {
+    margin-left: 80px;
+    width: calc(100% - 80px);
+  }
+
   .vali-card {
     padding: 18px 4vw 18px 4vw;
     min-width: 0;
     max-width: 98vw;
   }
+
   .vali-title {
     font-size: 1.3rem;
     margin-bottom: 18px;
   }
+
   table.vali-table th, table.vali-table td {
     font-size: 0.95rem;
     padding: 7px 4px;

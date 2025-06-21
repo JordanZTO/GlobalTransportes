@@ -2,48 +2,76 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home - Administrador</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/css/homeadm.css}">
 </head>
 <body>
-<div class="main-homeadm">
-    <div class="card-homeadm">
-        <div class="titulo-homeadm">
-            <i class="fas fa-user-shield"></i>
-            Menu do Administrador
+    <div class="sidebar">
+        <div class="sidebar-logo">
+            <img th:src="@{/img/LogoSem.png}" alt="Logo" />
         </div>
-        <p><i class="fas fa-user"></i> <strong>Usuário:</strong> Administrador</p>
-        
-        <div class="menu-separator"></div>
-        
-        <button type="button" onclick="window.location.href='/admin/validar_cliente'" class="btn-homeadm">
-            <i class="fas fa-building"></i>
-            Validar Clientes
-        </button>
-        <button type="button" onclick="window.location.href='/admin/validar_motorista'" class="btn-homeadm">
-            <i class="fas fa-truck"></i>
-            Validar Motoristas
-        </button>
-        <button type="button" onclick="window.location.href='/admin/fretes'" class="btn-homeadm">
-            <i class="fas fa-route"></i>
-            Gerenciar Fretes
-        </button>
-        <button type="button" onclick="window.location.href='/admin/dashboard'" class="btn-homeadm">
-            <i class="fas fa-chart-line"></i>
-            Dashboard
-        </button>
-        
-        <div class="menu-separator"></div>
-        
-        <form th:action="@{/logout}" method="post" style="width:100%;">
-            <button type="submit" class="btn-sair">
-                <i class="fas fa-sign-out-alt"></i>
-                Sair
-            </button>
-        </form>
+        <div class="sidebar-title">Global Transportes</div>
+        <nav class="sidebar-nav">
+            <a th:href="@{/admin/home}" class="sidebar-link active"><i class="fas fa-home"></i> <span>Início</span></a>
+            <a th:href="@{/admin/validar_cliente}" class="sidebar-link"><i class="fas fa-building"></i> <span>Validar Clientes</span></a>
+            <a th:href="@{/admin/validar_motorista}" class="sidebar-link"><i class="fas fa-truck"></i> <span>Validar Motoristas</span></a>
+            <a th:href="@{/admin/fretes}" class="sidebar-link"><i class="fas fa-route"></i> <span>Gerenciar Fretes</span></a>
+            <a th:href="@{/admin/dashboard}" class="sidebar-link"><i class="fas fa-chart-line"></i> <span>Dashboard</span></a>
+        </nav>
+        <div class="sidebar-separator"></div>
+        <div class="sidebar-bottom">
+            <form th:action="@{/logout}" method="post" style="width:100%;">
+                <button type="submit" class="sidebar-logout">
+                    <i class="fas fa-sign-out-alt"></i> <span>Sair</span>
+                </button>
+            </form>
+        </div>
     </div>
-</div>
+
+    <div class="main-content">
+        <div class="container">
+            <h2 class="text-center mb-4">Menu do Administrador</h2>
+            <p class="text-center"><i class="fas fa-user"></i> <strong>Usuário:</strong> Administrador</p>
+            
+            <div class="menu-separator"></div>
+            
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <a th:href="@{/admin/validar_cliente}" class="menu-card">
+                        <i class="fas fa-building"></i>
+                        <h3>Validar Clientes</h3>
+                        <p>Gerencie as solicitações de cadastro de clientes</p>
+                    </a>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <a th:href="@{/admin/validar_motorista}" class="menu-card">
+                        <i class="fas fa-truck"></i>
+                        <h3>Validar Motoristas</h3>
+                        <p>Gerencie as solicitações de cadastro de motoristas</p>
+                    </a>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <a th:href="@{/admin/fretes}" class="menu-card">
+                        <i class="fas fa-route"></i>
+                        <h3>Gerenciar Fretes</h3>
+                        <p>Visualize e gerencie todos os fretes</p>
+                    </a>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <a th:href="@{/admin/dashboard}" class="menu-card">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Dashboard</h3>
+                        <p>Visualize métricas e relatórios do sistema</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

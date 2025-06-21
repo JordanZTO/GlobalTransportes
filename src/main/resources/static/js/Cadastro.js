@@ -37,11 +37,11 @@ function removeImage(previewId, inputId) {
 function validarFormularioMotorista() {
   // Campos obrigatórios
   const camposObrigatorios = [
-    'nome_completo', 'cpf', 'numero_cnh', 'numero_antt', 'telefone_pessoal',
-    'logradouro', 'numero', 'bairro', 'cidade', 'estado', 'cep', 'pais',
-    'numeroCrlv', 'placaVeiculo', 'ano', 'fabricante', 'modelo', 'cor',
-    'quantidadeEixo', 'categoriaVeiculo', 'tipoCarroceria', 'tipoChassi',
-    'peso', 'altura', 'comprimento', 'largura', 'email', 'senha'
+    'nome_completo', 'cpf', 'logradouro', 'numero', 'bairro', 'cidade', 'estado', 'cep', 'pais',
+    'telefone_pessoal', 'email_comercial', 'numero_cnh', 'numero_antt',
+    'fotoCnh', 'fotoFrente', 'fotoPlaca',
+    'numeroCrlv', 'placaVeiculo', 'ano', 'fabricante', 'modelo', 'cor', 'quantidadeEixo',
+    'email', 'senha'
   ];
 
   // Verificar cada campo obrigatório

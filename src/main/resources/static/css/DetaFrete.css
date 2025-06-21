@@ -1,7 +1,6 @@
 body {
   font-family: 'Montserrat', sans-serif;
-  background: linear-gradient(120deg, #f7f8fa 0%, #f0f2f8 100%);
-  min-height: 100vh;
+  background: linear-gradient(120deg, #f8f9fa 60%, #e6e9f5 100%);
   margin: 0;
   padding: 0;
 }
@@ -11,53 +10,65 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding: 40px 0 0 0;
+  padding: 30px 0 0 0;
 }
 .frete-card {
   background: #fff;
-  border-radius: 18px;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
-  padding: 36px 32px 32px 32px;
-  min-width: 320px;
-  max-width: 900px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  padding: 24px 20px 20px 20px;
   width: 100%;
-  margin-bottom: 32px;
+  max-width: 1000px;
+  margin-bottom: 24px;
 }
 .frete-title {
-  font-size: 2rem;
-  font-weight: 800;
-  color: #ffbe0b;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #2c3e50;
   margin-bottom: 24px;
   text-align: center;
-  letter-spacing: 1px;
+  position: relative;
+  padding-bottom: 0.8rem;
+}
+.frete-title:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 3px;
+  background: linear-gradient(90deg, #3498db, #2980b9);
+  border-radius: 3px;
 }
 .frete-section {
-  background: #fafafa;
-  border-radius: 10px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-  padding: 18px 22px;
-  margin-bottom: 18px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+  padding: 20px;
+  margin-bottom: 20px;
 }
 .frete-section h3 {
-  color: #1a73e8;
-  font-size: 1.15rem;
-  font-weight: 700;
-  margin-bottom: 10px;
+  color: #2c3e50;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #e9ecef;
 }
-.frete-section p, .frete-section label {
-  color: #222;
-  font-size: 1.05rem;
-  margin-bottom: 4px;
-  font-weight: 500;
+.frete-section p {
+  margin: 0 0 8px 0;
+  color: #2c3e50;
+  font-size: 0.95rem;
+  line-height: 1.4;
 }
 .frete-section label {
-  color: #1a73e8;
-  font-weight: 700;
+  color: #3498db;
+  font-weight: 600;
   margin-right: 4px;
 }
 .frete-section span {
-  color: #222;
-  font-weight: 400;
+  color: #2c3e50;
 }
 .frete-section .info-motorista {
   margin-bottom: 0;
@@ -66,80 +77,95 @@ body {
   margin-bottom: 2px;
 }
 .frete-section .no-motorista {
-  color: #888;
-  font-style: italic;
+  color: #6c757d;
+  font-size: 0.95rem;
+  text-align: center;
+  padding: 16px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  margin-top: 8px;
 }
 .frete-section .no-checkpoints {
-  color: #888;
-  font-style: italic;
+  color: #6c757d;
+  font-size: 0.95rem;
+  text-align: center;
+  padding: 16px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  margin-top: 8px;
 }
 .frete-table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 10px;
-  background: #fff;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  margin-top: 12px;
+  font-size: 0.9rem;
 }
 .frete-table thead {
-  background: linear-gradient(90deg, #ffbe0b 60%, #ffb300 100%);
+  background: #f8f9fa;
 }
 .frete-table th {
-  color: #222;
-  font-size: 1.05rem;
-  font-weight: 700;
-  padding: 10px 8px;
+  color: #2c3e50;
+  font-weight: 600;
+  padding: 12px;
   text-align: left;
-  border-bottom: 2px solid #f0f2f8;
+  border-bottom: 2px solid #e9ecef;
 }
 .frete-table td {
-  color: #222;
-  font-size: 1rem;
-  padding: 8px 8px;
-  border-bottom: 1px solid #f0f2f8;
-}
-.frete-table tr:nth-child(even) td {
-  background: #fafafa;
+  padding: 10px 12px;
+  border-bottom: 1px solid #e9ecef;
+  color: #2c3e50;
 }
 .frete-table tr:last-child td {
   border-bottom: none;
 }
+.frete-table tr:hover td {
+  background-color: #f8f9fa;
+}
 .btn-voltar {
-  background: linear-gradient(90deg, #ffbe0b 60%, #ffb300 100%);
-  color: #222;
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  color: #fff;
   border: none;
   border-radius: 8px;
-  padding: 12px 32px;
-  font-size: 1.08rem;
-  font-weight: 700;
+  padding: 10px 24px;
+  font-size: 0.95rem;
+  font-weight: 600;
   cursor: pointer;
-  margin: 0 8px;
-  transition: background 0.2s, transform 0.1s, color 0.2s;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  transition: all 0.3s ease;
   text-decoration: none;
   display: inline-block;
+  box-shadow: 0 4px 15px rgba(52, 152, 219, 0.2);
 }
 .btn-voltar:hover {
-  background: linear-gradient(90deg, #ffb300 60%, #ffbe0b 100%);
-  color: #111;
-  transform: translateY(-2px) scale(1.03);
+  background: linear-gradient(135deg, #2980b9, #3498db);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(52, 152, 219, 0.3);
+  color: #fff;
+  text-decoration: none;
 }
-@media (max-width: 900px) {
+@media (max-width: 768px) {
+  .frete-bg {
+    padding: 20px 0 0 0;
+  }
   .frete-card {
-    padding: 18px 4vw 18px 4vw;
-    min-width: 0;
-    max-width: 98vw;
+    padding: 16px 12px;
+    margin: 0 12px 20px 12px;
   }
   .frete-title {
-    font-size: 1.3rem;
-    margin-bottom: 18px;
+    font-size: 1.4rem;
+    margin-bottom: 20px;
   }
   .frete-section {
-    padding: 10px 8px;
+    padding: 16px;
   }
-  .frete-table th, .frete-table td {
-    font-size: 0.95rem;
-    padding: 7px 4px;
+  .frete-table {
+    font-size: 0.85rem;
+  }
+  .frete-table th,
+  .frete-table td {
+    padding: 8px;
+  }
+  .btn-voltar {
+    width: 100%;
+    text-align: center;
   }
 }

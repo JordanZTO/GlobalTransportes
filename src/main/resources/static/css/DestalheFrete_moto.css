@@ -1,0 +1,213 @@
+body {
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(120deg, #f8f9fa 60%, #e6e9f5 100%);
+      margin-left: 220px;
+      padding: 0;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 20px;
+    }
+    
+    h2 {
+      color: #0a174e;
+      text-align: center;
+      margin-bottom: 30px;
+      font-weight: 700;
+    }
+    
+    fieldset {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      background: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+    }
+    
+    fieldset h3 {
+      color: #0a174e;
+      font-size: 1.2rem;
+      border-bottom: 2px solid #ffd700;
+      padding-bottom: 8px;
+      margin-bottom: 15px;
+    }
+    
+    p {
+      margin-bottom: 10px;
+    }
+    
+    label {
+      font-weight: 600;
+      color: #3498db;
+      min-width: 180px;
+      display: inline-block;
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+    
+    table th {
+      background-color: #0a174e;
+      color: white;
+      padding: 12px;
+      text-align: left;
+    }
+    
+    table td {
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+    
+    table tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+    
+    table tr:hover {
+      background-color: #e9ecef;
+    }
+    
+    button {
+      background: #3498db;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    
+    button:hover {
+      background: #217dbb;
+      transform: translateY(-2px);
+    }
+    
+    .btn-voltar {
+      background: #ffd700;
+      color: #0a174e;
+      display: inline-block;
+      margin-top: 20px;
+      text-decoration: none;
+    }
+    
+    .btn-voltar:hover {
+      background: #fffbe0;
+    }
+    
+    .alert-not-valid {
+      background-color: #f8d7da;
+      color: #721c24;
+      padding: 15px;
+      border-radius: 6px;
+      margin-bottom: 20px;
+      border: 1px solid #f5c6cb;
+    }
+    /* Sidebar moderna e elegante */
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 220px;
+    height: 100vh;
+    background: rgba(10, 23, 78, 0.95);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 100;
+    font-family: 'Montserrat', sans-serif;
+    box-shadow: 2px 0 16px 0 rgba(0,0,0,0.18);
+    backdrop-filter: blur(4px);
+    animation: slideInSidebar 0.7s cubic-bezier(.77,0,.18,1) 1;
+}
+@keyframes slideInSidebar {
+    from { transform: translateX(-100%); opacity: 0; }
+    to   { transform: translateX(0); opacity: 1; }
+}
+.sidebar-logo {
+    margin: 32px 0 8px 0;
+}
+.sidebar-logo img {
+    width: 90px;
+    height: auto;
+    margin-bottom: 8px;
+}
+.sidebar-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 32px;
+    color: #ffd700;
+    text-align: center;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 8px #0002;
+}
+.sidebar-nav {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #fff;
+    text-decoration: none;
+    padding: 12px 24px 12px 18px;
+    width: 100%;
+    font-size: 1rem;
+    border-left: 4px solid transparent;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+    position: relative;
+}
+.sidebar-link i {
+    color: #ffd700;
+    font-size: 1.1em;
+    transition: color 0.2s;
+}
+.sidebar-link:hover, .sidebar-link.active {
+    background: rgba(255, 215, 0, 0.08);
+    color: #ffd700;
+    border-left: 4px solid #ffd700;
+}
+.sidebar-link:hover i, .sidebar-link.active i {
+    color: #fff;
+}
+.sidebar-separator {
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, #ffd70033, #fff0, #ffd70033);
+    margin: 18px auto 12px auto;
+    border: none;
+}
+.sidebar-bottom {
+    width: 100%;
+    margin-bottom: 24px;
+    display: flex;
+    justify-content: center;
+}
+.sidebar-logout {
+    background: linear-gradient(90deg, #ffd700 60%, #fffbe0 100%);
+    color: #0a174e;
+    padding: 10px 32px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 2px 8px #ffd70044;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.sidebar-logout:hover {
+    background: #fff;
+    color: #0a174e;
+    box-shadow: 0 4px 16px #ffd70055;
+}
