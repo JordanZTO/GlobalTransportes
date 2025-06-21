@@ -1,0 +1,183 @@
+body {
+  min-height: 100vh;
+  margin: 0;
+  font-family: 'Montserrat', Arial, sans-serif;
+  background: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+.bg-logo {
+  position: fixed;
+  left: -80px;
+  bottom: 0;
+  width: 70vw;
+  height: 90vh;
+  background: url('../img/LogoSem.png') no-repeat left bottom;
+  background-size: contain;
+  background-position: -80px bottom;
+  opacity: 0.13;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 400px;
+  margin: 0 auto;
+  top: 10vh;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo {
+  width: 120px;
+  margin-bottom: 8px;
+}
+
+.titulo-logo {
+  display: flex;
+  align-items: center;
+  margin-bottom: 18px;
+  gap: 6px;
+}
+
+.digital {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 200;
+  font-style: normal;
+  font-size: 2.1rem;
+  color: #222;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.cargas {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: 2.1rem;
+  background: #2d2e83;
+  color: #fff;
+  padding: 2px 18px 2px 12px;
+  border-radius: 4px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-left: 4px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.titulo {
+  color: #ffbe0b;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+  text-align: center;
+}
+
+.descricao {
+  color: #aaa;
+  font-size: 0.98rem;
+  margin-bottom: 18px;
+  text-align: center;
+}
+
+form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 13px 12px;
+  border: none;
+  border-radius: 8px;
+  background: #f6f6f6;
+  font-size: 1rem;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  outline: none;
+  transition: box-shadow 0.2s;
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus {
+  box-shadow: 0 0 0 2px #ffbe0b44;
+}
+
+button[type="submit"] {
+  width: 100%;
+  padding: 13px 0;
+  background: linear-gradient(90deg, #ffbe0b 60%, #ffb300 100%);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.10);
+  transition: background 0.2s, transform 0.1s;
+}
+
+button[type="submit"]:hover {
+  background: linear-gradient(90deg, #ffb300 60%, #ffbe0b 100%);
+  transform: translateY(-2px) scale(1.03);
+}
+
+#mensagem {
+  margin-top: 10px;
+  font-size: 0.98rem;
+  min-height: 22px;
+  text-align: center;
+  color: #e74c3c;
+}
+
+.btn-voltar {
+  position: fixed;
+  top: 20px;      
+  left: 20px;     
+  z-index: 1000; 
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.btn-voltar:hover {
+  transform: scale(1.1);
+}
+
+.btn-voltar img {
+  width: 28px;
+  height: 28px;
+}
+
+@media (max-width: 700px) {
+  .bg-logo {
+    width: 90vw;
+    height: 40vh;
+    left: -50px;
+    background-position: -50px bottom;
+  }
+  
+  .container {
+    max-width: 95vw;
+    padding: 0 8px;
+  }
+  
+  .digital, .cargas {
+    font-size: 1.8rem;
+  }
+  
+  .titulo {
+    font-size: 1.1rem;
+  }
+  
+  .descricao {
+    font-size: 0.9rem;
+  }
+}

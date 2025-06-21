@@ -1,17 +1,32 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
 <head>
-    <title>Recuperar Senha</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Redefinição de senha | Global Transportes</title>
+    <link rel="stylesheet" th:href="@{/css/EsqueciSenha.css}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
-<h2>Recuperar Senha</h2>
-<form th:action="@{/recuperar_senha}" method="post">
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required>
-    <button type="submit">Enviar Link</button>
-</form>
-<p th:text="${mensagem}"></p>
-
-<a href="/login"><button>Voltar</button></a>
+    <div class="bg-logo"></div>
+    <div class="container">
+        <img th:src="@{/img/LogoSem.png}" alt="Logo Global Transportes" class="logo" />
+        <div class="titulo-logo">
+            <span class="digital">GLOBAL</span>
+            <span class="cargas">TRANSPORTES</span>
+        </div>
+        <h2 class="titulo">Redefinição de senha</h2>
+        <p class="descricao">Insira o e-mail cadastrado para a redefinição de senha.</p>
+        <form th:action="@{/recuperar_senha}" method="post">
+            <input type="email" name="email" placeholder="E-mail" required />
+            <button type="submit">Enviar</button>
+            <div id="mensagem" th:text="${mensagem}"></div>
+        </form>
+        <a th:href="@{/login}" class="btn-voltar">
+            <img th:src="@{/img/desfazer1.png}" alt="Voltar" />
+        </a>
+    </div>
 </body>
 </html>

@@ -10,49 +10,49 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding: 40px 0 0 0;
+  padding: 30px 0 0 0;
 }
 .titulo-perfil {
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: 700;
   color: #ffbe0b;
-  margin-bottom: 32px;
+  margin-bottom: 24px;
   text-align: center;
   letter-spacing: 1px;
 }
 .perfil-container {
   display: flex;
-  gap: 32px;
+  gap: 24px;
   flex-wrap: wrap;
   justify-content: center;
   width: 100%;
-  max-width: 1200px;
-  margin-bottom: 32px;
+  max-width: 1000px;
+  margin-bottom: 24px;
 }
 .card-perfil {
   background: #fff;
-  border-radius: 18px;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
-  padding: 32px 28px 28px 28px;
-  min-width: 300px;
-  flex: 1 1 340px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  padding: 24px 20px 20px 20px;
+  min-width: 280px;
+  flex: 1 1 300px;
   margin-bottom: 0;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
 .card-perfil h3 {
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   color: #222;
-  margin-bottom: 18px;
+  margin-bottom: 16px;
   font-weight: 700;
   letter-spacing: 0.5px;
 }
 .card-perfil p {
-  margin: 0 0 8px 0;
+  margin: 0 0 6px 0;
   color: #222;
-  font-size: 1.05rem;
-  line-height: 1.5;
+  font-size: 0.95rem;
+  line-height: 1.4;
 }
 .label {
   color: #1a73e8;
@@ -66,7 +66,7 @@ body {
 .actions {
   text-align: center;
   margin-top: 0;
-  margin-bottom: 32px;
+  margin-bottom: 24px;
 }
 .btn-yellow,
 .btn-yellow:visited,
@@ -79,9 +79,9 @@ body {
   color: #222;
   border: none;
   border-radius: 8px;
-  padding: 12px 32px;
-  font-size: 1.08rem;
-  font-weight: 700;
+  padding: 10px 24px;
+  font-size: 0.95rem;
+  font-weight: 600;
   cursor: pointer;
   margin: 0 8px;
   transition: background 0.2s, transform 0.1s, color 0.2s;
@@ -97,25 +97,26 @@ body {
   margin-left: 12px;
 }
 .checkbox-label {
-  font-size: 1rem;
+  font-size: 0.95rem;
   color: #222;
   margin-left: 8px;
   margin-right: 16px;
 }
 .link-foto {
-  margin: 8px 0 0 0;
+  margin: 6px 0 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 .link-foto button {
   background: linear-gradient(90deg, #ffbe0b 60%, #ffb300 100%);
   color: #222;
   border: none;
   border-radius: 6px;
-  padding: 8px 18px;
-  font-size: 1rem;
+  padding: 8px 16px;
+  font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
-  margin-bottom: 8px;
-  margin-right: 8px;
   transition: background 0.2s, transform 0.1s;
   box-shadow: 0 2px 8px rgba(0,0,0,0.10);
 }
@@ -134,34 +135,41 @@ body {
 @media (max-width: 1100px) {
   .perfil-container {
     flex-direction: column;
-    gap: 24px;
+    gap: 20px;
     align-items: center;
   }
   .card-perfil {
     min-width: 220px;
     width: 100%;
-    max-width: 600px;
+    max-width: 500px;
   }
 }
 @media (max-width: 700px) {
   .main-bg {
-    padding: 18px 0 0 0;
+    padding: 16px 0 0 0;
   }
   .titulo-perfil {
-    font-size: 1.5rem;
-    margin-bottom: 18px;
+    font-size: 1.4rem;
+    margin-bottom: 16px;
   }
   .perfil-container {
     gap: 12px;
     padding: 0 2vw;
   }
   .card-perfil {
-    padding: 18px 8px 18px 8px;
+    padding: 16px 12px;
     min-width: 0;
     max-width: 98vw;
   }
   .btn-yellow {
-    padding: 10px 16px;
-    font-size: 1rem;
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
+  .link-foto {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .link-foto button {
+    width: 100%;
   }
 }

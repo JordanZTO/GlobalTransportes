@@ -20,8 +20,8 @@
         <p><span class="label">Email Comercial:</span> <span class="valor" th:text="${cliente.emailComercial}"></span></p>
       </div>
       <div class="card-perfil">
-        <h3>Endereço</h3>
-        <div th:if="${cliente.endereco != null}">
+  <h3>Endereço</h3>
+  <div th:if="${cliente.endereco != null}">
           <p><span class="label">Logradouro:</span> <span class="valor" th:text="${cliente.endereco.logradouro}"></span></p>
           <p><span class="label">Número:</span> <span class="valor" th:text="${cliente.endereco.numero}"></span></p>
           <p><span class="label">Complemento:</span> <span class="valor" th:text="${cliente.endereco.complemento}"></span></p>
@@ -32,14 +32,14 @@
           <p><span class="label">País:</span> <span class="valor" th:text="${cliente.endereco.pais}"></span></p>
         </div>
       </div>
-    </div>
+  </div>
     <div class="actions">
       <form th:action="@{'/admin/validar_cliente/' + ${cliente.clienteId}}" method="post" style="display:inline-block;">
         <label class="checkbox-label">
-          <input type="checkbox" name="valido" th:checked="${cliente.valido}"> Cliente válido
-        </label>
+    <input type="checkbox" name="valido" th:checked="${cliente.valido}"> Cliente válido
+  </label>
         <button type="submit" class="btn-yellow">Salvar Validação</button>
-      </form>
+</form>
       <a href="/admin/validar_cliente" class="btn-yellow btn-voltar">Voltar</a>
     </div>
   </div>
