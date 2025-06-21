@@ -18,16 +18,19 @@
     <div class="sidebar-title">Global Transportes</div>
     <nav class="sidebar-nav">
         <a th:href="@{/cliente/home}" class="sidebar-link active">
-            <i class="fas fa-home"></i>
-            <span>Início</span>
+            <i class="fas fa-home"></i> <span>Início</span>
         </a>
         <a th:href="@{/cliente/perfil}" class="sidebar-link">
-            <i class="fas fa-user"></i>
-            <span>Meu Perfil</span>
+            <i class="fas fa-user"></i> <span>Meu Perfil</span>
+        </a>
+        <a th:href="@{/fretes/cadastrar}" class="sidebar-link">
+            <i class="fas fa-plus-circle"></i> <span>Cadastrar Frete</span>
+        </a>
+        <a th:href="@{/cliente/home}" class="sidebar-link">
+            <i class="fas fa-truck"></i> <span>Meus Fretes</span>
         </a>
         <a th:href="@{/cliente/suporte}" class="sidebar-link">
-            <i class="fas fa-headset"></i>
-            <span>Suporte</span>
+            <i class="fas fa-headset"></i> <span>Suporte</span>
         </a>
     </nav>
     <hr class="sidebar-separator">

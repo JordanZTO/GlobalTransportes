@@ -6,64 +6,79 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
-    <link rel="stylesheet" th:href="@{/css/MotoristaFrete.css}">
+    <link rel="stylesheet" th:href="@{/css/DetaFrete_Moto.css}">
 </head>
 <body>
+
 <div class="sidebar">
-        <div class="sidebar-logo">
-            <img th:src="@{/img/LogoSem.png}" alt="Logo" />
-        </div>
-        <div class="sidebar-title">Global Transportes</div>
-        <nav class="sidebar-nav">
-            <a th:href="@{/motorista/home}" class="sidebar-link"><i class="fas fa-home"></i> <span>Início</span></a>
-            <a th:href="@{/motorista/fretes}" class="sidebar-link"><i class="fas fa-truck"></i> <span>Meus fretes</span></a>
-            <a th:href="@{/motorista/fretes_disponiveis}" class="sidebar-link active"><i class="fas fa-list"></i> <span>Fretes Disponíveis</span></a>
-        </nav>
-        <div class="sidebar-separator"></div>
-        <div class="sidebar-bottom">
-            <a href="/logout" class="sidebar-logout"><i class="fas fa-sign-out-alt"></i> <span>Sair</span></a>
-        </div>
+    <div class="sidebar-logo">
+        <img th:src="@{/img/LogoSem.png}" alt="Logo Global Transportes">
     </div>
-<div class="container">
-  <h2>Detalhes do Frete</h2>
+    <div class="sidebar-title">Global Transportes</div>
+    <nav class="sidebar-nav">
+        <a th:href="@{/motorista/home}" class="sidebar-link">
+            <i class="fas fa-home"></i> <span>Início</span>
+        </a>
+        <a th:href="@{/motorista/fretes_disponiveis}" class="sidebar-link active">
+            <i class="fas fa-list"></i> <span>Fretes Disponíveis</span>
+        </a>
+        <a th:href="@{/motorista/perfil}" class="sidebar-link">
+            <i class="fas fa-user"></i> <span>Meu Perfil</span>
+        </a>
+        <a th:href="@{/motorista/suporte}" class="sidebar-link">
+            <i class="fas fa-headset"></i> <span>Suporte</span>
+        </a>
+    </nav>
+    <div class="sidebar-separator"></div>
+    <div class="sidebar-bottom">
+        <a th:href="@{/logout}" class="sidebar-logout">
+            <i class="fas fa-sign-out-alt"></i> <span>Sair</span>
+        </a>
+    </div>
+</div>
 
-  <fieldset>
-      <h3>Detalhes da Carga</h3>
-          <p><label>Tipo de Carga:</label> <span th:text="${frete.tipoCarga}"></span></p>
-          <p><label>Valor do Frete:</label> <span th:text="${'R$ ' + #numbers.formatDecimal(frete.valorFrete, 1, 'POINT', 2, 'COMMA')}"></span></p>
-          <p><label>Peso:</label> <span th:text="${frete.peso} + ' kg'"></span></p>
-          <p><label>Dimensões (CxLxA):</label>
+<div class="main-content">
+    <h2>Detalhes do Frete Disponível</h2>
+
+    <div class="details-card">
+        <h3><i class="fas fa-box-open"></i> Detalhes da Carga</h3>
+        <p><strong>Tipo de Carga:</strong> <span th:text="${frete.tipoCarga}"></span></p>
+        <p><strong>Valor do Frete:</strong> <span th:text="'R$ ' + ${#numbers.formatDecimal(frete.valorFrete, 1, 'POINT', 2, 'COMMA')}"></span></p>
+        <p><strong>Peso:</strong> <span th:text="${#numbers.formatDecimal(frete.peso, 1, 'POINT', 1, 'COMMA')} + ' kg'"></span></p>
+        <p><strong>Dimensões (CxLxA):</strong>
             <span th:text="${frete.comprimento} + 'm x ' + ${frete.largura} + 'm x ' + ${frete.altura} + 'm'"></span>
-          </p>
-          <p><label>Valor da Nota Fiscal:</label> <span th:text="${'R$ ' + #numbers.formatDecimal(frete.valorNotaFiscal, 1, 'POINT', 2, 'COMMA')}"></span></p>
-          <p><label>Status:</label> <span th:text="${frete.freteStatus.nome}"></span></p>
-          <p><label>Data de Criação:</label> <span th:text="${#temporals.format(frete.dataCriacao, 'dd/MM/yyyy')}"></span></p>
-  </fieldset>
+        </p>
+        <p><strong>Valor da Nota Fiscal:</strong> <span th:text="'R$ ' + ${#numbers.formatDecimal(frete.valorNotaFiscal, 1, 'POINT', 2, 'COMMA')}"></span></p>
+        <p><strong>Status:</strong> <span th:text="${frete.freteStatus.nome}"></span></p>
+        <p><strong>Data de Criação:</strong> <span th:text="${#temporals.format(frete.dataCriacao, 'dd/MM/yyyy HH:mm')}"></span></p>
+    </div>
 
-  <fieldset>
-      <h3>Endereço de Origem</h3>
-          <p th:text="${frete.enderecoOrigem.logradouro} + ', ' + ${frete.enderecoOrigem.numero}"></p>
-          <p th:text="${frete.enderecoOrigem.cidade} + ' - ' + ${frete.enderecoOrigem.estado}"></p>
-  </fieldset>
+    <div class="details-card address-info">
+        <h3><i class="fas fa-map-marker-alt"></i> Endereço de Origem</h3>
+        <p th:text="${frete.enderecoOrigem.logradouro} + ', ' + ${frete.enderecoOrigem.numero}"></p>
+        <p th:text="${frete.enderecoOrigem.cidade} + ' - ' + ${frete.enderecoOrigem.estado}"></p>
+    </div>
+    
+    <div class="details-card address-info">
+        <h3><i class="fas fa-map-pin"></i> Endereço de Destino</h3>
+        <p th:text="${frete.enderecoDestino.logradouro} + ', ' + ${frete.enderecoDestino.numero}"></p>
+        <p th:text="${frete.enderecoDestino.cidade} + ' - ' + ${frete.enderecoDestino.estado}"></p>
+    </div>
 
-  <fieldset>
-      <h3>Endereço de Destino</h3>
-          <p th:text="${frete.enderecoDestino.logradouro} + ', ' + ${frete.enderecoDestino.numero}"></p>
-          <p th:text="${frete.enderecoDestino.cidade} + ' - ' + ${frete.enderecoDestino.estado}"></p>
-  </fieldset>
+    <div class="actions">
+        <div th:if="${motoristaValido}">
+            <form th:action="@{'/motorista/frete/' + ${frete.freteId} + '/aceitar'}" method="post"
+                  th:if="${frete.freteStatus.nome == 'PENDENTE'}">
+                <button type="submit" class="btn btn-success"><i class="fas fa-check-circle"></i> Aceitar Frete</button>
+            </form>
+        </div>
 
-  <div th:if="${motoristaValido}">
-    <form th:action="@{'/motorista/frete/' + ${frete.freteId} + '/aceitar'}" method="post"
-          th:if="${frete.freteStatus.nome == 'PENDENTE'}">
-      <button type="submit"><i class="fas fa-check-circle"></i> Aceitar Frete</button>
-    </form>
-  </div>
+        <div th:unless="${motoristaValido}" class="alert-not-valid">
+            <i class="fas fa-exclamation-circle"></i> Seu cadastro ainda não foi validado. Aguarde aprovação para aceitar fretes.
+        </div>
 
-  <div th:unless="${motoristaValido}" class="alert-not-valid">
-    <i class="fas fa-exclamation-circle"></i> Seu cadastro ainda não foi validado. Aguarde aprovação para aceitar fretes.
-  </div>
-
-  <a href="/motorista/fretes_disponiveis" class="btn-voltar"><i class="fas fa-arrow-left"></i> Voltar</a>
+        <a href="/motorista/fretes_disponiveis" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Voltar</a>
+    </div>
 </div>
 
 </body>

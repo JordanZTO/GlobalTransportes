@@ -23,17 +23,19 @@
             <h1>Algum problema? <span class="emoji">☹️</span></h1>
             <p class="subtitulo"><a href="#">Deixe nossa equipe ajudar você</a></p>
             <form class="ajuda-form" th:action="@{/cliente/suporte}" th:object="${contatoDTO}" method="post">
-                <input type="text" id="nome" name="nome" required placeholder="Nome do contato">
-                <input type="email" id="email" name="email" required placeholder="E-mail">
-                <select id="assunto" th:field="*{assunto}" required>
-                    <option value="" disabled selected>Tópico &lt;&gt;</option>
-                    <option value="cadastro">Cadastro de frete</option>
-                    <option value="interface">Erros de Interface</option>
-                    <option value="permissao">Erros de Permissão / Acesso</option>
-                    <option value="calculo">Cálculo de Frete</option>
-                    <option value="outro">Outro</option>
-                </select>
-                <textarea id="detalhes" th:field="*{detalhes}" rows="4" placeholder="Detalhes"></textarea>
+                <div class="form-group">
+                    <label for="assunto">Assunto</label>
+                    <select id="assunto" th:field="*{assunto}" required>
+                        <option value="" disabled selected>-- Selecione um assunto --</option>
+                        <option value="Frete">Frete</option>
+                        <option value="Reclamação">Reclamação</option>
+                        <option value="Sugestão">Sugestão</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="detalhes">Detalhes</label>
+                    <textarea id="detalhes" th:field="*{detalhes}" rows="4" placeholder="Detalhes"></textarea>
+                </div>
                 <button type="submit" class="btn-enviar">Enviar</button>
             </form>
         </section>

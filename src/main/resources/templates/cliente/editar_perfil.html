@@ -14,9 +14,21 @@
         </div>
         <div class="sidebar-title">Global Transportes</div>
         <nav class="sidebar-nav">
-            <a th:href="@{/cliente/home}" class="sidebar-link"><i class="fas fa-home"></i> <span>Início</span></a>
-            <a th:href="@{/cliente/perfil}" class="sidebar-link active"><i class="fas fa-user"></i> <span>Meu Perfil</span></a>
-            <a th:href="@{/cliente/suporte}" class="sidebar-link"><i class="fas fa-headset"></i> <span>Suporte</span></a>
+            <a th:href="@{/cliente/home}" class="sidebar-link">
+                <i class="fas fa-home"></i> <span>Início</span>
+            </a>
+            <a th:href="@{/cliente/perfil}" class="sidebar-link active">
+                <i class="fas fa-user"></i> <span>Meu Perfil</span>
+            </a>
+            <a th:href="@{/fretes/cadastrar}" class="sidebar-link">
+                <i class="fas fa-plus-circle"></i> <span>Cadastrar Frete</span>
+            </a>
+            <a th:href="@{/cliente/home}" class="sidebar-link">
+                <i class="fas fa-truck"></i> <span>Meus Fretes</span>
+            </a>
+            <a th:href="@{/cliente/suporte}" class="sidebar-link">
+                <i class="fas fa-headset"></i> <span>Suporte</span>
+            </a>
         </nav>
         <div class="sidebar-separator"></div>
         <div class="sidebar-bottom">
@@ -96,7 +108,36 @@
                         </div>
                         <div class="col-md-4 form-group">
                             <label class="form-label">Estado</label>
-                            <input type="text" class="form-control" th:field="*{estado}" />
+                            <select class="form-control" th:field="*{estado}" required>
+                                <option value="" disabled selected>-- Selecione um estado --</option>
+                                <option value="AC">Acre (AC)</option>
+                                <option value="AL">Alagoas (AL)</option>
+                                <option value="AP">Amapá (AP)</option>
+                                <option value="AM">Amazonas (AM)</option>
+                                <option value="BA">Bahia (BA)</option>
+                                <option value="CE">Ceará (CE)</option>
+                                <option value="DF">Distrito Federal (DF)</option>
+                                <option value="ES">Espírito Santo (ES)</option>
+                                <option value="GO">Goiás (GO)</option>
+                                <option value="MA">Maranhão (MA)</option>
+                                <option value="MT">Mato Grosso (MT)</option>
+                                <option value="MS">Mato Grosso do Sul (MS)</option>
+                                <option value="MG">Minas Gerais (MG)</option>
+                                <option value="PA">Pará (PA)</option>
+                                <option value="PB">Paraíba (PB)</option>
+                                <option value="PR">Paraná (PR)</option>
+                                <option value="PE">Pernambuco (PE)</option>
+                                <option value="PI">Piauí (PI)</option>
+                                <option value="RJ">Rio de Janeiro (RJ)</option>
+                                <option value="RN">Rio Grande do Norte (RN)</option>
+                                <option value="RS">Rio Grande do Sul (RS)</option>
+                                <option value="RO">Rondônia (RO)</option>
+                                <option value="RR">Roraima (RR)</option>
+                                <option value="SC">Santa Catarina (SC)</option>
+                                <option value="SP">São Paulo (SP)</option>
+                                <option value="SE">Sergipe (SE)</option>
+                                <option value="TO">Tocantins (TO)</option>
+                            </select>
                         </div>
                     </div>
                     <div class="row">

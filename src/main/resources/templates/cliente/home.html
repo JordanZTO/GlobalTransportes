@@ -16,9 +16,21 @@
     </div>
     <div class="sidebar-title">Global Transportes</div>
     <nav class="sidebar-nav">
-        <a th:href="@{/cliente/home}" class="sidebar-link active"><i class="fas fa-home"></i> <span>Início</span></a>
-        <a th:href="@{/cliente/perfil}" class="sidebar-link"><i class="fas fa-user"></i> <span>Meu Perfil</span></a>
-        <a th:href="@{/cliente/suporte}" class="sidebar-link"><i class="fas fa-headset"></i> <span>Suporte</span></a>
+        <a th:href="@{/cliente/home}" class="sidebar-link active">
+            <i class="fas fa-home"></i> <span>Início</span>
+        </a>
+        <a th:href="@{/cliente/perfil}" class="sidebar-link">
+            <i class="fas fa-user"></i> <span>Meu Perfil</span>
+        </a>
+        <a th:href="@{/fretes/cadastrar}" class="sidebar-link">
+            <i class="fas fa-plus-circle"></i> <span>Cadastrar Frete</span>
+        </a>
+        <a th:href="@{/cliente/home}" class="sidebar-link">
+            <i class="fas fa-truck"></i> <span>Meus Fretes</span>
+        </a>
+        <a th:href="@{/cliente/suporte}" class="sidebar-link">
+            <i class="fas fa-headset"></i> <span>Suporte</span>
+        </a>
     </nav>
     <div class="sidebar-separator"></div>
     <div class="sidebar-bottom">
@@ -31,20 +43,6 @@
     <div class="header">
         <h2>Menu do Cliente</h2>
         <p class="user-info"><strong>Usuário:</strong> <span th:text="${cliente.nome}"></span></p>
-        <div class="action-buttons">
-            <a th:href="@{/cliente/suporte}" class="btn-action">
-                <i class="fas fa-headset"></i> Contato / Suporte
-            </a>
-            <a th:href="@{/cliente/perfil}" class="btn-action profile">
-                <i class="fas fa-user"></i> Ver Perfil
-            </a>
-            <a th:href="@{/fretes/cadastrar}" class="btn-action create-frete"
-               th:classappend="${!cliente.valido} ? 'disabled' : ''"
-               th:aria-disabled="${!cliente.valido}"
-               th:onclick="${!cliente.valido} ? 'return false;' : ''">
-                <i class="fas fa-plus-circle"></i> Cadastrar Frete
-            </a>
-        </div>
     </div>
 
     <div class="fretes-section">
