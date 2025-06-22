@@ -58,27 +58,14 @@ public class MotoristaController {
             @ModelAttribute MotoristaDTO dto,
             @RequestParam("fotoFrente") MultipartFile fotoFrente,
             @RequestParam("fotoPlaca") MultipartFile fotoPlaca,
-            @RequestParam("fotoCnh") MultipartFile fotoCnh,
-            RedirectAttributes redirectAttributes
+            @RequestParam("fotoCnh") MultipartFile fotoCnh
     ) {
-        // Validar se os arquivos não estão vazios
-        if (fotoFrente.isEmpty() || fotoPlaca.isEmpty() || fotoCnh.isEmpty()) {
-            redirectAttributes.addFlashAttribute("erro", "Todas as imagens são obrigatórias!");
-            return "redirect:/cadastro-motorista";
-        }
-
         dto.setFotoFrente(fotoFrente);
         dto.setFotoPlaca(fotoPlaca);
         dto.setFotoCnh(fotoCnh);
 
-        try {
-            motoristaService.cadastrarMotorista(dto);
-            redirectAttributes.addFlashAttribute("sucesso", "Motorista cadastrado com sucesso!");
-            return "redirect:/login";
-        } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("erro", "Erro ao cadastrar motorista: " + e.getMessage());
-            return "redirect:/cadastro-motorista";
-        }
+        motoristaService.cadastrarMotorista(dto);
+        return "redirect:/login";
     }
 
     @PostMapping("/motorista/frete/{id}/aceitar")
