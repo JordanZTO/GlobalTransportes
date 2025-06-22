@@ -416,3 +416,93 @@ h2 {
     padding: 18px 14px 14px 18px;
   }
 }
+
+/* Estilos para a página de listagem (validar_cliente, etc.) */
+.list-container {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.075);
+}
+
+.list-container h2 {
+    font-weight: 700;
+    color: #0a174e;
+    text-align: left;
+    margin-bottom: 2rem;
+}
+
+.search-form {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.search-form .form-control {
+    border-radius: 0.25rem;
+    border: 1px solid #ced4da;
+}
+
+.search-form .btn-dark {
+    background-color: #0a174e;
+    border-color: #0a174e;
+    border-radius: 0.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.styled-table {
+    border-collapse: separate;
+    border-spacing: 0 0.5rem;
+    width: 100%;
+}
+
+.styled-table thead th {
+    background-color: #0a174e;
+    color: #fff;
+    border: none;
+    padding: 1rem;
+    font-weight: 600;
+    text-align: left;
+}
+
+.styled-table thead th:first-child {
+    border-top-left-radius: 0.25rem;
+}
+
+.styled-table thead th:last-child {
+    border-top-right-radius: 0.25rem;
+}
+
+.styled-table tbody tr {
+    background-color: #fff;
+    box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.075);
+    border-radius: 0.25rem;
+    border: 1px solid #efefef;
+    transition: all 0.2s ease-in-out;
+}
+
+.styled-table tbody tr:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0.25rem 0.5rem rgba(0,0,0,0.1);
+}
+
+.styled-table tbody td {
+    padding: 1rem;
+    vertical-align: middle;
+    border: none;
+}
+
+.styled-table tbody td .btn-primary {
+    background-color: #3498db;
+    border-color: #3498db;
+    border-radius: 0.25rem;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+}
+
+.styled-table tbody td .btn-primary:hover {
+    background-color: #2980b9;
+    border-color: #2980b9;
+}
