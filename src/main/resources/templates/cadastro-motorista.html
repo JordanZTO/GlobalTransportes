@@ -16,6 +16,14 @@
       <img th:src="@{/img/LogoSem.png}" alt="Logo Anatanelly" class="moto-cadastro-logo" />
       <h2>Cadastro motorista</h2>
       <p>Preencha os dados abaixo.</p>
+      
+      <!-- Mensagens de feedback -->
+      <div th:if="${erro}" class="alert alert-danger" style="background-color: #f8d7da; color: #721c24; padding: 10px; border-radius: 5px; margin: 10px 0; border: 1px solid #f5c6cb;">
+        <span th:text="${erro}"></span>
+      </div>
+      <div th:if="${sucesso}" class="alert alert-success" style="background-color: #d4edda; color: #155724; padding: 10px; border-radius: 5px; margin: 10px 0; border: 1px solid #c3e6cb;">
+        <span th:text="${sucesso}"></span>
+      </div>
     </div>
     <form class="moto-cadastro-form" th:action="@{/cadastro-motorista}" th:object="${motorista}" method="post" enctype="multipart/form-data">
       <h3>Documentos pessoais</h3>
@@ -95,7 +103,7 @@
             <span class="upload-icon">&#8682;</span>
             <span class="upload-text">Faça o upload da sua CNH</span>
           </label>
-          <input type="file" th:field="*{fotoCnh}" accept="image/*" required onchange="previewImage(this, 'cnhPreview')" />
+          <input type="file" id="fotoCnh" th:field="*{fotoCnh}" accept="image/*" required onchange="previewImage(this, 'cnhPreview')" />
           <div class="image-preview" id="cnhPreview"></div>
         </div>
         <div class="upload-box">
@@ -103,7 +111,7 @@
             <span class="upload-icon">&#8682;</span>
             <span class="upload-text">Foto frontal do caminhão</span>
           </label>
-          <input type="file" th:field="*{fotoFrente}" accept="image/*" required onchange="previewImage(this, 'frontPreview')" />
+          <input type="file" id="fotoFrente" th:field="*{fotoFrente}" accept="image/*" required onchange="previewImage(this, 'frontPreview')" />
           <div class="image-preview" id="frontPreview"></div>
         </div>
         <div class="upload-box">
@@ -111,7 +119,7 @@
             <span class="upload-icon">&#8682;</span>
             <span class="upload-text">Foto da placa</span>
           </label>
-          <input type="file" th:field="*{fotoPlaca}" accept="image/*" required onchange="previewImage(this, 'platePreview')" />
+          <input type="file" id="fotoPlaca" th:field="*{fotoPlaca}" accept="image/*" required onchange="previewImage(this, 'platePreview')" />
           <div class="image-preview" id="platePreview"></div>
         </div>
       </div>

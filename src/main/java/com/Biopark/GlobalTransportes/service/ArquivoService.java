@@ -12,16 +12,19 @@ import java.util.UUID;
 @Service
 public class ArquivoService {
 
-    private final String uploadDir = "C:\\Users\\Cliente\\Desktop\\GlobalTransportes\\uploads\\imagens"; // caminho base
+    private final String uploadDir = "uploads/imagens"; // caminho relativo ao projeto
 
     public String salvarImagem(MultipartFile imagem) {
         if (imagem == null || imagem.isEmpty()) {
+            System.out.println("Arquivo de imagem está vazio ou nulo");
             return null;
         }
 
         try {
             Path pasta = Paths.get(uploadDir);
             Files.createDirectories(pasta);
+            
+            System.out.println("Diretório de upload criado/verificado: " + pasta.toAbsolutePath());
 
             String nomeOriginal = imagem.getOriginalFilename();
             String extensao = nomeOriginal.substring(nomeOriginal.lastIndexOf("."));
@@ -29,11 +32,15 @@ public class ArquivoService {
 
             Path caminhoArquivo = pasta.resolve(nomeArquivo);
             imagem.transferTo(caminhoArquivo.toFile());
+            
+            System.out.println("Imagem salva com sucesso: " + caminhoArquivo.toAbsolutePath());
 
             return nomeArquivo;
 
         } catch (IOException e) {
-            throw new RuntimeException("Erro ao salvar imagem", e);
+            System.err.println("Erro ao salvar imagem: " + e.getMessage());
+            e.printStackTrace();
+            throw new RuntimeException("Erro ao salvar imagem: " + e.getMessage(), e);
         }
     }
 
@@ -43,7 +50,9 @@ public class ArquivoService {
         try {
             Path caminhoArquivo = Paths.get(uploadDir).resolve(nomeArquivo);
             Files.deleteIfExists(caminhoArquivo);
+            System.out.println("Imagem excluída: " + caminhoArquivo.toAbsolutePath());
         } catch (IOException e) {
+            System.err.println("Erro ao excluir imagem: " + nomeArquivo + " - " + e.getMessage());
             throw new RuntimeException("Erro ao excluir imagem: " + nomeArquivo, e);
         }
     }

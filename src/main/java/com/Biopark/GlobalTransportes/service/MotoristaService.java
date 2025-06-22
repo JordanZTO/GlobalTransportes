@@ -39,6 +39,8 @@ public class MotoristaService {
 
     public void cadastrarMotorista(MotoristaDTO dto) {
 
+        System.out.println("Iniciando cadastro de motorista...");
+
         if (usuarioService.emailJaCadastrado(dto.getEmail())) {
             throw new RecursoJaExistenteException("Email já cadastrado.");
         }
@@ -51,6 +53,8 @@ public class MotoristaService {
             throw new RecursoJaExistenteException("Placa do veículo já cadastrada.");
         }
 
+        System.out.println("Validações básicas passaram. Criando endereço...");
+
         Endereco endereco = new Endereco();
         endereco.setLogradouro(dto.getLogradouro());
         endereco.setNumero(dto.getNumero());
@@ -62,6 +66,8 @@ public class MotoristaService {
         endereco.setPais(dto.getPais() == null ? "Brasil" : dto.getPais());
         enderecoRepository.save(endereco);
 
+        System.out.println("Endereço salvo. Criando usuário...");
+
         Usuario usuario = new Usuario();
         usuario.setEmail(dto.getEmail());
         usuario.setSenha(dto.getSenha());
@@ -72,9 +78,15 @@ public class MotoristaService {
         usuario.setTipo(tipo);
         usuarioService.cadastrarUsuario(usuario);
 
+        System.out.println("Usuário criado. Salvando imagens...");
+
         String nomeFotoFrente = arquivoService.salvarImagem(dto.getFotoFrente());
         String nomeFotoPlaca = arquivoService.salvarImagem(dto.getFotoPlaca());
         String nomeFotoCnh = arquivoService.salvarImagem(dto.getFotoCnh());
+
+        System.out.println("Imagens salvas - Frente: " + nomeFotoFrente + ", Placa: " + nomeFotoPlaca + ", CNH: " + nomeFotoCnh);
+
+        System.out.println("Criando caminhão...");
 
         Caminhao caminhao = new Caminhao();
         caminhao.setNumeroCrlv(dto.getNumeroCrlv());
@@ -87,6 +99,8 @@ public class MotoristaService {
         caminhao.setFoto_frente(nomeFotoFrente);
         caminhao.setFoto_placa(nomeFotoPlaca);
         caminhaoRepository.save(caminhao);
+
+        System.out.println("Caminhão salvo. Criando motorista...");
 
         Motorista motorista = new Motorista();
         motorista.setNome_completo(dto.getNome_completo());
@@ -106,6 +120,8 @@ public class MotoristaService {
         motorista.setCaminhao(caminhao);
         motorista.setUsuario(usuario);
         motoristaRepository.save(motorista);
+
+        System.out.println("Motorista cadastrado com sucesso!");
     }
 
     public void aceitarFrete(Long freteId) {

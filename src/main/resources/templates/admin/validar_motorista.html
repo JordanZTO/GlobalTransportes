@@ -32,10 +32,16 @@
         </div>
     </div>
 
-    <div class="main-content">
-        <div class="container">
-            <h2 class="text-center mb-4">Lista de Motoristas</h2>
-            <table class="table table-hover">
+    <div class="main-content p-4">
+        <div class="container list-container">
+            <h2 class="mb-4">Motoristas</h2>
+
+            <form class="search-form" th:action="@{/admin/validar_motorista}" method="get">
+                <input type="text" name="q" class="form-control" placeholder="Filtrar por nome, CPF, email..." th:value="${param.q}">
+                <button type="submit" class="btn btn-dark"><i class="fas fa-search"></i> Filtrar</button>
+            </form>
+
+            <table class="table styled-table">
                 <thead>
                     <tr>
                         <th>Nome</th>
@@ -48,24 +54,19 @@
                 </thead>
                 <tbody>
                     <tr th:each="motorista : ${motoristas}">
-                        <td th:text="${motorista.nome_completo}">Nome</td>
-                        <td th:text="${motorista.cpf}">CPF</td>
-                        <td th:text="${motorista.email_comercial}">Email</td>
-                        <td th:text="${motorista.telefone_pessoal}">Telefone</td>
-                        <td th:text="${motorista.valido ? 'Sim' : 'Não'}">Valido</td>
+                        <td th:text="${motorista.nome_completo}"></td>
+                        <td th:text="${motorista.cpf}"></td>
+                        <td th:text="${motorista.email_comercial}"></td>
+                        <td th:text="${motorista.telefone_pessoal}"></td>
+                        <td th:text="${motorista.valido ? 'Sim' : 'Não'}"></td>
                         <td>
                             <a th:href="@{/admin/motorista/{id}(id=${motorista.motorista_id})}" class="btn btn-primary btn-sm">
-                                <i class="fas fa-eye"></i> Ver detalhes
+                                <i class="fas fa-eye"></i> Ver Detalhes
                             </a>
                         </td>
                     </tr>
                 </tbody>
             </table>
-            <div class="text-center mt-4">
-                <a th:href="@{/admin/home}" class="btn btn-secondary">
-                    <i class="fas fa-arrow-left"></i> Voltar
-                </a>
-            </div>
         </div>
     </div>
 

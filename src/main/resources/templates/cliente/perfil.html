@@ -3,72 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <title>Detalhes - Cliente</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/css/VerPerfilCli.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <div class="sidebar">
         <div class="sidebar-logo">
-            <img th:src="@{/img/LogoSem.png}" alt="Logo Global Transportes" />
+            <img th:src="@{/img/LogoSem.png}" alt="Logo" />
         </div>
         <div class="sidebar-title">Global Transportes</div>
         <nav class="sidebar-nav">
-            <a th:href="@{/cliente/home}" class="sidebar-link">
-                <i class="fas fa-home"></i> <span>Início</span>
-            </a>
-            <a th:href="@{/cliente/perfil}" class="sidebar-link active">
-                <i class="fas fa-user"></i> <span>Meu Perfil</span>
-            </a>
-            <a th:href="@{/fretes/cadastrar}" class="sidebar-link">
-                <i class="fas fa-plus-circle"></i> <span>Cadastrar Frete</span>
-            </a>
-            <a th:href="@{/cliente/home}" class="sidebar-link">
-                <i class="fas fa-truck"></i> <span>Meus Fretes</span>
-            </a>
-            <a th:href="@{/cliente/suporte}" class="sidebar-link">
-                <i class="fas fa-headset"></i> <span>Suporte</span>
-            </a>
+            <a th:href="@{/cliente/home}" class="sidebar-link"><i class="fas fa-home"></i> <span>Início</span></a>
+            <a th:href="@{/cliente/perfil}" class="sidebar-link active"><i class="fas fa-user"></i> <span>Meu Perfil</span></a>
+            <a th:href="@{/fretes/cadastrar}" class="sidebar-link"><i class="fas fa-plus-circle"></i> <span>Cadastrar Frete</span></a>
+            <a th:href="@{/cliente/home}" class="sidebar-link"><i class="fas fa-truck"></i> <span>Meus Fretes</span></a>
+            <a th:href="@{/cliente/suporte}" class="sidebar-link"><i class="fas fa-headset"></i> <span>Suporte</span></a>
         </nav>
         <div class="sidebar-separator"></div>
         <div class="sidebar-bottom">
-            <a href="javascript: document.logoutForm.submit()" class="sidebar-logout"><i class="fas fa-sign-out-alt"></i> <span>Sair</span></a>
-            <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true"></form>
+            <a th:href="@{/logout}" class="sidebar-logout">
+                <i class="fas fa-sign-out-alt"></i> <span>Sair</span>
+            </a>
         </div>
     </div>
+
     <div class="main-content">
-        <div class="titulo-perfil">Detalhes do Perfil</div>
-        <div class="perfil-container">
-            <div class="card-perfil">
-                <h3>Perfil do usuário</h3>
-                <p><strong>Nome:</strong> <span th:text="${cliente.nome}"></span></p>
-                <p><strong>Data de Nascimento:</strong> <span th:text="${cliente.dataNascimento}"></span></p>
-                <p><strong>CNPJ:</strong> <span th:text="${cliente.cnpj}"></span></p>
-                <p><strong>Inscrição Estadual:</strong> <span th:text="${cliente.inscricaoEstadual}"></span></p>
-                <p><strong>Telefone:</strong> <span th:text="${cliente.telefone}"></span></p>
-                <p><strong>Email Comercial:</strong> <span th:text="${cliente.emailComercial}"></span></p>
+        <h2>Meu Perfil</h2>
+
+        <div class="details-card">
+            <h3><i class="fas fa-user"></i> Dados Pessoais</h3>
+            <p><strong>Nome:</strong> <span th:text="${cliente.nome}"></span></p>
+            <p><strong>Data de Nascimento:</strong> <span th:text="${cliente.dataNascimento}"></span></p>
+            <p><strong>CNPJ:</strong> <span th:text="${cliente.cnpj}"></span></p>
+            <p><strong>Inscrição Estadual:</strong> <span th:text="${cliente.inscricaoEstadual}"></span></p>
+            <p><strong>Telefone:</strong> <span th:text="${cliente.telefone}"></span></p>
+            <p><strong>Email Comercial:</strong> <span th:text="${cliente.emailComercial}"></span></p>
+        </div>
+
+        <div class="details-card">
+            <h3><i class="fas fa-map-marker-alt"></i> Endereço</h3>
+            <div th:if="${cliente.endereco != null}">
+                <p><strong>Logradouro:</strong> <span th:text="${cliente.endereco.logradouro}"></span></p>
+                <p><strong>Número:</strong> <span th:text="${cliente.endereco.numero}"></span></p>
+                <p><strong>Complemento:</strong> <span th:text="${cliente.endereco.complemento}"></span></p>
+                <p><strong>Bairro:</strong> <span th:text="${cliente.endereco.bairro}"></span></p>
+                <p><strong>Cidade:</strong> <span th:text="${cliente.endereco.cidade}"></span></p>
+                <p><strong>Estado:</strong> <span th:text="${cliente.endereco.estado}"></span></p>
+                <p><strong>CEP:</strong> <span th:text="${cliente.endereco.cep}"></span></p>
+                <p><strong>País:</strong> <span th:text="${cliente.endereco.pais}"></span></p>
             </div>
-            <div class="card-perfil">
-                <h3>Endereço</h3>
-                <div th:if="${cliente.endereco != null}">
-                    <p><strong>Logradouro:</strong> <span th:text="${cliente.endereco.logradouro}"></span></p>
-                    <p><strong>Número:</strong> <span th:text="${cliente.endereco.numero}"></span></p>
-                    <p><strong>Complemento:</strong> <span th:text="${cliente.endereco.complemento}"></span></p>
-                    <p><strong>Bairro:</strong> <span th:text="${cliente.endereco.bairro}"></span></p>
-                    <p><strong>Cidade:</strong> <span th:text="${cliente.endereco.cidade}"></span></p>
-                    <p><strong>Estado:</strong> <span th:text="${cliente.endereco.estado}"></span></p>
-                    <p><strong>CEP:</strong> <span th:text="${cliente.endereco.cep}"></span></p>
-                    <p><strong>País:</strong> <span th:text="${cliente.endereco.pais}"></span></p>
-                </div>
+            <div th:if="${cliente.endereco == null}">
+                <p><strong>Endereço:</strong> <span>Não cadastrado</span></p>
             </div>
         </div>
-        <div class="text-center mt-4">
-            <button type="button" onclick="window.location.href='/cliente/perfil/editar'" class="btn-perfil">
-                <i class="fas fa-edit"></i> Editar perfil
-            </button>
-            <a href="/cliente/home" class="btn-voltar"><i class="fas fa-arrow-left"></i> Voltar</a>
+
+        <div class="actions">
+            <button type="button" onclick="window.location.href='/cliente/perfil/editar'" class="btn btn-primary"><i class="fas fa-edit"></i> Editar Perfil</button>
+            <a href="/cliente/home" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Voltar</a>
         </div>
+
     </div>
 </body>
 </html>

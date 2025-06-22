@@ -55,7 +55,7 @@ function validarFormularioMotorista() {
   }
 
   // Verificar campos numéricos
-  const camposNumericos = ['ano', 'quantidadeEixo', 'peso', 'altura', 'comprimento', 'largura'];
+  const camposNumericos = ['ano', 'quantidadeEixo'];
   for (const campo of camposNumericos) {
     const elemento = document.querySelector(`[name="${campo}"]`);
     if (isNaN(elemento.value) || elemento.value.trim() === '') {
@@ -74,13 +74,6 @@ function validarFormularioMotorista() {
       elemento.focus();
       return false;
     }
-  }
-
-  // Verificar se possuiLona foi selecionado
-  const possuiLona = document.querySelector('input[name="possuiLona"]:checked');
-  if (!possuiLona) {
-    alert('É obrigatório selecionar se o veículo possui lona!');
-    return false;
   }
 
   return true;
