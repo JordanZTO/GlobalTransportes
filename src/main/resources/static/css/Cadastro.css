@@ -70,6 +70,19 @@ body, html {
   width: 250px;
 }
 
+.btn-voltar {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  z-index: 999;
+  cursor: pointer;
+}
+
+.btn-voltar img {
+  width: 28px;
+  height: 28px;
+}
+
 .logo img {
   width: 100%;
   height: auto;

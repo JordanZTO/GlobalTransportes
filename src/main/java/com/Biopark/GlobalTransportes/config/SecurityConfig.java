@@ -34,6 +34,7 @@ public class SecurityConfig {
                                 "/css/**",
                                 "/js/**",
                                 "/img/**",
+                                "/index",
                                 "/recuperar_senha",
                                 "/redefinir_senha",
                                 "/redefinir_senha/**",
