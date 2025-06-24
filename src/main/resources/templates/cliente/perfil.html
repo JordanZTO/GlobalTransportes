@@ -16,12 +16,36 @@
         </div>
         <div class="sidebar-title">Global Transportes</div>
         <nav class="sidebar-nav">
-            <a th:href="@{/cliente/home}" class="sidebar-link"><i class="fas fa-home"></i> <span>Início</span></a>
-            <a th:href="@{/cliente/perfil}" class="sidebar-link active"><i class="fas fa-user"></i> <span>Meu Perfil</span></a>
-            <a th:href="@{/fretes/cadastrar}" class="sidebar-link"><i class="fas fa-plus-circle"></i> <span>Cadastrar Frete</span></a>
-            <a th:href="@{/cliente/home}" class="sidebar-link"><i class="fas fa-truck"></i> <span>Meus Fretes</span></a>
-            <a th:href="@{/cliente/suporte}" class="sidebar-link"><i class="fas fa-headset"></i> <span>Suporte</span></a>
+            <a th:href="@{/cliente/home}" class="sidebar-link">
+                <i class="fas fa-home"></i> <span>Início</span>
+            </a>
+
+            <a th:href="@{/cliente/perfil}" class="sidebar-link active">
+                <i class="fas fa-user"></i> <span>Meu Perfil</span>
+            </a>
+
+            <!-- Condicional para o Cadastrar Frete -->
+            <th:block th:if="${cliente.valido}">
+                <a th:href="@{/fretes/cadastrar}" class="sidebar-link">
+                    <i class="fas fa-plus-circle"></i> <span>Cadastrar Frete</span>
+                </a>
+            </th:block>
+
+            <th:block th:unless="${cliente.valido}">
+                <a href="#" class="sidebar-link disabled" style="pointer-events: none; opacity: 0.5;" title="Sua conta ainda não está validada.">
+                    <i class="fas fa-plus-circle"></i> <span>Cadastrar Frete</span>
+                </a>
+            </th:block>
+
+            <a th:href="@{/cliente/home}" class="sidebar-link">
+                <i class="fas fa-truck"></i> <span>Meus Fretes</span>
+            </a>
+
+            <a th:href="@{/cliente/suporte}" class="sidebar-link">
+                <i class="fas fa-headset"></i> <span>Suporte</span>
+            </a>
         </nav>
+
         <div class="sidebar-separator"></div>
         <div class="sidebar-bottom">
             <a th:href="@{/logout}" class="sidebar-logout">

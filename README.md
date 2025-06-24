@@ -90,5 +90,5 @@ private final String uploadDir = "C:\\Users\\Jordan\\Desktop\\GlobalTransportes\
 
 Acesse no navegador:
 ```
-http://localhost:8080/login
+http://localhost:8080/index
 ```
